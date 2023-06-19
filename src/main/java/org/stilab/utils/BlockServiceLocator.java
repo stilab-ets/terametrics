@@ -14,29 +14,34 @@ public class BlockServiceLocator {
 
    public Pair<BlockTreeImpl, String> identifyRightBlock(String fileContent, int impactedLine) {
 
-     // Hcl Parser
-     HclParser hclParser = new HclParser();
+       // Hcl Parser
+       HclParser hclParser = new HclParser();
 
-     // Parse the content of the hcl file
-     Tree tree = hclParser.parse(fileContent);
+       // Parse the content of the hcl file
+       Tree tree = hclParser.parse(fileContent);
 
-     // To look for the Parsed One
-     TopBlockFinder topBlockFinder = new TopBlockFinder();
+       // To look for the Parsed One
+       TopBlockFinder topBlockFinder = new TopBlockFinder();
 
-     List<BlockTreeImpl> blocks = topBlockFinder.findTopBlock(tree);
+       List<BlockTreeImpl> blocks = topBlockFinder.findTopBlock(tree);
 
-     // Search By Index
-     BlockFinderByIndex blockFinderByIndex = new BlockFinderByIndex();
+       // Search By Index
+       BlockFinderByIndex blockFinderByIndex = new BlockFinderByIndex();
 
-     // Search identify the right block
-     BlockTreeImpl identifiedBlock = blockFinderByIndex.findBlockByIndex(blocks, impactedLine);
+       // Search identify the right block
+       BlockTreeImpl identifiedBlock = blockFinderByIndex.findBlockByIndex(blocks, impactedLine);
 
-     String blockContent = ServiceCounter.getInstance().extractDesiredContent(fileContent,
-                                           identifiedBlock.key().textRange().start().line(),
-                                           identifiedBlock.value().textRange().end().line()
-     );
+      // When the change doesn't concern a block of tf
+       if (identifiedBlock != null) {
 
-     return new Pair<>(identifiedBlock, blockContent);
+         String blockContent = ServiceCounter.getInstance().extractDesiredContent(fileContent,
+           identifiedBlock.key().textRange().start().line(),
+           identifiedBlock.value().textRange().end().line()
+         );
+         return new Pair<>(identifiedBlock, blockContent);
+       }
+
+       return new Pair<>(null, "");
    }
 
 

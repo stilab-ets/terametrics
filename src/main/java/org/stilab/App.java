@@ -35,34 +35,30 @@ public class App {
 
           try {
             Pair<BlockTreeImpl, String> identifiedBlockPair = blockServiceLocator.identifyRightBlock(bugInducingFile, impactedLineIndex);
-
             MetricsCalculator metricsCalculator = new MetricsCalculator();
 
-            try {
+            if ((identifiedBlockPair.getFirst() != null) && (!identifiedBlockPair.getSecond().equals(""))) {
 
-              System.out.println(
-                metricsCalculator.measureMetrics(
-                  identifiedBlockPair.getFirst(),
-                  identifiedBlockPair.getSecond())
+//              System.out.println(
+//                metricsCalculator.measureMetrics(
+//                  identifiedBlockPair.getFirst(),
+//                  identifiedBlockPair.getSecond())
+//              );
+
+//              measure the metrics and generate A Json File for each one
+              metricsCalculator.writeMetricsAsJsonFile(identifiedBlockPair.getFirst(), identifiedBlockPair.getSecond(),
+                target
               );
 
-              metricsCalculator.writeMetricsAsJsonFile(
-                identifiedBlockPair.getFirst(),
-                identifiedBlockPair.getSecond(),
-                target
-                );
+              System.out.println("Generated File metrics for the given Terraform Content at " + target);
 
-              System.out.println("Generated File metrics for the given Terraform Content at " +
-                target);
-
-            } catch (Exception e) {
-              // Handle exceptions from
-              // measureMetrics method
-              System.err.println("Error while measuring metrics: " + e.getMessage());
+            } else {
+              System.out.println("The change doesn't concern any block -- zz!!");
+              metricsCalculator.createEmptyFile(target);
             }
+
+
           } catch (Exception e) {
-            // Handle exceptions from
-            // identifyRightBlock method
             System.err.println("Error while identifying the right block: " + e.getMessage());
           }
         }

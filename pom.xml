@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.stilab</groupId>
-    <artifactId>terraform_miner</artifactId>
+    <artifactId>terraform_metrics</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>terraform_metrics</name>

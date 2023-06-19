@@ -10,6 +10,7 @@ import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
 import org.stilab.metrics.counter.block.size.BlockComplexity;
 import org.stilab.metrics.counter.expression.*;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -202,4 +203,19 @@ public class MetricsCalculator {
         e.printStackTrace();
       }
     }
+
+  public void createEmptyFile(String filePath) {
+    try {
+      File file = new File(filePath);
+      if (file.createNewFile()) {
+        System.out.println("Empty file created: " + file.getAbsolutePath());
+      } else {
+        System.out.println("File already exists: " + file.getAbsolutePath());
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+
 }
