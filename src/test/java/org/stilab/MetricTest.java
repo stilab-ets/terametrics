@@ -8,7 +8,11 @@ import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.metrics.BlockLabelIdentifier;
 import org.stilab.metrics.counter.block.finder.TopBlockFinder;
+import org.stilab.utils.BlockServiceLocator;
+import org.stilab.utils.MetricsCalculator;
+import org.stilab.utils.Pair;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -91,8 +95,46 @@ public class MetricTest  extends TestCase {
     List<String> expected = Arrays.asList("aws_instance", "web");
 
     assertEquals(expected, blockLabelIdentifier.identifyLabelsOfBlock(topBlock));
-
   }
 
+  public void testBlockIdentifier() {
+
+    HclParser hclParser = new HclParser();
+    Tree tree = hclParser.parse(fileContent);
+
+    // to look for the Parsed One
+    TopBlockFinder topBlockFinder = new TopBlockFinder();
+    List<BlockTreeImpl> blockTrees = topBlockFinder.findTopBlock(tree);
+    BlockTreeImpl topBlock = blockTrees.get(0);
+
+    BlockLabelIdentifier blockLabelIdentifier = new BlockLabelIdentifier();
+    List<String> labels = blockLabelIdentifier.identifyLabelsOfBlock(topBlock);
+
+    labels.add(0, topBlock.key().value());
+    List<String> expected = Arrays.asList("resource", "aws_instance", "web");
+    assertEquals(expected, this.concatElementsOfList(labels));
+  }
+
+  public String concatElementsOfList(List<String> stringList) {
+    return String.join(" ", stringList);
+  }
+
+  public void testMetrics() {
+
+    String pathToFile = "C:\\Users\\Admin\\dev\\sonar-iac\\iac-extensions\\terraform_miner\\src\\test\\java\\org\\stilab\\tmp_blob.tf";
+    int impactedLineIndex = 187;
+
+    BlockServiceLocator blockServiceLocator = new BlockServiceLocator();
+    Pair<BlockTreeImpl, String> identifiedBlockPair = blockServiceLocator.identifyRightBlock(pathToFile,
+      impactedLineIndex);
+
+
+    MetricsCalculator metricsCalculator = new MetricsCalculator();
+    ;
+
+    System.out.println(
+      metricsCalculator.measureMetrics(identifiedBlockPair.getFirst(), identifiedBlockPair.getSecond())
+    );
+  }
 
 }

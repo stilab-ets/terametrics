@@ -26,11 +26,10 @@ public class MetricsCalculator {
 
       JSONObject metrics = new JSONObject();
 
-
       // Get the name of the Impacted Block
       BlockLabelIdentifier blockLabelIdentifier = new BlockLabelIdentifier();
-      List<String> identifierBlack = blockLabelIdentifier.identifyLabelsOfBlock(identifiedBlock);
-      metrics.put("impacted_block_type", identifierBlack.toString());
+      List<String> labels = blockLabelIdentifier.identifyLabelsOfBlock(identifiedBlock);
+      metrics.put("impacted_block_type", this.concatElementsOfList(labels));
 
       //  1. Number of the used meta-arguments
       MetaArgumentIdentifier metaArgumentIdentifier =
@@ -39,7 +38,7 @@ public class MetricsCalculator {
       int numMetaArg = metaArgumentIdentifier.meta_args_count();
       metrics.put("numMetaArg", numMetaArg);
 
-      //  2. Number od dynamic block
+      //  2. Number of dynamic block
       DynamicBlocksIdentifier dynamicBlocksIdentifier =
         new DynamicBlocksIdentifier();
       dynamicBlocksIdentifier.filterDynamicBlock(identifiedBlock);
@@ -158,36 +157,55 @@ public class MetricsCalculator {
       metrics.put("numUris", numUris);
 
       //  23. Is a Data Block
-      BlockCheckerTypeImpl blockCheckerType = new BlockCheckerTypeImpl();
-      boolean isData = blockCheckerType.isData(identifiedBlock);
-      metrics.put("isData", isData);
+      //  BlockCheckerTypeImpl blockCheckerType = new BlockCheckerTypeImpl();
+      //  boolean isData = blockCheckerType.isData(identifiedBlock);
+      //  metrics.put("isData", isData);
 
       //  24. Is a Variable Block
-      boolean isVar = blockCheckerType.isVariable(identifiedBlock);
-      metrics.put("isVar", isVar);
+      //  boolean isVar = blockCheckerType.isVariable(identifiedBlock);
+      //  metrics.put("isVar", isVar);
 
       //  25. Is a Provider Block
-      boolean isProvider = blockCheckerType.isProvider(identifiedBlock);
-      metrics.put("isProvider", isProvider);
+      //  boolean isProvider = blockCheckerType.isProvider(identifiedBlock);
+      //  metrics.put("isProvider", isProvider);
 
       //  26. Is a Module Block
-      boolean isModule = blockCheckerType.isModule(identifiedBlock);
-      metrics.put("isModule", isModule);
+      //  boolean isModule = blockCheckerType.isModule(identifiedBlock);
+      //  metrics.put("isModule", isModule);
 
       //  27. Is a Local Block
-      boolean isLocal = blockCheckerType.isLocals(identifiedBlock);
-      metrics.put("isLocal", isLocal);
+      //  boolean isLocal = blockCheckerType.isLocals(identifiedBlock);
+      //  metrics.put("isLocal", isLocal);
 
       //  28. Is an Output Block
-      boolean isOutput = blockCheckerType.isOutput(identifiedBlock);
-      metrics.put("isOutput", isOutput);
+      //  boolean isOutput = blockCheckerType.isOutput(identifiedBlock);
+      //  metrics.put("isOutput", isOutput);
 
       //  29. Avg Mccab complexity --- Mascara
       MccabeCC mccabeCC = new MccabeCC();
       double avgMccabeCC = mccabeCC.avgMccabeCC(identifiedBlock);
       metrics.put("avgMccabeCC", avgMccabeCC);
 
+      // 30. Key of the block <==> Variable, Provider, Module, Local, Output, Data
+      // boolean isResource = blockCheckerType.isResource(identifiedBlock);
+      metrics.put("block", identifiedBlock.key().value());
+
+      // 31. Start index
+      metrics.put("start_block", identifiedBlock.key().textRange().start().line());
+
+      // 32. End index
+      metrics.put("end_block", identifiedBlock.value().textRange().end().line());
+
+      // 33. Identifier of a block
+      labels.add(0, identifiedBlock.key().value());
+      metrics.put("block_identifiers", this.concatElementsOfList(labels));
+
       return metrics;
+    }
+
+
+    public String concatElementsOfList(List<String> stringList) {
+       return String.join(" ", stringList);
     }
 
     public void writeMetricsAsJsonFile(BlockTreeImpl blockTree,
@@ -204,18 +222,18 @@ public class MetricsCalculator {
       }
     }
 
-  public void createEmptyFile(String filePath) {
-    try {
-      File file = new File(filePath);
-      if (file.createNewFile()) {
-        System.out.println("Empty file created: " + file.getAbsolutePath());
-      } else {
-        System.out.println("File already exists: " + file.getAbsolutePath());
+    public void createEmptyFile(String filePath) {
+      try {
+        File file = new File(filePath);
+        if (file.createNewFile()) {
+          System.out.println("Empty file created: " + file.getAbsolutePath());
+        } else {
+          System.out.println("File already exists: " + file.getAbsolutePath());
+        }
+      } catch (IOException e) {
+        e.printStackTrace();
       }
-    } catch (IOException e) {
-      e.printStackTrace();
     }
-  }
 
 
 }

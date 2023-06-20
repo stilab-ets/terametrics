@@ -24,7 +24,9 @@ public class App {
 
         final JCommander commander = JCommander.newBuilder()
                                                .programName("Terraform Metrics Based-AST")
-                                               .addObject(this).verbose(1).build();
+                                               .addObject(this)
+//                                               .verbose(1)
+                                               .build();
         commander.parse(arguments);
         if (help) {
            commander.usage();
@@ -45,8 +47,10 @@ public class App {
 //                  identifiedBlockPair.getSecond())
 //              );
 
-//              measure the metrics and generate A Json File for each one
-              metricsCalculator.writeMetricsAsJsonFile(identifiedBlockPair.getFirst(), identifiedBlockPair.getSecond(),
+              //  Measure the metrics and generate A Json File for each one
+              metricsCalculator.writeMetricsAsJsonFile(
+                identifiedBlockPair.getFirst(),
+                identifiedBlockPair.getSecond(),
                 target
               );
 

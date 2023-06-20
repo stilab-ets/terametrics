@@ -103,6 +103,7 @@ public class ServiceCounter {
     parsedContent = matchSingleLineCommentDoubleSlash(parsedContent).replaceAll("");
 
     int lineOfCode = 0;
+
     String[] lines = parsedContent.split("\\r?\\n");
     for (String line : lines) {
       String trimmedLine = line.trim();
