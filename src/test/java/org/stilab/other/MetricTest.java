@@ -1,4 +1,4 @@
-package org.stilab;
+package org.stilab.other;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -11,12 +11,10 @@ import org.stilab.metrics.counter.block.finder.TopBlockFinder;
 import org.stilab.utils.BlockServiceLocator;
 import org.stilab.utils.MetricsCalculator;
 import org.stilab.utils.Pair;
-
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-public class MetricTest  extends TestCase {
+public class MetricTest extends TestCase {
 
 
   public String fileContent = "resource \"aws_instance\" \"web\" {\n" +
@@ -136,5 +134,6 @@ public class MetricTest  extends TestCase {
       metricsCalculator.measureMetrics(identifiedBlockPair.getFirst(), identifiedBlockPair.getSecond())
     );
   }
+
 
 }
