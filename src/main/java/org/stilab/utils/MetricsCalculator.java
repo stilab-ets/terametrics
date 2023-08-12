@@ -2,13 +2,14 @@ package org.stilab.utils;
 
 import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
+import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
 import org.stilab.interfaces.IBlockComplexity;
 import org.stilab.metrics.BlockLabelIdentifier;
 import org.stilab.metrics.checker.BlockCheckerTypeImpl;
 import org.stilab.metrics.counter.attr.counter.AttributeCounterImpl;
 import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
 import org.stilab.metrics.counter.block.size.BlockComplexity;
-import org.stilab.metrics.counter.expression.*;
+import org.stilab.metrics.counter.block_level.*;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -43,21 +44,36 @@ public class MetricsCalculator {
         new DynamicBlocksIdentifier();
       dynamicBlocksIdentifier.filterDynamicBlock(identifiedBlock);
       int numDynamicBlock = dynamicBlocksIdentifier.countDynamicBlock();
-      metrics.put("numDynamicBlock", numDynamicBlock);
+      metrics.put("numDynamicBlocks", numDynamicBlock);
 
       //  3. Number of conditions
       ConditionalExpressionIdentifier conditionalExpressionIdentifier =
         new ConditionalExpressionIdentifier();
       conditionalExpressionIdentifier.filtersConditionsFromBlock(identifiedBlock);
-      int numConditions = conditionalExpressionIdentifier.countConditions();
+      int numConditions = conditionalExpressionIdentifier.totalNumberOfConditions();
+      int maxConditionsPerAttr = conditionalExpressionIdentifier.maxNumberOfConditionsPerAttribute();
+      double avgConditionsPerAttr = conditionalExpressionIdentifier.avgNumberOfConditionsPerAttribute();
+      //      TODO: MAX, AVG, TOTAL,
+      //      Should remove the TODO comment after running your tests
+      //      THINK about the ELSE Template condition
       metrics.put("numConditions", numConditions);
+      metrics.put("avgConditions", avgConditionsPerAttr);
+      metrics.put("maxConditions",maxConditionsPerAttr);
 
       //  4. Number of Loops
       LoopsExpressionIdentifier loopsExpressionIdentifier =
         new LoopsExpressionIdentifier();
       loopsExpressionIdentifier.filterLoopsFromBlock(identifiedBlock);
-      int numLoops = loopsExpressionIdentifier.countLoop();
+      //      TODO: MAX, AVG, TOTAL
+      //      TODO: You can here the case of count, for_each
+      //      Should remove the TODO comment after running your tests
+      int numLoops = loopsExpressionIdentifier.totalNumberOfLoops();
+      double avgLoops = loopsExpressionIdentifier.avgNumberOfLoops();
+      int maxLoops = loopsExpressionIdentifier.maxNumberOfLoops();
       metrics.put("numLoops", numLoops);
+      metrics.put("avgLoops", avgLoops);
+      metrics.put("maxLoops", maxLoops);
+
 
       //  5. Number of Template Expressions
       TemplateExpressionIdentifier templateExpressionIdentifier =
@@ -70,27 +86,58 @@ public class MetricsCalculator {
       FunctionCallExpressionIdentifier functionCallExpressionIdentifier =
         new FunctionCallExpressionIdentifier();
       functionCallExpressionIdentifier.filterFCfromBlock(identifiedBlock);
-      int numFunctionCallParameters = functionCallExpressionIdentifier.countFunctionCallsPerBlock();
-      metrics.put("numFunctionCallParameters", numFunctionCallParameters);
+      //      TODO: MAX, AVG, TOTAL
+      int numFunctionCall = functionCallExpressionIdentifier.totalNumberOfFunctionCall();
+      double avgFunctionCall = functionCallExpressionIdentifier.avgNumberOfFunctionCall();
+      int maxFunctionCall = functionCallExpressionIdentifier.maxNumberOfFunctionCall();
+      metrics.put("numFunctionCall", numFunctionCall);
+      metrics.put("avgFunctionCall", avgFunctionCall);
+      metrics.put("maxFunctionCall", maxFunctionCall);
 
       //  7. Number of Parameters injected in the Call Method
-      FunctionParametersIdentifier functionParametersIdentifier =
-        new FunctionParametersIdentifier();
+      FunctionParametersIdentifier functionParametersIdentifier = new FunctionParametersIdentifier();
       functionParametersIdentifier.identifyUsedParametersInBlock(identifiedBlock);
-      int numFunctionParameters = functionParametersIdentifier.countParametersPerBlock();
-      metrics.put("numFunctionParameters", numFunctionParameters);
+      //      TODO: MAX, AVG, TOTAL
+      int numParams = functionParametersIdentifier.totalNumberParamsPerBlock();
+      double avgParams = functionParametersIdentifier.avgNumberParamsPerBlock();
+      int maxParams = functionParametersIdentifier.maxNumberParamsPerBlock();
+      metrics.put("numParams", numParams);
+      metrics.put("avgParams", avgParams);
+      metrics.put("maxParams", maxParams);
 
       //  8. Number of the referenced values
       ReferenceIdentifier referenceIdentifier = new ReferenceIdentifier();
       referenceIdentifier.filterAttributeAccessFromBlock(identifiedBlock);
-      int numReferences = referenceIdentifier.countAttributeAccessPerBlock();
+      //      TODO: MAX, AVG, TOTAL
+      int numReferences = referenceIdentifier.totalAttributeAccess();
+      double avgReferences = referenceIdentifier.avgAttributeAccess();
+      int maxReferences = referenceIdentifier.maxAttributeAccess();
       metrics.put("numReferences", numReferences);
+      metrics.put("avgReferences", avgReferences);
+      metrics.put("maxReferences", maxReferences);
 
       //  9. Number of splat expressions
       SplatExpressionIdentifier splatExpressionIdentifier = new SplatExpressionIdentifier();
-      splatExpressionIdentifier.filtersConditionsFromBlock(identifiedBlock);
-      int numSplatExpressions = splatExpressionIdentifier.countSplats();
+      splatExpressionIdentifier.filtersSplatsFromBlock(identifiedBlock);
+
+      //      TODO: MAX, AVG, TOTAL
+      int numSplatExpressions = splatExpressionIdentifier.totalSplatExpressions();
+      double avgSplatExpressions = splatExpressionIdentifier.avgSplatExpressions();
+      int maxSplatExpressions = splatExpressionIdentifier.maxSplatExpressions();
       metrics.put("numSplatExpressions", numSplatExpressions);
+      metrics.put("avgSplatExpressions", avgSplatExpressions);
+      metrics.put("maxSplatExpressions", maxSplatExpressions);
+
+      // 10. Number of Index Access Identifier Expressions
+      IndexAccessIdentifier indexAccessIdentifier = new IndexAccessIdentifier();
+      indexAccessIdentifier.identifyIndexAccessFromBlock(identifiedBlock);
+      //      TODO: MAX, AVG, TOTAL
+      int numIndexAccessExpressions = indexAccessIdentifier.totalIndexAccessExpressions();
+      double avgIndexAccessExpressions = indexAccessIdentifier.avgIndexAccessExpressions();
+      int maxIndexAccessExpressions = indexAccessIdentifier.maxIndexAccessExpressions();
+      metrics.put("numIndexAccess", numIndexAccessExpressions);
+      metrics.put("avgIndexAccess", avgIndexAccessExpressions);
+      metrics.put("maxIndexAccess", maxIndexAccessExpressions);
 
       //  10. Depth of Block
       IBlockComplexity blockComplexity = new BlockComplexity(identifiedBlock, blockAsString);
@@ -121,11 +168,12 @@ public class MetricsCalculator {
       decisionsIdentifier.identifyDecisionsOperators(identifiedBlock);
       int numDecisions = decisionsIdentifier.countDecisions();
       metrics.put("numDecisions", numDecisions);
+//      TODO: MAX, AVG, TOTAL
 
       //  18. Number of Math Operations
       MathOperations mathOperations = new MathOperations();
       mathOperations.identifyMathOperators(identifiedBlock);
-      int numMathOperations = mathOperations.countDecisions();
+      int numMathOperations = mathOperations.countMathOperation();
       metrics.put("numMathOperations", numMathOperations);
 
       // 19. TextEntropy
@@ -156,35 +204,12 @@ public class MetricsCalculator {
       int numUris = urIsIdentifier.countUri(blockAsString);
       metrics.put("numUris", numUris);
 
-      //  23. Is a Data Block
-      //  BlockCheckerTypeImpl blockCheckerType = new BlockCheckerTypeImpl();
-      //  boolean isData = blockCheckerType.isData(identifiedBlock);
-      //  metrics.put("isData", isData);
-
-      //  24. Is a Variable Block
-      //  boolean isVar = blockCheckerType.isVariable(identifiedBlock);
-      //  metrics.put("isVar", isVar);
-
-      //  25. Is a Provider Block
-      //  boolean isProvider = blockCheckerType.isProvider(identifiedBlock);
-      //  metrics.put("isProvider", isProvider);
-
-      //  26. Is a Module Block
-      //  boolean isModule = blockCheckerType.isModule(identifiedBlock);
-      //  metrics.put("isModule", isModule);
-
-      //  27. Is a Local Block
-      //  boolean isLocal = blockCheckerType.isLocals(identifiedBlock);
-      //  metrics.put("isLocal", isLocal);
-
-      //  28. Is an Output Block
-      //  boolean isOutput = blockCheckerType.isOutput(identifiedBlock);
-      //  metrics.put("isOutput", isOutput);
-
       //  29. Avg Mccab complexity --- Mascara
       MccabeCC mccabeCC = new MccabeCC();
       double avgMccabeCC = mccabeCC.avgMccabeCC(identifiedBlock);
+      double sumMccabeCC = mccabeCC.sumMccabeCC(identifiedBlock);
       metrics.put("avgMccabeCC", avgMccabeCC);
+      metrics.put("sumMccabeCC", sumMccabeCC);
 
       // 30. Key of the block <==> Variable, Provider, Module, Local, Output, Data
       // boolean isResource = blockCheckerType.isResource(identifiedBlock);
@@ -199,6 +224,82 @@ public class MetricsCalculator {
       // 33. Identifier of a block
       labels.add(0, identifiedBlock.key().value());
       metrics.put("block_identifiers", this.concatElementsOfList(labels));
+
+      // 34. Number of literal Expression
+      LiteralExpressionIdentifier literalExpressionIdentifier = new LiteralExpressionIdentifier();
+      int numLiteralExpressions = literalExpressionIdentifier.filterLiteralExprFromBlock(identifiedBlock).size();
+      metrics.put("numLiteralExpression", numLiteralExpressions);
+
+      // 35. Number of Tuple Expression
+      TupleIdentifier tupleIdentifier = new TupleIdentifier();
+      List<TerraformTreeImpl> tuples = tupleIdentifier.filterTuplesFromBlock(identifiedBlock);
+//      TODO: MAX, AVG, TOTAL
+      int numTuples = tupleIdentifier.totalNumberOfTuples();
+      double avgTuples = tupleIdentifier.avgNumberOfTuples();
+      int maxTuples = tupleIdentifier.maxNumberOfTuples();
+      metrics.put("numTuples", numTuples);
+      metrics.put("avgTuples", avgTuples);
+      metrics.put("maxTuples", maxTuples);
+
+//      Number of Tuple Elements
+      TupleElementsIdentifier tupleElementsIdentifier = new TupleElementsIdentifier(tuples);
+
+//      TODO: MAX, AVG, TOTAL
+      int numElemTuples = tupleElementsIdentifier.getTotalNumberOfElementsOfDifferentTuples();
+      double avgElemTuples = tupleElementsIdentifier.avgNumberOfElementsPerDifferentTuples();
+      int maxElemTuples = tupleElementsIdentifier.maxNumberOfElementsPerDifferentTuples();
+      metrics.put("numElemTuples", numElemTuples);
+      metrics.put("avgElemTuples", avgElemTuples);
+      metrics.put("maxElemTuples", maxElemTuples);
+
+//    Number of HereDoc
+      HereDocIdentifier hereDocIdentifier = new HereDocIdentifier();
+      hereDocIdentifier.filterHereDocsFromBlock(identifiedBlock);
+//      TODO: ADD the HereDoc: AVG, TOTAL, MAX
+      int numHereDocs = hereDocIdentifier.totalNumberOfHereDoc();
+      double avgLinesHereDocs = hereDocIdentifier.avgNumberLinesPerHereDoc();
+      int maxLinesHereDocs = hereDocIdentifier.maxNumberLinesPerHereDoc();
+      metrics.put("numHereDocs", numHereDocs);
+      metrics.put("avgLinesHereDocs", avgLinesHereDocs);
+      metrics.put("maxLinesHereDocs", maxLinesHereDocs);
+
+//     Number of Objects
+      ObjectWrapperIdentifier objectWrapperIdentifier = new ObjectWrapperIdentifier();
+      List<TerraformTreeImpl> objects = objectWrapperIdentifier.filterObjectsFromBlock(identifiedBlock);
+//      TODO: ADD the ObjectWrapper: AVG, TOTAL, MAX
+      int numObjects = objectWrapperIdentifier.totalNumberOfObjects();
+      double avgObjects = objectWrapperIdentifier.avgNumberOfObjects();
+      int maxObjects = objectWrapperIdentifier.maxNumberOfObjects();
+      metrics.put("numObjects", numObjects);
+      metrics.put("avgObjects", avgObjects);
+      metrics.put("maxTuples", maxObjects);
+
+//      Number Of elements Within Objects
+      ObjectWrapperElementIdentifier objectWrapperElementIdentifier = new ObjectWrapperElementIdentifier(objects);
+      int numElementObjects = objectWrapperElementIdentifier.getTotalNumberOfElementsOfDifferentObjects();
+      double avgElementObjects = objectWrapperElementIdentifier.avgNumberOfElementsPerDifferentObjects();
+      int maxElementObjects = objectWrapperElementIdentifier.maxNumberOfElementsPerDifferentObjects();
+
+      metrics.put("numElemTuples", numElementObjects);
+      metrics.put("avgElemTuples", avgElementObjects);
+      metrics.put("maxElemTuples", maxElementObjects);
+
+
+//      TODO: ADD the VAR IDENTIFIER: AVG, TOTAL, MAX
+      VariablesIdentifier variablesIdentifier = new VariablesIdentifier();
+      int numVars = variablesIdentifier.totalNumberOfVars();
+      double avgNumVars = variablesIdentifier.avgNumberOfVars();
+      int maxNumVars = variablesIdentifier.maxNumberOfVars();
+
+      metrics.put("numVars", numVars);
+      metrics.put("avgNumVars", avgNumVars);
+      metrics.put("maxNumVars", maxNumVars);
+
+//    Check the type of the studied block
+      BlockCheckerTypeImpl blockCheckerType = new BlockCheckerTypeImpl();
+      metrics = blockCheckerType.checkBlockType(identifiedBlock, metrics);
+
+
 
       return metrics;
     }

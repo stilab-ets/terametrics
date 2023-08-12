@@ -1,4 +1,4 @@
-package org.stilab.metrics.counter.expression;
+package org.stilab.metrics.counter.block_level;
 
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.utils.ExpressionAnalyzer;
@@ -18,6 +18,7 @@ public class LoopsExpressionIdentifier {
     // TemplateForDirectiveTreeImpl
 
     public List<TerraformTreeImpl> loops = new ArrayList<>();
+    public List<AttributeTreeImpl> attributes = new ArrayList<>();
 
     public LoopsExpressionIdentifier(){}
 
@@ -50,9 +51,7 @@ public class LoopsExpressionIdentifier {
 
     }
 
-    public List<TerraformTreeImpl> filterLoopsFromAttributesList(
-      List<AttributeTreeImpl> attributeTrees
-    ) {
+    public List<TerraformTreeImpl> filterLoopsFromAttributesList(List<AttributeTreeImpl> attributeTrees) {
       List<TerraformTreeImpl> fors = new ArrayList<>();
 
       for (AttributeTreeImpl attribute: attributeTrees) {
@@ -65,15 +64,30 @@ public class LoopsExpressionIdentifier {
     public List<TerraformTreeImpl> filterLoopsFromBlock(BlockTreeImpl blockTree) {
       List<AttributeTreeImpl> attributeTrees = (new AttrFinderImpl())
         .getAllAttributes(blockTree);
-
       this.loops = this.filterLoopsFromAttributesList(attributeTrees);
-
       return this.loops;
     }
 
-    public int countLoop() {
+    public int totalNumberOfLoops() {
       return this.loops.size();
     }
 
+    public double avgNumberOfLoops(){
+      if (attributes.size() >0) {
+        return (double) totalNumberOfLoops() / attributes.size();
+      }
+      return 0.0;
+    }
+
+    public int maxNumberOfLoops(){
+      int max=0;
+      for(AttributeTreeImpl attribute: attributes) {
+        int tmpValue = filterLoops(attribute).size();
+        if (tmpValue >= max) {
+          max = tmpValue;
+        }
+      }
+      return max;
+    }
 
 }

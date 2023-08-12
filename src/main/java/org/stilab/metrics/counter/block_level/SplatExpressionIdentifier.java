@@ -1,4 +1,4 @@
-package org.stilab.metrics.counter.expression;
+package org.stilab.metrics.counter.block_level;
 
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.utils.ExpressionAnalyzer;
@@ -13,15 +13,11 @@ import java.util.stream.Stream;
 
 public class SplatExpressionIdentifier {
 
+  public List<TerraformTreeImpl> splatExpressions = new ArrayList<>();
+  public List<AttributeTreeImpl> attributes = new ArrayList<>();
 
-  public List<TerraformTreeImpl> splatExpressions
-    = new ArrayList<>();
-
-  public List<TerraformTreeImpl> filterSplats(
-    AttributeTreeImpl attributeTree
-  ) {
+  public List<TerraformTreeImpl> filterSplats(AttributeTreeImpl attributeTree ) {
     ExpressionTree expressionTree = attributeTree.value();
-
     List<Tree> trees = ExpressionAnalyzer.getInstance().
       getAllNestedExpressions(expressionTree);
 
@@ -36,36 +32,43 @@ public class SplatExpressionIdentifier {
     Stream<TerraformTreeImpl> combinedFilters = Stream.concat(
       splatAccessFilter, indexSplatAccess
     );
-
     return combinedFilters.collect(Collectors.toList());
   }
 
-  public List<TerraformTreeImpl> filterSplatFromAttributesList(
-    List<AttributeTreeImpl> attributeTrees
-  ) {
+  public List<TerraformTreeImpl> filterSplatFromAttributesList(List<AttributeTreeImpl> attributeTrees) {
     List<TerraformTreeImpl> splats = new ArrayList<>();
-
     for (AttributeTreeImpl attribute: attributeTrees) {
       splats.addAll(this.filterSplats(attribute)  );
     }
     return splats;
   }
 
-  public List<TerraformTreeImpl> filtersConditionsFromBlock(
-    BlockTreeImpl blockTree
-  ) {
-
-    List<AttributeTreeImpl> attributeTrees = (new AttrFinderImpl())
-      .getAllAttributes(blockTree);
-
-    this.splatExpressions =
-      this.filterSplatFromAttributesList(attributeTrees);
-
-    return this.splatExpressions;
+  public List<TerraformTreeImpl> filtersSplatsFromBlock(BlockTreeImpl blockTree) {
+    attributes = (new AttrFinderImpl()).getAllAttributes(blockTree);
+    splatExpressions = this.filterSplatFromAttributesList(attributes);
+    return splatExpressions;
   }
 
-  public int countSplats() {
-    return this.splatExpressions.size();
+
+  public int totalSplatExpressions() {
+    return splatExpressions.size();
   }
 
+  public double avgSplatExpressions() {
+    if (attributes.size()>0) {
+      return (double) totalSplatExpressions() / attributes.size();
+    }
+    return 0.0;
+  }
+
+  public int maxSplatExpressions() {
+    int max = 0;
+    for(AttributeTreeImpl attribute: attributes) {
+      int value = filterSplats(attribute).size();
+      if (value >= max) {
+        max = value;
+      }
+    }
+    return max;
+  }
 }

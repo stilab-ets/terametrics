@@ -1,4 +1,4 @@
-package org.stilab.metrics.counter.expression;
+package org.stilab.metrics.counter.block_level;
 
 import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;

@@ -18,4 +18,6 @@ public interface BlockCheckerType {
 
   public boolean isVariable(BlockTree tree);
 
+  public boolean isTerraform(BlockTree tree);
+
 }

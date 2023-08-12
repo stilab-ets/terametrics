@@ -1,4 +1,4 @@
-package org.stilab.metrics.counter.expression;
+package org.stilab.metrics.counter.block_level;
 
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.sonar.iac.common.api.tree.Tree;
@@ -15,11 +15,11 @@ public class ConditionalExpressionIdentifier {
 
 
   public List<TerraformTreeImpl> conditions = new ArrayList<>();
+  public List<AttributeTreeImpl> attributes = new ArrayList<>();
 
   public ConditionalExpressionIdentifier(){}
 
-  public List<TerraformTreeImpl> filterConditions
-    (AttributeTreeImpl attributeTree) {
+  public List<TerraformTreeImpl> filterConditions(AttributeTreeImpl attributeTree) {
 
     ExpressionTree expressionTree = attributeTree.value();
 
@@ -51,16 +51,34 @@ public class ConditionalExpressionIdentifier {
   }
 
   public List<TerraformTreeImpl> filtersConditionsFromBlock(BlockTreeImpl blockTree) {
-    List<AttributeTreeImpl> attributeTrees = (new AttrFinderImpl())
-      .getAllAttributes(blockTree);
-
-    this.conditions = this.filterConditionsFromAttributesList(attributeTrees);
-
-    return this.conditions;
+    attributes = (new AttrFinderImpl()).getAllAttributes(blockTree);
+    conditions = this.filterConditionsFromAttributesList(attributes);
+    return conditions;
   }
 
   public int countConditions() {
     return this.conditions.size();
   }
 
+  public int totalNumberOfConditions(){
+    return this.conditions.size();
+  }
+
+  public double avgNumberOfConditionsPerAttribute(){
+    if ( attributes.size() > 0 ){
+      return (double) conditions.size()  / attributes.size();
+    }
+    return 0.0;
+  }
+
+  public int maxNumberOfConditionsPerAttribute(){
+    int max = 0;
+    for (AttributeTreeImpl attributeTree: attributes){
+       int tmpValue = filterConditions(attributeTree).size();
+       if (max <= tmpValue ){
+         max = tmpValue;
+       }
+    }
+    return max;
+  }
 }

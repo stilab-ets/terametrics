@@ -1,5 +1,7 @@
 package org.stilab.metrics.checker;
 
+import org.json.simple.JSONObject;
+import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.interfaces.BlockCheckerType;
 import org.sonar.iac.common.checks.TextUtils;
 import org.sonar.iac.terraform.api.tree.BlockTree;
@@ -37,5 +39,50 @@ public class BlockCheckerTypeImpl implements BlockCheckerType {
   }
 
   @Override
-  public boolean isVariable(BlockTree tree) { return TextUtils.matchesValue(tree.key(), "variable"::equals).isTrue();}
+  public boolean isVariable(BlockTree tree) {
+    return TextUtils.matchesValue(tree.key(), "variable"::equals).isTrue();
+  }
+
+  @Override
+  public boolean isTerraform(BlockTree tree) {
+    return TextUtils.matchesValue(tree.key(), "terraform"::equals).isTrue();
+  }
+
+  public JSONObject checkBlockType(BlockTreeImpl identifiedBlock, JSONObject metrics) {
+
+    // Is resource ++
+    boolean isResource = this.isResource(identifiedBlock);
+    metrics.put("isResource", isResource ? 1 : 0);
+
+    // Is module ++
+    boolean isModule =  this.isModule(identifiedBlock);
+    metrics.put("isModule", isModule ? 1 : 0);
+
+    // Is data ++
+    boolean isData = this.isData(identifiedBlock);
+    metrics.put("isData", isData ? 1 : 0);
+
+    // Is terraform
+    boolean isTerraform = this.isTerraform(identifiedBlock);
+    metrics.put("isTerraform", isTerraform ? 1 : 0);
+
+    // Is provider
+    boolean isProvider = this.isProvider(identifiedBlock);
+    metrics.put("isProvider", isProvider ? 1 : 0);
+
+    // Is variable
+    boolean isVariable = this.isVariable(identifiedBlock);
+    metrics.put("isVariable", isVariable ? 1 : 0);
+
+    // Is output
+    boolean isOutput = this.isOutput(identifiedBlock);
+    metrics.put("isOutput", isOutput ? 1 : 0);
+
+    // Is locals ++
+    boolean isLocals = this.isLocals(identifiedBlock);
+    metrics.put("isLocals", isLocals ? 1 : 0);
+
+    return metrics;
+  }
+
 }

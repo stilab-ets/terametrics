@@ -1,4 +1,4 @@
-package org.stilab.metrics.counter.expression;
+package org.stilab.metrics.counter.block_level;
 
 import org.sonar.iac.common.api.tree.Comment;
 import org.sonar.iac.common.api.tree.Tree;
@@ -50,8 +50,10 @@ public class TokenIdentifier {
       if (!Objects.equals(token.value(), "")) {
         char[] chars = token.value().toCharArray();
         for (char c : chars) {
-          if (!Character.isWhitespace(c)) {
-            values.add(c);
+          if ((!Character.isWhitespace(c)) ) {
+            if ((c != ' ')) {
+              values.add(c);
+            }
           }
         }
 

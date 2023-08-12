@@ -115,8 +115,9 @@ public class ServiceCounter {
   }
 
   public int countCommentsLines(String parsedContent) {
-    return countMultilineComments(parsedContent) + countSingleLineHashComments(parsedContent) +
-      countSingleLineDoubleSlash(parsedContent);
+//    System.out.println(countSingleLineDoubleSlash(parsedContent));
+    return countMultilineComments(parsedContent) + countSingleLineHashComments(parsedContent) ;
+//      + countSingleLineDoubleSlash(parsedContent);
   }
 
   public int countBlankLinesInsideBlock(String parsedContent) {
@@ -134,9 +135,6 @@ public class ServiceCounter {
   }
 
   public int countMultilineComments(String content) {
-
-//    Pattern pattern = Pattern.compile(LexicalConstant.MULTI_LINE_COMMENT);
-//    Matcher matcher = pattern.matcher(content);
 
     Matcher matcher = matchMultiLineComment(content);
 
@@ -167,9 +165,6 @@ public class ServiceCounter {
   }
 
   public int countSingleLineHashComments(String content) {
-
-//    Pattern pattern = Pattern.compile(LexicalConstant.SINGLE_LINE_COMMENT_HASH);
-//    Matcher matcher = pattern.matcher(content);
 
     Matcher matcher = matchSingleLineCommentHash(content);
 

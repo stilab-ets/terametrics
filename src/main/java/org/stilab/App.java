@@ -1,31 +1,39 @@
 package org.stilab;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
+import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.utils.BlockServiceLocator;
-import org.stilab.utils.MetricsCalculator;
-import org.stilab.utils.Pair;
+import org.stilab.utils.*;
+
+import java.util.List;
 
 public class App {
-    @Parameter(names = {"-v", "--verbose"}, description = "Enable verbose logging")
-    private boolean verbose;
+//    @Parameter(names = {"-v", "--verbose"}, description = "Enable verbose logging")
+//    private boolean verbose;
     @Parameter(names = {"-f", "--file"}, description = "Path and name of file to use")
     private String file;
-    @Parameter(names = {"-bic", "--bugInducingFile"}, description = "File Content of the Bug-Inducing Commit", required = true)
-    private String bugInducingFile;
-    @Parameter(names = {"-i", "--impactedLineIndex"}, description = "Index of the impacted Line", required = true)
+//    @Parameter(names = {"-bic", "--bugInducingFile"}, description = "File Content of the Bug-Inducing Commit", required = true)
+//    private String bugInducingFile;
+    @Parameter(names = {"-i", "--impactedLineIndex"}, description = "Index of the impacted Line")
     private int impactedLineIndex;
     @Parameter(names = {"-t", "--target"}, description = "Path target to save the generated measures", required = true)
     private String target;
     @Parameter(names = {"-h", "--help"}, description = "Help/Usage", help = true)
     private boolean help;
+    @Parameter(names = {"-b", "--bloc"}, description = "Measure Quality Metrics for Tf Manifest Per Block")
+    private boolean bloc;
+    @Parameter(names = {"-l", "--locator"}, description = "Service Locator to localize the block by given His Unique Identifiers")
+    private boolean locator;
+    @Parameter(names = {"-bi","--blockIdentifier"}, description = "Block Identifier to the right blocks")
+    private String blockIdentifier;
+    @Parameter(names = {"-a", "--allBlocks"}, description = "Obtain all the positions of blocks declared in Tf File")
+    private boolean allBlocks;
 
     private void processCommandLineArguments(final String[] arguments) {
 
         final JCommander commander = JCommander.newBuilder()
                                                .programName("Terraform Metrics Based-AST")
                                                .addObject(this)
-//                                               .verbose(1)
                                                .build();
         commander.parse(arguments);
         if (help) {
@@ -33,37 +41,61 @@ public class App {
         }
         else {
 
-          BlockServiceLocator blockServiceLocator = new BlockServiceLocator();
-
           try {
-            Pair<BlockTreeImpl, String> identifiedBlockPair = blockServiceLocator.identifyRightBlock(bugInducingFile, impactedLineIndex);
-            MetricsCalculator metricsCalculator = new MetricsCalculator();
 
-            if ((identifiedBlockPair.getFirst() != null) && (!identifiedBlockPair.getSecond().equals(""))) {
+            if (allBlocks) {
 
-//              System.out.println(
-//                metricsCalculator.measureMetrics(
-//                  identifiedBlockPair.getFirst(),
-//                  identifiedBlockPair.getSecond())
-//              );
-
-              //  Measure the metrics and generate A Json File for each one
-              metricsCalculator.writeMetricsAsJsonFile(
-                identifiedBlockPair.getFirst(),
-                identifiedBlockPair.getSecond(),
-                target
-              );
-
-              System.out.println("Generated File metrics for the given Terraform Content at " + target);
-
-            } else {
-              System.out.println("The change doesn't concern any block -- zz!!");
-              metricsCalculator.createEmptyFile(target);
+              // Call the service locator to look for all the blocks identified in Tf file
+              ServiceLocator serviceLocator = new ServiceLocator(file, target);
+              // Save the positions as json objects
+              List<JSONObject> objects = serviceLocator.obtainAllBlockPosition();
+              System.out.println(objects);
+              // Put them as JSON file
+              serviceLocator.saveJsonToFile(objects);
             }
 
+            if (locator) {
+
+              // Call the service locator to look for the identified block
+              ServiceLocator serviceLocator = new ServiceLocator(blockIdentifier, file, target);
+              // Save the positions as json objects
+              List<JSONObject> objects = serviceLocator.saveIdentifiedBlocks();
+              // Put them to JSON file
+              serviceLocator.saveJsonToFile(objects);
+
+            }
+
+            if (bloc) {
+
+              BlockDivider blockDivider = new BlockDivider(file);
+              List<BlockPosition> blockPositions = blockDivider.divideFilePerBlock();
+              MetricsCalculatorBlocks metricsCalculatorBlocks = new MetricsCalculatorBlocks(blockPositions);
+              List<JSONObject> objects = metricsCalculatorBlocks.measureMetricsPerBlocks();
+              //  Measure the metrics and generate A Json File for each one
+              metricsCalculatorBlocks.saveJsonToFile(objects, target);
+
+            } else {
+              BlockServiceLocator blockServiceLocator = new BlockServiceLocator();
+
+              Pair<BlockTreeImpl, String> identifiedBlockPair = blockServiceLocator.identifyRightBlock(file, impactedLineIndex);
+              MetricsCalculator metricsCalculator = new MetricsCalculator();
+
+                if ((identifiedBlockPair.getFirst() != null) && (!identifiedBlockPair.getSecond().equals(""))) {
+                  //  Measure the metrics and generate A Json File for each one
+                  metricsCalculator.writeMetricsAsJsonFile(
+                    identifiedBlockPair.getFirst(),
+                    identifiedBlockPair.getSecond(),
+                    target);
+                  System.out.println("Generated File metrics for the given Terraform Content at " + target);
+                  }
+//                else {
+//                  System.out.println("The change doesn't concern any block -- zz!!");
+//                  metricsCalculator.createEmptyFile(target);
+//                }
+          }
 
           } catch (Exception e) {
-            System.err.println("Error while identifying the right block: " + e.getMessage());
+             System.err.println("Error while identifying the right block: " + e.getMessage());
           }
         }
     }
