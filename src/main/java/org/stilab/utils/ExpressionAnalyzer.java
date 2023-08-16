@@ -6,13 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExpressionAnalyzer {
-
-
   private static ExpressionAnalyzer instance;
 
-  private ExpressionAnalyzer() {
-    // Private constructor to prevent direct instantiation
-  }
+  private ExpressionAnalyzer() {}
 
   public static ExpressionAnalyzer getInstance() {
     if (instance == null) {
@@ -26,24 +22,16 @@ public class ExpressionAnalyzer {
   }
 
   public List<Tree> getAllNestedExpressions(Tree expressionTree) {
-
     List<Tree> nestedExpressions = new ArrayList<>();
-
     if (expressionTree != null) {
       nestedExpressions.add( expressionTree );
-
       List<Tree> children = expressionTree.children();
 //      System.out.println(children);
       for (Tree child : children) {
         nestedExpressions.addAll( getAllNestedExpressions(child)  );
       }
     }
-
     return nestedExpressions;
   }
-
-
-
-
 
 }

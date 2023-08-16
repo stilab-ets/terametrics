@@ -8,7 +8,6 @@ import org.sonar.iac.terraform.api.tree.BlockTree;
 
 public class OutputCounter implements BlockTypeCounter {
 
-
   @Override
   public int blockTypeCounter(Tree tree) {
 
@@ -18,8 +17,6 @@ public class OutputCounter implements BlockTypeCounter {
       .filter(child -> child instanceof BlockTree)
       .filter(child -> blockCheckerType.isOutput((BlockTree) child))
       .count();
-
   }
-
 
 }

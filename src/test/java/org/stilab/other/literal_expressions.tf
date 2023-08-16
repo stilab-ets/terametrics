@@ -30,5 +30,7 @@ resource "aws_route" "database_ipv6_egress" {
 
   timeouts {
     create = "5m"
+    bgp_asn    = each.value["bgp_asn"] ### This one
+
   }
 }

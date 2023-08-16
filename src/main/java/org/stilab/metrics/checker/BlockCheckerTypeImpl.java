@@ -48,7 +48,8 @@ public class BlockCheckerTypeImpl implements BlockCheckerType {
     return TextUtils.matchesValue(tree.key(), "terraform"::equals).isTrue();
   }
 
-  public JSONObject checkBlockType(BlockTreeImpl identifiedBlock, JSONObject metrics) {
+  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
+
 
     // Is resource ++
     boolean isResource = this.isResource(identifiedBlock);

@@ -28,7 +28,6 @@ public class ServiceCounter {
     return instance;
   }
 
-
   public String extractDesiredContent(String fileContent, int startLine, int endLine) {
 
     StringBuilder content = new StringBuilder();
@@ -48,7 +47,6 @@ public class ServiceCounter {
   public String parseFileContentByPart(String filePath, int startLine, int endLine) {
 
     StringBuilder content = new StringBuilder();
-
     try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
 
       String line;
@@ -72,38 +70,30 @@ public class ServiceCounter {
     // Remove multi-line comments from the content
     Pattern pattern = Pattern.compile(LexicalConstant.MULTI_LINE_COMMENT);
     Matcher matcher = pattern.matcher(parsedContent);
-
     return matcher;
   }
 
   public Matcher matchSingleLineCommentHash(String parsedContent) {
-
     // Remove single-line comments from the content
     Pattern pattern1 = Pattern.compile(LexicalConstant.SINGLE_LINE_COMMENT_HASH);
     Matcher matcher1 = pattern1.matcher(parsedContent);
-
     return matcher1;
   }
 
   public Matcher matchSingleLineCommentDoubleSlash(String parsedContent) {
-
     // Remove single-line-comment-double-slash from the content
     Pattern pattern2 = Pattern.compile(LexicalConstant.SINGLE_LINE_COMMENT_DOUBLE_SLASH);
     Matcher matcher2 = pattern2.matcher(parsedContent);
-
     return matcher2;
   }
 
 
 
   public int countLineOfCode(String parsedContent) {
-
     parsedContent = matchMultiLineComment(parsedContent).replaceAll("");
     parsedContent = matchSingleLineCommentHash(parsedContent).replaceAll("");
     parsedContent = matchSingleLineCommentDoubleSlash(parsedContent).replaceAll("");
-
     int lineOfCode = 0;
-
     String[] lines = parsedContent.split("\\r?\\n");
     for (String line : lines) {
       String trimmedLine = line.trim();
@@ -123,29 +113,22 @@ public class ServiceCounter {
   public int countBlankLinesInsideBlock(String parsedContent) {
     String[] lines = parsedContent.split("\\r?\\n");
     int blankLinesCount = 0;
-
     for (String line : lines) {
       String trimmedLine = line.trim();
       if ( trimmedLine.isEmpty() ) {
         blankLinesCount++;
       }
     }
-
     return blankLinesCount;
   }
 
   public int countMultilineComments(String content) {
-
     Matcher matcher = matchMultiLineComment(content);
-
     int commentCount = 0;
     while (matcher.find()) {
-
       int nonBlankLineCount = countNonBlankLines(content.substring(matcher.start(), matcher.end()));
       commentCount += nonBlankLineCount;
-
     }
-
     return commentCount;
   }
 
@@ -165,28 +148,20 @@ public class ServiceCounter {
   }
 
   public int countSingleLineHashComments(String content) {
-
     Matcher matcher = matchSingleLineCommentHash(content);
-
     int commentCount = 0;
     while (matcher.find()) {
       commentCount++;
     }
-
     return commentCount;
   }
 
   public int countSingleLineDoubleSlash(String content) {
-
     Matcher matcher = matchSingleLineCommentDoubleSlash(content);
-
     int commentCount = 0;
     while (matcher.find()) {
       commentCount++;
     }
-
     return commentCount;
-
   }
-
 }

@@ -2,8 +2,6 @@ package org.stilab.utils;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,25 +10,16 @@ import java.util.List;
 public class ServiceLocator {
 
     private String blockIdentifier;
-
     private String filePath;
-
     private String target;
 
-  public ServiceLocator(String filePath, String target) {
-    this.filePath = filePath;
-    this.target = target;
-  }
+    public ServiceLocator(String filePath, String target) {
+      this.filePath = filePath;
+      this.target = target;
+    }
 
-//    public ServiceLocator(String blockIdentifier,
-//                          String filePath) {
-//      this.blockIdentifier = blockIdentifier;
-//      this.filePath = filePath;
-//    }
 
-    public ServiceLocator(String blockIdentifier,
-                          String filePath,
-                          String target) {
+    public ServiceLocator(String blockIdentifier, String filePath, String target) {
         this.blockIdentifier = blockIdentifier;
         this.filePath = filePath;
         this.target = target;

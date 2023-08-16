@@ -6,7 +6,6 @@ import org.stilab.metrics.counter.block.finder.TopBlockFinder;
 import org.stilab.interfaces.AttributeCounter;
 import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-
 import java.util.List;
 
 public class AttrFileCounterImpl implements AttributeCounter {

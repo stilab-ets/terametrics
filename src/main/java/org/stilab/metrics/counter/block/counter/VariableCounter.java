@@ -10,14 +10,11 @@ public class VariableCounter implements BlockTypeCounter {
 
   @Override
   public int blockTypeCounter(Tree tree) {
-
     BlockCheckerType blockCheckerType = new BlockCheckerTypeImpl();
-
     return (int) tree.children().stream()
       .filter(child -> child instanceof BlockTree)
       .filter(child -> blockCheckerType.isVariable((BlockTree) child))
       .count();
   }
-
 
 }

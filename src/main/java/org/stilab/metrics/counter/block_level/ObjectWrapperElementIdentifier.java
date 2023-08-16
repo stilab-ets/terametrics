@@ -1,5 +1,7 @@
 package org.stilab.metrics.counter.block_level;
 
+import org.json.simple.JSONObject;
+import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.ForObjectTreeImpl;
 import org.sonar.iac.terraform.tree.impl.ObjectTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
@@ -63,14 +65,20 @@ public class ObjectWrapperElementIdentifier {
   }
 
   public int maxNumberOfElementsPerDifferentObjects() {
+
     List<ObjectTreeImpl> objects = filterOnlyObjectTreeImpl();
     int max = 0;
-    for (ObjectTreeImpl objectTree: objects) {
-      int tmpValue = getNumberElementsContainedInAnObject(objectTree);
-      if (max <= tmpValue) {
-        max = tmpValue;
+
+    if (!objects.isEmpty()) {
+      max = getNumberElementsContainedInAnObject(objects.get(0));
+      for (ObjectTreeImpl objectTree: objects) {
+        int tmpValue = getNumberElementsContainedInAnObject(objectTree);
+        if (max < tmpValue) {
+          max = tmpValue;
+        }
       }
     }
+
     if (max == 0) {
       List<ForObjectTreeImpl> forTuples = filterOnlyForObjectTreeImpl();
       if (forTuples.size() > 0 ) {
@@ -78,5 +86,21 @@ public class ObjectWrapperElementIdentifier {
       }
     }
     return max;
+
   }
+
+  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+
+    int numElementObjects = this.getTotalNumberOfElementsOfDifferentObjects();
+
+    double avgElementObjects = this.avgNumberOfElementsPerDifferentObjects();
+    int maxElementObjects = this.maxNumberOfElementsPerDifferentObjects();
+
+    metrics.put("numElemTuples", numElementObjects);
+    metrics.put("avgElemTuples", avgElementObjects);
+    metrics.put("maxElemTuples", maxElementObjects);
+
+    return metrics;
+  }
+
 }

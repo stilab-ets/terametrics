@@ -7,9 +7,8 @@ import java.util.regex.Pattern;
 public class LiteralExpressionHereDocIdentifier {
 
     public LiteralExpressionHereDocIdentifier() {}
-
     private Matcher getHereDocMatcher(LiteralExprTreeImpl exprTree) {
-      return Pattern.compile("<<([A-Z_]+)").matcher(exprTree.value());
+      return Pattern.compile("<<(-)?([A-Z_]+)").matcher(exprTree.value());
     }
 
     public boolean isHereDocHere(LiteralExprTreeImpl exprTree){
@@ -20,18 +19,23 @@ public class LiteralExpressionHereDocIdentifier {
     public int numLinesPerHereDoc(LiteralExprTreeImpl exprTree) {
         String content = exprTree.value();
         Matcher matcher = getHereDocMatcher(exprTree);
+        int numLines = 0;
+
         if (matcher.find()) {
-          String delimiter = matcher.group(1);
+          String delimiter = matcher.group(2);
           int startPos = matcher.end();
           int endPos = content.indexOf(delimiter, startPos);
           if (endPos != -1) {
             // Extract the heredoc content
             String heredocContent = content.substring(startPos, endPos);
+            // Remove trailing newline characters and leading whitespace
+            heredocContent = heredocContent.replaceAll("\\s+$", "");
             String[] lines = heredocContent.split("\n");
-            return lines.length + 1;
+            numLines = lines.length-1;
+            return numLines;
           }
         }
-      return 0;
+      return numLines;
     }
 
     public int totalLinesOfHereDoc(List<LiteralExprTreeImpl> exprTrees){
@@ -67,10 +71,14 @@ public class LiteralExpressionHereDocIdentifier {
 
     public int maxNumberLinesPerHereDoc(List<LiteralExprTreeImpl> exprTrees) {
       List<LiteralExprTreeImpl> hereDocs = filterHereDocFromLiteralExpressions(exprTrees);
-      int max = 0;
+
+      if (hereDocs.isEmpty()){ return 0; }
+
+      int max = numLinesPerHereDoc(hereDocs.get(0));
+
       for (LiteralExprTreeImpl expr: hereDocs) {
         int numberOfLinesPerHereDoc = numLinesPerHereDoc(expr);
-        if (numberOfLinesPerHereDoc >= max) {
+        if (numberOfLinesPerHereDoc > max) {
           max = numberOfLinesPerHereDoc;
         }
       }

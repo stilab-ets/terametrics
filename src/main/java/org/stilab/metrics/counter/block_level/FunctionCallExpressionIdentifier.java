@@ -1,5 +1,6 @@
 package org.stilab.metrics.counter.block_level;
 
+import org.json.simple.JSONObject;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.utils.ExpressionAnalyzer;
 import org.sonar.iac.common.api.tree.Tree;
@@ -57,14 +58,27 @@ public class FunctionCallExpressionIdentifier {
     }
 
     public int maxNumberOfFunctionCall(){
-      int max = 0;
+      if (attributes.isEmpty()){ return 0; }
+
+      int max = filterFunctionCall(attributes.get(0)).size();
       for(AttributeTreeImpl attribute: attributes) {
         int value = filterFunctionCall(attribute).size();
-        if (value >= max) {
+        if (value > max) {
           max = value;
         }
       }
       return max;
+    }
+
+    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+      this.filterFCfromBlock(identifiedBlock);
+      int numFunctionCall = this.totalNumberOfFunctionCall();
+      double avgFunctionCall = this.avgNumberOfFunctionCall();
+      int maxFunctionCall = this.maxNumberOfFunctionCall();
+      metrics.put("numFunctionCall", numFunctionCall);
+      metrics.put("avgFunctionCall", avgFunctionCall);
+      metrics.put("maxFunctionCall", maxFunctionCall);
+      return metrics;
     }
 
 }

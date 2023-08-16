@@ -1,11 +1,11 @@
 package org.stilab.metrics.counter.block_level;
 
+import org.json.simple.JSONObject;
 import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.api.tree.ExpressionTree;
 import org.sonar.iac.terraform.tree.impl.*;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.utils.ExpressionAnalyzer;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -70,14 +70,31 @@ public class MathOperations {
   }
 
   public int maxNumberOfMathOperation(){
-    int max = 0;
+    if (attributes.isEmpty()){ return 0;}
+
+    int max = identifyMathOperations(attributes.get(0)).size();
     for (AttributeTreeImpl attribute: attributes){
       int value = identifyMathOperations(attribute).size();
-      if (value >= max) {
+      if (value > max) {
         max = value;
       }
     }
     return max;
+  }
+
+  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
+
+    this.filterMathOperationsFromBlock(identifiedBlock);
+    int numMathOperations = this.totalNumberOfMathOperation();
+    double avgMathOperations = this.avgNumberOfMathOperation();
+    int maxMathOperations = this.maxNumberOfMathOperation();
+
+    metrics.put("numMathOperations", numMathOperations);
+    metrics.put("avgMathOperations", avgMathOperations);
+    metrics.put("maxMathOperations", maxMathOperations);
+
+    return metrics;
+
   }
 
 }

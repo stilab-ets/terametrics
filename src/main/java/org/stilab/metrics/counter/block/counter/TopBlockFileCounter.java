@@ -14,7 +14,6 @@ public class TopBlockFileCounter implements BlockTypeCounter {
     ProviderCounter providerCounter = new ProviderCounter();
     ResourceCounter resourceCounter = new ResourceCounter();
 
-
     return data.blockTypeCounter(tree) + localsCounter.blockTypeCounter(tree) +
     moduleCounter.blockTypeCounter(tree) + outputCounter.blockTypeCounter(tree) +
     providerCounter.blockTypeCounter(tree) + resourceCounter.blockTypeCounter(tree);

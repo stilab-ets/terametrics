@@ -1,101 +1,81 @@
 package org.stilab.metrics.counter.block_level;
 
-import org.sonar.iac.common.api.tree.Tree;
-import org.sonar.iac.terraform.tree.impl.SyntaxTokenImpl;
+import org.json.simple.JSONObject;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
-import org.stilab.utils.ExpressionAnalyzer;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class MccabeCC {
 
-  public int measureMccabeCCForAnAttributes(AttributeTreeImpl attributeTree) {
+    AttrFinderImpl attributeFinder = new AttrFinderImpl();
 
-    List<TerraformTreeImpl> complexity = new ArrayList<>();
+    public int measureMccabeCCForAnAttributes(AttributeTreeImpl attributeTree) {
 
-    // We Count the number of conditions
-    List<TerraformTreeImpl> binaryConditions =
-      (new ConditionalExpressionIdentifier())
-      .filterConditions(attributeTree);
+      List<TerraformTreeImpl> complexity = new ArrayList<>();
 
-    // Add the conditions
-    complexity.addAll(binaryConditions);
+      // Get Number of Conditions
+      ConditionalExpressionIdentifier conditionalExpressionIdentifier = new ConditionalExpressionIdentifier();
+      List<TerraformTreeImpl> conditions =  conditionalExpressionIdentifier.filterConditions(attributeTree);
+      complexity.addAll(conditions);
 
-    // We count the number of loops
-    List<TerraformTreeImpl> loops = (new LoopsExpressionIdentifier()).filterLoops(attributeTree);
+      // Get Number of Loops
+      LoopsExpressionIdentifier loopsExpressionIdentifier = new LoopsExpressionIdentifier();
+      List<TerraformTreeImpl> loops = loopsExpressionIdentifier.filterLoops(attributeTree);
+      complexity.addAll(loops);
 
-    // Add the loops
-    complexity.addAll(loops);
-
-    // Ad-hoc method to identify all the methods
-    List<SyntaxTokenImpl> syntaxTokens = this.identifyTokens(attributeTree);
-
-    return this.measureComplexityDiff(syntaxTokens, complexity);
-  }
-
-  public int measureComplexityDiff(List<SyntaxTokenImpl> syntaxTokens, List<TerraformTreeImpl> complexity){
-    int d = Math.abs(syntaxTokens.size() - complexity.size());
-    if (d == 0) {
       return complexity.size() + 1;
-    } else {
-      return complexity.size() + d + 1;
     }
-  }
 
-  public List<SyntaxTokenImpl> identifyTokens(AttributeTreeImpl attributeTree) {
-    // Particular Case: value = [
-    //    for i in range(1) : {
-    //      worker_role_arn = local.pod_execution_role_arn
-    //      platform        = "fargate"
-    //    } if local.create_eks
-    //  ]
-    List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(attributeTree.value());
+    public List<AttributeTreeImpl> getAllAttributes(BlockTreeImpl blockTree) {
+      return this.attributeFinder.getAllAttributes(blockTree);
+    }
 
-    List<SyntaxTokenImpl> syntaxTokens = trees.stream()
-      .filter(tree -> tree instanceof SyntaxTokenImpl)
-      .map(tree -> (SyntaxTokenImpl) tree)
-      .filter(token -> token.value().equals("if") || token.value().equals("for") )
-      .collect(Collectors.toList());
-
-    return syntaxTokens;
-  }
-
-  public double avgMccabeCC(BlockTreeImpl blockTree) {
-
-    List<AttributeTreeImpl> attributeTrees = (new AttrFinderImpl())
-      .getAllAttributes(blockTree);
-    List<Integer> localMcc = new ArrayList<>();
-    int right = 0;
-    for (AttributeTreeImpl attribute: attributeTrees) {
-      if (measureMccabeCCForAnAttributes(attribute) != 0) {
-        right = right + 1;
-        localMcc.add( measureMccabeCCForAnAttributes(attribute) );
+    public int sumMccabeCC(List<AttributeTreeImpl> attributes) {
+      int sum = 0;
+      for (AttributeTreeImpl attribute: attributes) {
+        sum += measureMccabeCCForAnAttributes(attribute);
       }
+      return sum;
     }
-    if (right == 0) {
-      return 0;
-    }
-    return (double) localMcc.stream().mapToInt(Integer::intValue).sum() / (double) right;
-  }
 
-  public double sumMccabeCC(BlockTreeImpl blockTree) {
-
-    List<AttributeTreeImpl> attributeTrees = (new AttrFinderImpl())
-      .getAllAttributes(blockTree);
-    List<Integer> localMcc = new ArrayList<>();
-    for (AttributeTreeImpl attribute: attributeTrees) {
-      if (measureMccabeCCForAnAttributes(attribute) != 0) {
-        localMcc.add( measureMccabeCCForAnAttributes(attribute) );
+    public double avgMccabeCC(List<AttributeTreeImpl> attributes) {
+      if (!attributes.isEmpty()) {
+        return (double) sumMccabeCC(attributes) / attributes.size();
       }
+      return 0.0;
     }
 
-    return (double) localMcc.stream().mapToInt(Integer::intValue).sum();
+    public int maxMccabeCC(List<AttributeTreeImpl> attributes){
 
-  }
+      if (attributes.isEmpty()){ return 0;}
+
+      int max = measureMccabeCCForAnAttributes(attributes.get(0));
+
+      for (AttributeTreeImpl attribute: attributes) {
+        int value = measureMccabeCCForAnAttributes(attribute);
+        if (max < value) {
+          max = value;
+        }
+      }
+
+      return max;
+    }
+
+    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+
+      List<AttributeTreeImpl> attributes = getAllAttributes(identifiedBlock);
+      double avgMccabeCC = this.avgMccabeCC(attributes);
+      int sumMccabeCC = this.sumMccabeCC(attributes);
+      int maxMccabeCC = this.maxMccabeCC(attributes);
+
+      metrics.put("avgMccabeCC", avgMccabeCC);
+      metrics.put("sumMccabeCC", sumMccabeCC);
+      metrics.put("maxMccabeCC", maxMccabeCC);
+
+      return metrics;
+    }
 
 }

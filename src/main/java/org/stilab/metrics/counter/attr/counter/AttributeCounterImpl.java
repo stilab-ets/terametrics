@@ -1,5 +1,6 @@
 package org.stilab.metrics.counter.attr.counter;
 
+import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.interfaces.AttributeCounter;
@@ -10,14 +11,17 @@ import java.util.List;
 public class AttributeCounterImpl implements AttributeCounter {
 
 
-  @Override
-//  TerraformTree tree
-  public int countAttribute(Tree tree) {
-//    return (int) tree.children().stream()
-//      .filter(child -> child instanceof AttributeTree)
-//      .count();
-    List<AttributeTreeImpl> attributeTrees = (new AttrFinderImpl())
-      .getAllAttributes((BlockTreeImpl) tree);
-    return attributeTrees.size();
-  }
+      @Override
+    //  TerraformTree tree
+    public int countAttribute(Tree tree) {
+      List<AttributeTreeImpl> attributeTrees = (new AttrFinderImpl())
+        .getAllAttributes((BlockTreeImpl) tree);
+      return attributeTrees.size();
+    }
+
+    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+      int attributes = this.countAttribute(identifiedBlock);
+      metrics.put("numAttributes", attributes);
+      return metrics;
+    }
 }
