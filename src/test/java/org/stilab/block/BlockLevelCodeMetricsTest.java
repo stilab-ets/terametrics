@@ -7,6 +7,7 @@ import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
 import org.stilab.metrics.checker.BlockCheckerTypeImpl;
+import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
 import org.stilab.metrics.counter.block.finder.TopBlockFinder;
 import org.stilab.metrics.counter.block.size.BlockComplexity;
@@ -177,7 +178,7 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       metrics = objectWrapperIdentifier.updateMetric(metrics, identifiedBlock);
        assertEquals(metrics.get("numObjects"), 5);
        assertEquals(metrics.get("avgObjects"), 0.22727272727272727);
-       assertEquals(metrics.get("maxTuples"), 2);
+       assertEquals(metrics.get("maxObjects"), 2);
     }
 
     public void testObjectWrapperElementsIdentification(){
@@ -186,9 +187,9 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       ObjectWrapperElementIdentifier objectWrapperElementIdentifier = new ObjectWrapperElementIdentifier(objects);
       metrics = objectWrapperElementIdentifier.updateMetric(metrics, identifiedBlock);
 
-      assertEquals(metrics.get("numElemTuples"), 7);
-      assertEquals(metrics.get("avgElemTuples"), 1.4);
-      assertEquals(metrics.get("maxElemTuples"), 2);
+      assertEquals(metrics.get("numElemObjects"), 7);
+      assertEquals(metrics.get("avgElemObjects"), 1.4);
+      assertEquals(metrics.get("maxElemObjects"), 2);
 
     }
 
@@ -286,8 +287,13 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       assertEquals(metrics.get("isVariable"), 0);
       assertEquals(metrics.get("isOutput"), 0);
       assertEquals(metrics.get("isLocals"), 0);
+      assertEquals(metrics.get("containDescriptionField"), 0);
+    }
 
-
+    public void testNumberOfAttributes(){
+      AttrFinderImpl attrFinder = new AttrFinderImpl();
+      metrics = attrFinder.updateMetric(metrics, identifiedBlock);
+      assertEquals(metrics.get("numAttrs"), 22);
     }
 
 

@@ -96,9 +96,9 @@ public class ObjectWrapperElementIdentifier {
     double avgElementObjects = this.avgNumberOfElementsPerDifferentObjects();
     int maxElementObjects = this.maxNumberOfElementsPerDifferentObjects();
 
-    metrics.put("numElemTuples", numElementObjects);
-    metrics.put("avgElemTuples", avgElementObjects);
-    metrics.put("maxElemTuples", maxElementObjects);
+    metrics.put("numElemObjects", numElementObjects);
+    metrics.put("avgElemObjects", avgElementObjects);
+    metrics.put("maxElemObjects", maxElementObjects);
 
     return metrics;
   }

@@ -87,7 +87,7 @@ public class ObjectWrapperIdentifier {
 
       metrics.put("numObjects", numObjects);
       metrics.put("avgObjects", avgObjects);
-      metrics.put("maxTuples", maxObjects);
+      metrics.put("maxObjects", maxObjects);
 
       return metrics;
     }

@@ -1,10 +1,14 @@
 package org.stilab.metrics.checker;
 
 import org.json.simple.JSONObject;
+import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.interfaces.BlockCheckerType;
 import org.sonar.iac.common.checks.TextUtils;
 import org.sonar.iac.terraform.api.tree.BlockTree;
+import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
+
+import java.util.List;
 
 public class BlockCheckerTypeImpl implements BlockCheckerType {
 
@@ -50,6 +54,12 @@ public class BlockCheckerTypeImpl implements BlockCheckerType {
 
   public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
 
+    AttrFinderImpl attrFinder = new AttrFinderImpl();
+
+    List<AttributeTreeImpl> attributes = attrFinder.getAllAttributes(identifiedBlock);
+
+    boolean containDescriptionField = attributes.stream().anyMatch(attribute -> "description".equals(attribute.key().value()));
+    metrics.put("containDescriptionField", containDescriptionField ? 1 : 0);
 
     // Is resource ++
     boolean isResource = this.isResource(identifiedBlock);
@@ -83,7 +93,12 @@ public class BlockCheckerTypeImpl implements BlockCheckerType {
     boolean isLocals = this.isLocals(identifiedBlock);
     metrics.put("isLocals", isLocals ? 1 : 0);
 
+    // Contain 'description' attribute
+
+
     return metrics;
   }
+
+
 
 }

@@ -1,5 +1,6 @@
 package org.stilab.metrics.counter.attr.finder;
 
+import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
@@ -35,7 +36,9 @@ public class AttrFinderImpl {
       }
       return attributes;
     }
-    public int countAttributesPerTopBlock() {
-      return attributes.size();
+
+    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+      metrics.put("numAttrs", this.getAllAttributes(identifiedBlock).size());
+      return metrics;
     }
 }

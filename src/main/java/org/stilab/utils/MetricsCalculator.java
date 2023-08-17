@@ -4,6 +4,7 @@ import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
 import org.stilab.metrics.checker.BlockCheckerTypeImpl;
+import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
 import org.stilab.metrics.counter.block.size.BlockComplexity;
 import org.stilab.metrics.counter.block_level.*;
@@ -147,9 +148,13 @@ public class MetricsCalculator {
       BlockComplexity blockComplexity = new BlockComplexity(identifiedBlock, blockAsString);
       metrics = blockComplexity.updateMetric(metrics, identifiedBlock);
 
-      //  Check the type of the studied block
+      // Check the type of the studied block
       BlockCheckerTypeImpl blockCheckerType = new BlockCheckerTypeImpl();
       metrics = blockCheckerType.updateMetric(metrics, identifiedBlock);
+
+      // Number of Attributes
+      AttrFinderImpl attrFinder = new AttrFinderImpl();
+      metrics = attrFinder.updateMetric(metrics, identifiedBlock);
 
       return metrics;
     }
