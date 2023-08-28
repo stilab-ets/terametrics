@@ -156,6 +156,10 @@ public class MetricsCalculator {
       AttrFinderImpl attrFinder = new AttrFinderImpl();
       metrics = attrFinder.updateMetric(metrics, identifiedBlock);
 
+      // Number of Resource Dependency
+      ResourceDependency resourceDependency = new ResourceDependency();
+      metrics = resourceDependency.updateMetric(metrics, identifiedBlock);
+
       return metrics;
     }
 

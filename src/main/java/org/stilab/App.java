@@ -62,22 +62,11 @@ public class App {
                 List<BlockPosition> blockPositions = blockDivider.divideFilePerBlock();
                 MetricsCalculatorBlocks metricsCalculatorBlocks = new MetricsCalculatorBlocks(blockPositions);
                 List<JSONObject> objects = metricsCalculatorBlocks.measureMetricsPerBlocks();
+
                 //  Measure the metrics and generate A Json File for each one
                 metricsCalculatorBlocks.saveJsonToFile(objects, target);
 
               }
-  //            else {
-  //              BlockServiceLocator blockServiceLocator = new BlockServiceLocator();
-  //
-  //              Pair<BlockTreeImpl, String> identifiedBlockPair = blockServiceLocator.identifyRightBlock(file, impactedLineIndex);
-  //              MetricsCalculator metricsCalculator = new MetricsCalculator();
-  //
-  //                if ((identifiedBlockPair.getFirst() != null) && (!identifiedBlockPair.getSecond().equals(""))) {
-  //                  //  Measure the metrics and generate A Json File for each one
-  //                  metricsCalculator.writeMetricsAsJsonFile(identifiedBlockPair.getFirst(), identifiedBlockPair.getSecond(), target);
-  //                  System.out.println("Generated File metrics for the given Terraform Content at " + target);
-  //                  }
-  //          }
           } catch (Exception e) {
              System.err.println("Error while identifying the right block: " + e.getMessage());
           }

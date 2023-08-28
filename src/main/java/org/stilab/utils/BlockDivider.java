@@ -31,6 +31,7 @@ public class BlockDivider {
           // GET THE TOP BLOCK
           TopBlockFinder topBlockFinder = new TopBlockFinder();
           List<BlockTreeImpl> blocks = topBlockFinder.findTopBlock(tree);
+
           for (BlockTreeImpl blockTree: blocks) {
 
             // identify the start index

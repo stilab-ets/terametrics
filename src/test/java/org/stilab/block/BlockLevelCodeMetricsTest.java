@@ -296,5 +296,11 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       assertEquals(metrics.get("numAttrs"), 22);
     }
 
+    public void testResourceDependency(){
+      ResourceDependency resourceDependency = new ResourceDependency();
+      metrics = resourceDependency.updateMetric(metrics, identifiedBlock);
+      assertEquals(metrics.get("numResourceDependency"), 0);
+    }
+
 
 }

@@ -24,6 +24,13 @@ public class BlockMetaInfo {
     metrics.put("end_block", identifiedBlock.value().textRange().end().line());
     labels.add(0, identifiedBlock.key().value());
     metrics.put("block_identifiers", this.concatElementsOfList(labels));
+    if (labels.size() == 3 || labels.size() == 2)  {
+      metrics.put("block_id", labels.get(1));
+    } else {
+      metrics.put("block_id", "");
+    }
+
+
 
     return metrics;
   }
