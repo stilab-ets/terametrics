@@ -5,6 +5,9 @@ import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +46,9 @@ public class MccabeCC {
 
     public double avgMccabeCC(List<AttributeTreeImpl> attributes) {
       if (!attributes.isEmpty()) {
-        return (double) sumMccabeCC(attributes) / attributes.size();
+        double avgMccabeCC = (double) sumMccabeCC(attributes) / attributes.size();
+        BigDecimal roundedAverage = new BigDecimal(avgMccabeCC).setScale(2, RoundingMode.HALF_UP);
+        return roundedAverage.doubleValue();
       }
       return 0.0;
     }

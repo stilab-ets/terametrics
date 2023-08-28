@@ -7,6 +7,8 @@ import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.api.tree.ExpressionTree;
 import org.sonar.iac.terraform.tree.impl.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,7 +58,10 @@ public class SplatExpressionIdentifier {
 
     public double avgSplatExpressions() {
       if (!attributes.isEmpty()) {
-        return (double) totalSplatExpressions() / attributes.size();
+        double avgSplatExpressions = (double) totalSplatExpressions() / attributes.size();
+        BigDecimal roundedAverage = new BigDecimal(avgSplatExpressions).setScale(2,
+          RoundingMode.HALF_UP);
+        return roundedAverage.doubleValue();
       }
       return 0.0;
     }

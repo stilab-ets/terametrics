@@ -1,5 +1,7 @@
 package org.stilab.metrics.counter.block_level;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +25,11 @@ public class TextEntropy {
       double probability = (double) characterFrequency.get(c) / totalCharacters;
       entropy -= probability * log2(probability);
     }
-    return entropy;
+//
+    double textEntropy = (double) entropy;
+    BigDecimal roundedAverage = new BigDecimal(textEntropy).setScale(2, RoundingMode.HALF_UP);
+    return roundedAverage.doubleValue();
+
   }
 
   private double log2(double num) {

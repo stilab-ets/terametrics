@@ -6,6 +6,9 @@ import org.sonar.iac.terraform.api.tree.ExpressionTree;
 import org.sonar.iac.terraform.tree.impl.*;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.utils.ExpressionAnalyzer;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -57,7 +60,9 @@ public class ComparisonOperatorsIdentifier {
 
     public double avgNumberOfComparisonOperation(){
       if (!attributes.isEmpty()){
-        return (double) totalNumberOfComparisonOperation() / attributes.size();
+        double avgNumberOfComparisonOperation = (double) totalNumberOfComparisonOperation() / attributes.size();
+        BigDecimal roundedAverage = new BigDecimal(avgNumberOfComparisonOperation).setScale(2, RoundingMode.HALF_UP);
+        return roundedAverage.doubleValue();
       }
       return 0.0;
     }

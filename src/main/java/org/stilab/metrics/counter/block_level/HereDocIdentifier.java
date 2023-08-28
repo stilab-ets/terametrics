@@ -5,6 +5,9 @@ import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.LiteralExprTreeImpl;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +42,9 @@ public class HereDocIdentifier {
 
     public double avgNumberOfHereDoc() {
       if (!attributes.isEmpty()) {
-        return (double) totalNumberOfHereDoc() / attributes.size();
+        double avgNumberOfHereDoc = (double) totalNumberOfHereDoc() / attributes.size();
+        BigDecimal roundedAverage = new BigDecimal(avgNumberOfHereDoc).setScale(2, RoundingMode.HALF_UP);
+        return roundedAverage.doubleValue();
       }
       return 0.0;
     }

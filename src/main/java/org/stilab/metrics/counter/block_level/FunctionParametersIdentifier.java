@@ -4,6 +4,9 @@ import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.api.tree.ExpressionTree;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.FunctionCallTreeImpl;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +39,9 @@ public class FunctionParametersIdentifier {
     //  Avg Number Of Parameters Per Block
     public double avgNumberParamsPerBlock() {
       if (this.functionCallTrees.size() >= 1) {
-        return (double) totalNumberParamsPerBlock() / this.functionCallTrees.size();
+        double avgNumberParamsPerBlock = (double) totalNumberParamsPerBlock() / this.functionCallTrees.size();
+        BigDecimal roundedAverage = new BigDecimal(avgNumberParamsPerBlock).setScale(2, RoundingMode.HALF_UP);
+        return roundedAverage.doubleValue();
       }
       return 0.0;
     }

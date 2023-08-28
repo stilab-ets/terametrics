@@ -8,6 +8,9 @@ import org.sonar.iac.terraform.api.tree.ExpressionTree;
 import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TemplateExpressionTreeImpl;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,7 +51,10 @@ public class TemplateExpressionIdentifier {
 
     public double avgNumOfTemplateExpressionPerBlock() {
       if (!attributes.isEmpty()) {
-        return (double) totalNumberOfTemplateExpressionsPerBlock() / attributes.size();
+        double avgNumOfTemplateExpressionPerBlock = (double) totalNumberOfTemplateExpressionsPerBlock() / attributes.size();
+        BigDecimal roundedAverage = new BigDecimal(avgNumOfTemplateExpressionPerBlock).setScale(2,
+          RoundingMode.HALF_UP);
+        return roundedAverage.doubleValue();
       }
       return 0.0;
   }

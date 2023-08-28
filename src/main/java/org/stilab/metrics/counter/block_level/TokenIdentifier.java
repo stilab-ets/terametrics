@@ -8,6 +8,8 @@ import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.SyntaxTokenImpl;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -144,7 +146,10 @@ public class TokenIdentifier {
       sum += value; // Add up all values in the list
     }
 
-    return sum / tokensPerAttrs.size();
+    double avgAttrsTokens = (double) sum / tokensPerAttrs.size();
+    BigDecimal roundedAverage = new BigDecimal(avgAttrsTokens).setScale(2,
+      RoundingMode.HALF_UP);
+    return roundedAverage.doubleValue();
   }
 
 
@@ -161,7 +166,11 @@ public class TokenIdentifier {
           min = value; // Update min if a smaller value is found
         }
       }
-      return min;
+
+    double minAttrsTextEntropy = min;
+    BigDecimal roundedAverage = new BigDecimal(minAttrsTextEntropy).setScale(2,
+      RoundingMode.HALF_UP);
+    return roundedAverage.doubleValue();
   }
 
   public double maxAttrsTextEntropy(List<Double> textEntropyPerAttrs){
@@ -177,7 +186,10 @@ public class TokenIdentifier {
       }
     }
 
-    return max;
+    double maxAttrsTextEntropy = max;
+    BigDecimal roundedAverage = new BigDecimal(maxAttrsTextEntropy).setScale(2,
+      RoundingMode.HALF_UP);
+    return roundedAverage.doubleValue();
   }
 
   public double avgAttrsTextEntropy(List<Double> textEntropyPerAttrs) {
@@ -191,7 +203,10 @@ public class TokenIdentifier {
       sum += value; // Add up all values in the list
     }
 
-    return sum / textEntropyPerAttrs.size();
+    double avgAttrsTextEntropy = (double) sum / textEntropyPerAttrs.size();
+    BigDecimal roundedAverage = new BigDecimal(avgAttrsTextEntropy).setScale(2,
+      RoundingMode.HALF_UP);
+    return roundedAverage.doubleValue();
   }
 
   public int numberTokens(BlockTreeImpl identifiedBlock){

@@ -6,6 +6,9 @@ import org.stilab.utils.ExpressionAnalyzer;
 import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.api.tree.ExpressionTree;
 import org.sonar.iac.terraform.tree.impl.*;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -70,7 +73,9 @@ public class LoopsExpressionIdentifier {
 
     public double avgNumberOfLoops(){
       if (!attributes.isEmpty()) {
-        return (double) totalNumberOfLoops() / attributes.size();
+        double avgNumberOfLoops = (double) totalNumberOfLoops() / attributes.size();
+        BigDecimal roundedAverage = new BigDecimal(avgNumberOfLoops).setScale(2, RoundingMode.HALF_UP);
+        return roundedAverage.doubleValue();
       }
       return 0.0;
     }

@@ -6,6 +6,8 @@ import org.sonar.iac.terraform.tree.impl.ForObjectTreeImpl;
 import org.sonar.iac.terraform.tree.impl.ObjectTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -59,7 +61,9 @@ public class ObjectWrapperElementIdentifier {
 
   public double avgNumberOfElementsPerDifferentObjects() {
     if (!objects.isEmpty()) {
-      return (double) this.getTotalNumberOfElementsOfDifferentObjects() / objects.size();
+      double avgNumberOfElementsPerDifferentObjects = (double) this.getTotalNumberOfElementsOfDifferentObjects() / objects.size();
+      BigDecimal roundedAverage = new BigDecimal(avgNumberOfElementsPerDifferentObjects).setScale(2, RoundingMode.HALF_UP);
+      return roundedAverage.doubleValue();
     }
     return 0.0;
   }

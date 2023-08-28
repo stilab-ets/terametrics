@@ -6,6 +6,9 @@ import org.sonar.iac.terraform.api.tree.ExpressionTree;
 import org.sonar.iac.terraform.tree.impl.*;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.utils.ExpressionAnalyzer;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -61,7 +64,9 @@ public class LogicalOperationsIdentifier {
 
   public double avgNumberOfLogicalOperations(){
     if(!attributes.isEmpty()){
-      return (double) totalNumberOfLogicalOperations() / attributes.size();
+      double avgNumberOfLogicalOperations = (double) totalNumberOfLogicalOperations() / attributes.size();
+      BigDecimal roundedAverage = new BigDecimal(avgNumberOfLogicalOperations).setScale(2, RoundingMode.HALF_UP);
+      return roundedAverage.doubleValue();
     }
     return 0.0;
   }

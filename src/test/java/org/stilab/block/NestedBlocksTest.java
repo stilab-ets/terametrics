@@ -32,33 +32,12 @@ public class NestedBlocksTest  extends TestCase {
       metrics = new JSONObject();
     }
 
-    public void testNestedBlockAverageLength() {
+  public void testNestedBlockAverageLength() {
+
       NestedBlockIdentifier nestedBlockIdentifier = new NestedBlockIdentifier();
-      nestedBlockIdentifier.getAllNestedBlocks(identifiedBlock);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      List<BlockTreeImpl> nestedBlocks = nestedBlockIdentifier.identifyNestedBlock(identifiedBlock);
+//      assertEquals(avgDepthNestedBlocks(nestedBlocks), 7.75);
+//      assertEquals(maxDepthNestedBlocks(nestedBlocks), 14);
+//      assertEquals(minDepthNestedBlocks(nestedBlocks), 5);
     }
-
 }

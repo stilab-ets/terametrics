@@ -6,6 +6,9 @@ import org.sonar.iac.terraform.api.tree.ExpressionTree;
 import org.sonar.iac.terraform.tree.impl.*;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.utils.ExpressionAnalyzer;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -105,7 +108,9 @@ public class LiteralExpressionIdentifier {
     public double avgLengthOfStringLiteralExpr() {
       int domino = numStringValues();
       if (domino!=0) {
-        return (double) sumLengthOfStringLiteralExpr() / domino;
+        double avgLengthOfStringLiteralExpr = (double) sumLengthOfStringLiteralExpr() / domino;
+        BigDecimal roundedAverage = new BigDecimal(avgLengthOfStringLiteralExpr).setScale(2, RoundingMode.HALF_UP);
+        return roundedAverage.doubleValue();
       }
       return 0.0;
     }

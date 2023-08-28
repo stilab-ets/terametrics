@@ -1,5 +1,8 @@
 package org.stilab.metrics.counter.block_level;
 import org.sonar.iac.terraform.tree.impl.LiteralExprTreeImpl;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -64,7 +67,9 @@ public class LiteralExpressionHereDocIdentifier {
     public double avgNumberLinesPerHereDoc(List<LiteralExprTreeImpl> exprTrees) {
       int totalNumberOfHereDoc = totalNumberOfHereDoc(exprTrees);
       if (totalNumberOfHereDoc >= 1) {
-        return (double) totalLinesOfHereDoc(exprTrees) / totalNumberOfHereDoc;
+        double avgNumberLinesPerHereDoc = (double) totalLinesOfHereDoc(exprTrees) / totalNumberOfHereDoc;
+        BigDecimal roundedAverage = new BigDecimal(avgNumberLinesPerHereDoc).setScale(2, RoundingMode.HALF_UP);
+        return roundedAverage.doubleValue();
       }
       return 0.0;
     }

@@ -9,6 +9,8 @@ import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.FunctionCallTreeImpl;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,9 +53,13 @@ public class FunctionCallExpressionIdentifier {
     }
 
     public double avgNumberOfFunctionCall(){
+
       if (attributes.size()>0) {
-        return (double) functionsCallPerBlock.size() / attributes.size();
+        double avgNumberOfFunctionCall = (double) functionsCallPerBlock.size() / attributes.size();
+        BigDecimal roundedAverage = new BigDecimal(avgNumberOfFunctionCall).setScale(2, RoundingMode.HALF_UP);
+        return roundedAverage.doubleValue();
       }
+
       return 0.0;
     }
 

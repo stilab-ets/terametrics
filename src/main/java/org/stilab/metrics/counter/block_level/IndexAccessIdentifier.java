@@ -8,6 +8,9 @@ import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.IndexAccessExprTreeImpl;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.utils.ExpressionAnalyzer;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,7 +50,9 @@ public class IndexAccessIdentifier {
 
       public double avgIndexAccessExpressions() {
         if (!attributes.isEmpty()){
-          return (double) totalIndexAccessExpressions() / attributes.size();
+          double avgIndexAccessExpressions = (double) totalIndexAccessExpressions() / attributes.size();
+          BigDecimal roundedAverage = new BigDecimal(avgIndexAccessExpressions).setScale(2, RoundingMode.HALF_UP);
+          return roundedAverage.doubleValue();
         }
         return 0.0;
       }
