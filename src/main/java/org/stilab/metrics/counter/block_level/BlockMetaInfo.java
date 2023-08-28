@@ -24,10 +24,21 @@ public class BlockMetaInfo {
     metrics.put("end_block", identifiedBlock.value().textRange().end().line());
     labels.add(0, identifiedBlock.key().value());
     metrics.put("block_identifiers", this.concatElementsOfList(labels));
-    if (labels.size() == 3 || labels.size() == 2)  {
-      metrics.put("block_id", labels.get(1));
-    } else {
+
+    if (labels.size() == 3)  {
+      metrics.put("block_id",   labels.get(1));
+      metrics.put("block_name", labels.get(2));
+
+    }
+
+    if (labels.size() == 2) {
       metrics.put("block_id", "");
+      metrics.put("block_name", labels.get(1));
+    }
+
+    if (labels.size() == 1) {
+      metrics.put("block_id", "");
+      metrics.put("block_name", "");
     }
 
 
