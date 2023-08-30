@@ -12,6 +12,8 @@ import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
 import org.stilab.metrics.counter.block.finder.TopBlockFinder;
 import org.stilab.metrics.counter.block.size.BlockComplexity;
 import org.stilab.metrics.counter.block_level.*;
+import org.stilab.metrics.counter.block_level.deprecation.DeprecatedFunctionsIdentifier;
+
 import java.io.File;
 import java.util.List;
 
@@ -83,6 +85,14 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       LookUpFunctionIdentifier lookUpFunctionIdentifier = new LookUpFunctionIdentifier(functionCallExpressionIdentifier);
       metrics = lookUpFunctionIdentifier.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numLookUpFunctionCall"), 0);
+    }
+
+    public void testDeprecatedFunctionsIdentification() {
+      FunctionCallExpressionIdentifier functionCallExpressionIdentifier = new FunctionCallExpressionIdentifier();
+      DeprecatedFunctionsIdentifier deprecatedFunctionsIdentifier = new DeprecatedFunctionsIdentifier
+        (functionCallExpressionIdentifier);
+      metrics = deprecatedFunctionsIdentifier.updateMetric(metrics, identifiedBlock);
+      assertEquals(metrics.get("numDeprecatedFunctions"), 0);
     }
 
     public void testNestedBlocksIdentification(){

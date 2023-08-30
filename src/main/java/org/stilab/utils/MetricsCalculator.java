@@ -8,6 +8,8 @@ import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
 import org.stilab.metrics.counter.block.size.BlockComplexity;
 import org.stilab.metrics.counter.block_level.*;
+import org.stilab.metrics.counter.block_level.deprecation.DeprecatedFunctionsIdentifier;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -56,9 +58,15 @@ public class MetricsCalculator {
       metrics = functionCallExpressionIdentifier.updateMetric(metrics, identifiedBlock);
 
       // Lookup Function Calls
-      // ADDED:: "numLookUpFunctionCalls"
+      // ADDED:::: "numLookUpFunctionCalls"
       LookUpFunctionIdentifier lookUpFunctionIdentifier = new LookUpFunctionIdentifier(functionCallExpressionIdentifier);
       metrics = lookUpFunctionIdentifier.updateMetric(metrics, identifiedBlock);
+
+      // Deprecated Functions
+      // ADDED:::: "numDeprecatedFunctions"
+      DeprecatedFunctionsIdentifier deprecatedFunctionsIdentifier = new DeprecatedFunctionsIdentifier(functionCallExpressionIdentifier);
+      metrics = deprecatedFunctionsIdentifier.updateMetric(metrics, identifiedBlock);
+
 
       // function Parameters
       // "numParams" "avgParams" "maxParams"

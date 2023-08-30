@@ -2,6 +2,8 @@ locals {
 
     name = lookup([], null)
 
+    version = map({})
+
     filter {
 
         spec {

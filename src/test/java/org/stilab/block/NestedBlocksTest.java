@@ -9,6 +9,7 @@ import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
 import org.stilab.metrics.counter.block.finder.TopBlockFinder;
 import org.stilab.metrics.counter.block_level.FunctionCallExpressionIdentifier;
 import org.stilab.metrics.counter.block_level.LookUpFunctionIdentifier;
+import org.stilab.metrics.counter.block_level.deprecation.DeprecatedFunctionsIdentifier;
 
 import java.io.File;
 import java.util.List;
@@ -35,11 +36,19 @@ public class NestedBlocksTest  extends TestCase {
     }
 
   public void testLookUpFuncCallIdentifier() {
-
     FunctionCallExpressionIdentifier functionCallExpressionIdentifier = new FunctionCallExpressionIdentifier();
     LookUpFunctionIdentifier lookUpFunctionIdentifier = new LookUpFunctionIdentifier(functionCallExpressionIdentifier);
     JSONObject metrics = new JSONObject();
     metrics = lookUpFunctionIdentifier.updateMetric(metrics, identifiedBlock);
     assertEquals(metrics.get("numLookUpFunctionCall"), 1);
+  }
+
+  public void testDeprecatedFuncCallIdentifier() {
+    FunctionCallExpressionIdentifier functionCallExpressionIdentifier = new FunctionCallExpressionIdentifier();
+    DeprecatedFunctionsIdentifier deprecatedFunctionsIdentifier = new DeprecatedFunctionsIdentifier
+      (functionCallExpressionIdentifier);
+    JSONObject metrics = new JSONObject();
+    metrics = deprecatedFunctionsIdentifier.updateMetric(metrics, identifiedBlock);
+    assertEquals(metrics.get("numDeprecatedFunctions"), 1);
   }
 }
