@@ -95,6 +95,14 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       assertEquals(metrics.get("numDeprecatedFunctions"), 0);
     }
 
+    public void testDebuggingFunctionsIdentification() {
+      FunctionCallExpressionIdentifier functionCallExpressionIdentifier = new FunctionCallExpressionIdentifier();
+      DebuggingFunctionIdentifier debuggingFunctionIdentifier = new DebuggingFunctionIdentifier
+        (functionCallExpressionIdentifier);
+      metrics = debuggingFunctionIdentifier.updateMetric(metrics, identifiedBlock);
+      assertEquals(metrics.get("numDebuggingFunctions"), 2);
+    }
+
     public void testNestedBlocksIdentification(){
       NestedBlockIdentifier nestedBlockIdentifier = new NestedBlockIdentifier();
       metrics = nestedBlockIdentifier.updateMetric(metrics, identifiedBlock);

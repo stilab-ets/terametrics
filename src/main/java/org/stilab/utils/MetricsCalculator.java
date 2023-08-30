@@ -67,6 +67,10 @@ public class MetricsCalculator {
       DeprecatedFunctionsIdentifier deprecatedFunctionsIdentifier = new DeprecatedFunctionsIdentifier(functionCallExpressionIdentifier);
       metrics = deprecatedFunctionsIdentifier.updateMetric(metrics, identifiedBlock);
 
+      // Debugging Functions
+      // ADDED:::: "numDebuggingFunctions"
+      DebuggingFunctionIdentifier debuggingFunctionIdentifier = new DebuggingFunctionIdentifier(functionCallExpressionIdentifier);
+      metrics = debuggingFunctionIdentifier.updateMetric(metrics, identifiedBlock);
 
       // function Parameters
       // "numParams" "avgParams" "maxParams"
