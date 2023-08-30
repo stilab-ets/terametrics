@@ -15,7 +15,7 @@ public class LookUpFunctionIdentifier {
 
     public LookUpFunctionIdentifier(FunctionCallExpressionIdentifier
                                       functionCallExpressionIdentifier
-                                   ) {
+                                   ){
            this.functionCallExpressionIdentifier = functionCallExpressionIdentifier;
     }
 
