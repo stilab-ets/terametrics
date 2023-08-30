@@ -7,6 +7,8 @@ import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
 import org.stilab.metrics.counter.block.finder.TopBlockFinder;
+import org.stilab.metrics.counter.block_level.FunctionCallExpressionIdentifier;
+import org.stilab.metrics.counter.block_level.LookUpFunctionIdentifier;
 
 import java.io.File;
 import java.util.List;
@@ -32,12 +34,12 @@ public class NestedBlocksTest  extends TestCase {
       metrics = new JSONObject();
     }
 
-  public void testNestedBlockAverageLength() {
+  public void testLookUpFuncCallIdentifier() {
 
-      NestedBlockIdentifier nestedBlockIdentifier = new NestedBlockIdentifier();
-      List<BlockTreeImpl> nestedBlocks = nestedBlockIdentifier.identifyNestedBlock(identifiedBlock);
-//      assertEquals(avgDepthNestedBlocks(nestedBlocks), 7.75);
-//      assertEquals(maxDepthNestedBlocks(nestedBlocks), 14);
-//      assertEquals(minDepthNestedBlocks(nestedBlocks), 5);
-    }
+    FunctionCallExpressionIdentifier functionCallExpressionIdentifier = new FunctionCallExpressionIdentifier();
+    LookUpFunctionIdentifier lookUpFunctionIdentifier = new LookUpFunctionIdentifier(functionCallExpressionIdentifier);
+    JSONObject metrics = new JSONObject();
+    metrics = lookUpFunctionIdentifier.updateMetric(metrics, identifiedBlock);
+    assertEquals(metrics.get("numLookUpFunctionCall"), 1);
+  }
 }

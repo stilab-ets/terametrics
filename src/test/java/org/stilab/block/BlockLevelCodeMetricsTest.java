@@ -78,6 +78,13 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       assertEquals(metrics.get("numDynamicBlocks"), 1);
     }
 
+    public void testLookUpFunctionCallIdentification() {
+      FunctionCallExpressionIdentifier functionCallExpressionIdentifier = new FunctionCallExpressionIdentifier();
+      LookUpFunctionIdentifier lookUpFunctionIdentifier = new LookUpFunctionIdentifier(functionCallExpressionIdentifier);
+      metrics = lookUpFunctionIdentifier.updateMetric(metrics, identifiedBlock);
+      assertEquals(metrics.get("numLookUpFunctionCall"), 0);
+    }
+
     public void testNestedBlocksIdentification(){
       NestedBlockIdentifier nestedBlockIdentifier = new NestedBlockIdentifier();
       metrics = nestedBlockIdentifier.updateMetric(metrics, identifiedBlock);

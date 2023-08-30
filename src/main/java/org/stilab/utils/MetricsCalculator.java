@@ -55,6 +55,11 @@ public class MetricsCalculator {
       FunctionCallExpressionIdentifier functionCallExpressionIdentifier = new FunctionCallExpressionIdentifier();
       metrics = functionCallExpressionIdentifier.updateMetric(metrics, identifiedBlock);
 
+      // Lookup Function Calls
+      // ADDED:: "numLookUpFunctionCalls"
+      LookUpFunctionIdentifier lookUpFunctionIdentifier = new LookUpFunctionIdentifier(functionCallExpressionIdentifier);
+      metrics = lookUpFunctionIdentifier.updateMetric(metrics, identifiedBlock);
+
       // function Parameters
       // "numParams" "avgParams" "maxParams"
       FunctionParametersIdentifier functionParametersIdentifier = new FunctionParametersIdentifier();

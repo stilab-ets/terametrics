@@ -1,5 +1,7 @@
 locals {
 
+    name = lookup([], null)
+
     filter {
 
         spec {
