@@ -1,0 +1,42 @@
+[
+  {
+    "isDeprecated": true,
+    "blockName": "provider",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "skip_get_ec2_platforms"
+      },
+      {
+        "type": "nested",
+        "name": "duration_seconds",
+        "parent": "assume_role"
+      },
+      {
+        "type": "arg",
+        "name": "duration_seconds",
+        "parent": "assume_role_with_web_identity"
+      },
+      {
+        "type": "arg",
+        "name": "kinesis_analytics"
+      },
+      {
+        "type": "arg",
+        "name": "r53"
+      },
+      {
+        "type": "arg",
+        "name": "skip_get_ec2_platforms"
+      },
+      {
+        "type": "arg",
+        "name": "s3_force_path_style"
+      },
+      {
+        "type": "arg",
+        "name": "shared_credentials_file"
+      }
+    ]
+  }
+]

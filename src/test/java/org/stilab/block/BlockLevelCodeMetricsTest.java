@@ -6,12 +6,14 @@ import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
+import org.sonar.iac.terraform.tree.impl.VariableExprTreeImpl;
 import org.stilab.metrics.checker.BlockCheckerTypeImpl;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
 import org.stilab.metrics.counter.block.finder.TopBlockFinder;
 import org.stilab.metrics.counter.block.size.BlockComplexity;
 import org.stilab.metrics.counter.block_level.*;
+import org.stilab.metrics.counter.block_level.block_dependency.ImplicitResourceDependency;
 import org.stilab.metrics.counter.block_level.deprecation.DeprecatedFunctionsIdentifier;
 
 import java.io.File;
@@ -44,7 +46,7 @@ public class BlockLevelCodeMetricsTest extends TestCase {
     assertEquals(metrics.get("impacted_block_type"), "aws_elastic_beanstalk_environment tfenvtest");
     assertEquals(metrics.get("block"), "resource");
     assertEquals(metrics.get("start_block"), 1);
-    assertEquals(metrics.get("end_block"), 156);
+    assertEquals(metrics.get("end_block"), 155);
     assertEquals(metrics.get("block_identifiers"), "resource aws_elastic_beanstalk_environment tfenvtest");
   }
 
@@ -297,9 +299,9 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       BlockComplexity blockComplexity = new BlockComplexity("C:\\Users\\Admin\\dev\\sonar-iac\\iac-extensions\\terraform_miner\\src\\test\\java\\org\\stilab\\block\\base.tf", identifiedBlock);
       metrics = blockComplexity.updateMetric(metrics, identifiedBlock);
 
-      assertEquals(metrics.get("depthOfBlock"), 156);
+      assertEquals(metrics.get("depthOfBlock"), 155);
       assertEquals(metrics.get("loc"), 132);
-      assertEquals(metrics.get("nloc"), 24);
+      assertEquals(metrics.get("nloc"), 23);
 
     }
 
@@ -324,10 +326,21 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       assertEquals(metrics.get("numAttrs"), 22);
     }
 
-    public void testResourceDependency(){
-      ResourceDependency resourceDependency = new ResourceDependency();
-      metrics = resourceDependency.updateMetric(metrics, identifiedBlock);
-      assertEquals(metrics.get("numResourceDependency"), 0);
+    public void testExplicitResourceDependency(){
+      ExplicitResourceDependency explicitResourceDependency = new ExplicitResourceDependency();
+      metrics = explicitResourceDependency.updateMetric(metrics, identifiedBlock);
+      assertEquals(metrics.get("numExplicitResourceDependency"), 0);
+    }
+
+    public void testImplicitResourceDependency(){
+      ImplicitResourceDependency implicitResourceDependency = new ImplicitResourceDependency();
+      metrics = implicitResourceDependency.updateMetric(metrics, identifiedBlock);
+      assertEquals(metrics.get("numImplicitDependentResources"), 3);
+      assertEquals(metrics.get("numImplicitDependentData"), 0);
+      assertEquals(metrics.get("numImplicitDependentModules"), 0);
+      assertEquals(metrics.get("numImplicitDependentProviders"), 0);
+      assertEquals(metrics.get("numImplicitDependentLocals"), 2);
+      assertEquals(metrics.get("numImplicitDependentVars"), 10);
     }
 
 

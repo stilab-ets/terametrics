@@ -1,22 +1,19 @@
 package org.stilab.metrics.counter.block_level;
 
 import org.json.simple.JSONObject;
-import org.sonar.iac.common.api.tree.Tree;
-import org.sonar.iac.terraform.api.tree.ExpressionTree;
 import org.sonar.iac.terraform.api.tree.SyntaxToken;
 import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
-import org.stilab.utils.ExpressionAnalyzer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResourceDependency {
+public class ExplicitResourceDependency {
 
     public List<AttributeTreeImpl> attributes = new ArrayList<>();
-    public ResourceDependency() {}
+    public ExplicitResourceDependency() {}
 
     public int numberOfDependentResources(List<AttributeTreeImpl> attributes) {
 
@@ -38,7 +35,7 @@ public class ResourceDependency {
     }
 
     public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-      metrics.put("numResourceDependency", getNumberOfResourceDependency(identifiedBlock));
+      metrics.put("numExplicitResourceDependency", getNumberOfResourceDependency(identifiedBlock));
       return metrics;
     }
 }

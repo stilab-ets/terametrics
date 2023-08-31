@@ -5,10 +5,12 @@ import org.json.simple.JSONObject;
 import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
+import org.sonar.iac.terraform.tree.impl.VariableExprTreeImpl;
 import org.stilab.metrics.counter.block.finder.TopBlockFinder;
 import org.stilab.metrics.counter.block_level.FunctionCallExpressionIdentifier;
 import org.stilab.metrics.counter.block_level.LookUpFunctionIdentifier;
+import org.stilab.metrics.counter.block_level.VariablesIdentifier;
+import org.stilab.metrics.counter.block_level.block_dependency.ImplicitResourceDependency;
 import org.stilab.metrics.counter.block_level.deprecation.DeprecatedFunctionsIdentifier;
 
 import java.io.File;
@@ -49,6 +51,6 @@ public class NestedBlocksTest  extends TestCase {
       (functionCallExpressionIdentifier);
     JSONObject metrics = new JSONObject();
     metrics = deprecatedFunctionsIdentifier.updateMetric(metrics, identifiedBlock);
-    assertEquals(metrics.get("numDeprecatedFunctions"), 1);
+    assertEquals(metrics.get("numExplicitDeprecatedFunctions"), 1);
   }
 }

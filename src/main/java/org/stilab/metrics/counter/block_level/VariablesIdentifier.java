@@ -44,6 +44,9 @@ public class VariablesIdentifier {
     public List<VariableExprTreeImpl> filterVarsFromBlock(BlockTreeImpl blockTree) {
       attributes = (new AttrFinderImpl()).getAllAttributes(blockTree);
       this.variables = this.filterVarsFromAttributesList(attributes);
+//      for (VariableExprTreeImpl variableExprTree: this.variables) {
+//        System.out.println(variableExprTree.name());
+//      }
       return this.variables;
     }
 

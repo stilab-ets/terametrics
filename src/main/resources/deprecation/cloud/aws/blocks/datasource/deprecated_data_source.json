@@ -1,0 +1,247 @@
+[
+  {
+    "isDeprecated": false,
+    "blockName": "aws_availability_zones",
+    "deprecatedAttributes":
+        [
+          {
+            "type": "arg",
+            "name": "blacklisted_names"
+          },
+          {
+            "type": "arg",
+            "name": "blacklisted_zone_ids"
+          }
+        ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_secretsmanager_secret",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "rotation_enabled"
+      },
+      {
+        "type": "arg",
+        "name": "rotation_lambda_arn"
+      },
+      {
+        "type": "arg",
+        "name": "rotation_rules"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_iam_role",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "assume_role_policy_document"
+      },
+      {
+        "type": "arg",
+        "name": "role_id"
+      },
+      {
+        "type": "arg",
+        "name": "role_name"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_region",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "current"
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "aws_kms_secret",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_quicksight_data_set",
+    "deprecatedAttributes": [
+        {
+          "type": "arg",
+          "name": "tags_all"
+        }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "aws_redshift_service_account",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_opensearch_domain",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "kibana_endpoint"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_service_discovery_service",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "tags_all"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_db_instance",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "db_security_groups"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_elasticache_cluster",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "security_group_names"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_launch_configuration",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "vpc_classic_link_id"
+      },
+      {
+        "type": "arg",
+        "name": "vpc_classic_link_security_groups"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_redshift_cluster",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "cluster_security_groups"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_identitystore_group",
+    "deprecatedAttributes": [
+      {
+        "type": "nested",
+        "name": "filter"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_identitystore_user",
+    "deprecatedAttributes": [
+      {
+        "type": "nested",
+        "name": "filter"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_elasticache_replication_group",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "number_cache_clusters"
+      },
+      {
+        "type": "arg",
+        "name": "replication_group_description"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_iam_policy_document",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "source_json"
+      },
+      {
+        "type": "arg",
+        "name": "override_json"
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "aws_s3_bucket_object",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "aws_s3_bucket_objects",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_lambda_invocation",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "result_map"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "aws_connect_hours_of_operation",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "hours_of_operation_arn",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "aws_subnet_ids",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "aws_vpc_peering_connection",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "allow_classic_link_to_remote_vpc",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "allow_vpc_to_remote_classic_link",
+        "parent": ""
+      }
+    ]
+  }
+]

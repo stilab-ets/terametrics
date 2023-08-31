@@ -8,6 +8,7 @@ import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
 import org.stilab.metrics.counter.block.size.BlockComplexity;
 import org.stilab.metrics.counter.block_level.*;
+import org.stilab.metrics.counter.block_level.block_dependency.ImplicitResourceDependency;
 import org.stilab.metrics.counter.block_level.deprecation.DeprecatedFunctionsIdentifier;
 
 import java.io.FileWriter;
@@ -71,6 +72,16 @@ public class MetricsCalculator {
       // ADDED:::: "numDebuggingFunctions"
       DebuggingFunctionIdentifier debuggingFunctionIdentifier = new DebuggingFunctionIdentifier(functionCallExpressionIdentifier);
       metrics = debuggingFunctionIdentifier.updateMetric(metrics, identifiedBlock);
+
+      // Implicit Resource Dependency
+      // ADDED:::: "numDependentResources" "numDependentData" "numDependentModules" "numDependentProviders"
+      // ADDED:::: "numDependentProviders" "numDependentLocals" "numDependentVars"
+      ImplicitResourceDependency implicitResourceDependency = new ImplicitResourceDependency();
+      metrics = implicitResourceDependency.updateMetric(metrics, identifiedBlock);
+
+      // Number of Resource Dependency
+      ExplicitResourceDependency explicitResourceDependency = new ExplicitResourceDependency();
+      metrics = explicitResourceDependency.updateMetric(metrics, identifiedBlock);
 
       // function Parameters
       // "numParams" "avgParams" "maxParams"
@@ -172,10 +183,6 @@ public class MetricsCalculator {
       // Number of Attributes
       AttrFinderImpl attrFinder = new AttrFinderImpl();
       metrics = attrFinder.updateMetric(metrics, identifiedBlock);
-
-      // Number of Resource Dependency
-      ResourceDependency resourceDependency = new ResourceDependency();
-      metrics = resourceDependency.updateMetric(metrics, identifiedBlock);
 
       return metrics;
     }
