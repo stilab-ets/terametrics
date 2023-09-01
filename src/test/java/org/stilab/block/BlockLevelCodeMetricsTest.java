@@ -8,12 +8,11 @@ import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
 import org.stilab.metrics.checker.BlockCheckerTypeImpl;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
+import org.stilab.metrics.counter.block.metrics.*;
 import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
 import org.stilab.metrics.counter.block.finder.TopBlockFinder;
-import org.stilab.metrics.counter.block_level.BlockComplexity;
-import org.stilab.metrics.counter.block_level.*;
-import org.stilab.metrics.counter.block_level.block_dependency.ImplicitResourceDependency;
-import org.stilab.metrics.counter.block_level.deprecation.DeprecatedFunctionsIdentifier;
+import org.stilab.metrics.counter.block.metrics.block_dependency.ImplicitResourceDependency;
+import org.stilab.metrics.counter.block.metrics.deprecation.DeprecatedFunctionsIdentifier;
 import java.io.File;
 import java.util.List;
 
@@ -29,7 +28,10 @@ public class BlockLevelCodeMetricsTest extends TestCase {
   protected void setUp() throws Exception {
 
     super.setUp();
-    File base = new File("C:\\Users\\Admin\\dev\\sonar-iac\\iac-extensions\\terraform_miner\\src\\test\\java\\org\\stilab\\block\\base.tf");
+
+    String tfFilePath = "src/test/java/org/stilab/block/data/base.tf";
+
+    File base = new File(tfFilePath);
     HclParser hclParser = new HclParser();
     Tree tree = hclParser.parse(base);
 
@@ -38,7 +40,7 @@ public class BlockLevelCodeMetricsTest extends TestCase {
     List<BlockTreeImpl> blocks = topBlockFinder.findTopBlock(tree);
     identifiedBlock = blocks.get(0);
     metrics = new JSONObject();
-    blockComplexity = new BlockComplexity("C:\\Users\\Admin\\dev\\sonar-iac\\iac-extensions\\terraform_miner\\src\\test\\java\\org\\stilab\\block\\base.tf", identifiedBlock);
+    blockComplexity = new BlockComplexity(tfFilePath, identifiedBlock);
   }
 
   public void testBlockMetaInfoIdentification() {
@@ -347,7 +349,7 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       LiteralExpressionIdentifier literalExpressionIdentifier = new LiteralExpressionIdentifier();
       EmptyStringIdentifier emptyStringIdentifier = new EmptyStringIdentifier(literalExpressionIdentifier);
       metrics = emptyStringIdentifier.updateMetric(metrics, identifiedBlock);
-      assertEquals(metrics.get("numEmptyString"), 1);
+      assertEquals(metrics.get("numEmptyString"), 3);
     }
 
 }

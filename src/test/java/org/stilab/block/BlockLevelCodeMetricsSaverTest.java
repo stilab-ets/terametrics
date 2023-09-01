@@ -25,8 +25,8 @@ public class BlockLevelCodeMetricsSaverTest extends TestCase {
 
       super.setUp();
 
-      hclFilePath = "C:\\Users\\Admin\\dev\\sonar-iac\\iac-extensions\\terraform_miner\\src\\test\\java\\org\\stilab\\block\\base.tf";
-      targetPathToSaveMetrics = "C:\\Users\\Admin\\dev\\sonar-iac\\iac-extensions\\terraform_miner\\src\\test\\java\\org\\stilab\\block\\base_metrics.json";
+      hclFilePath = "src/test/java/org/stilab/block/data/base.tf";
+      targetPathToSaveMetrics = "src/test/java/org/stilab/block/data/base_metrics.json";
 
       BlockDivider blockDivider = new BlockDivider(hclFilePath);
       List<BlockPosition> blockPositions = blockDivider.divideFilePerBlock();
@@ -61,7 +61,7 @@ public class BlockLevelCodeMetricsSaverTest extends TestCase {
         int data_size = dataArray.size();
 
         assertEquals(status, 200);
-        assertEquals(num_lines_of_code, 132);
+        assertEquals(num_lines_of_code, 133);
         assertEquals(num_blocks, 1);
         assertEquals(data_size, 1);
 

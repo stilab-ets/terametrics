@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class AttrFinderImpl {
     private List<AttributeTreeImpl> attributes = new ArrayList<>();
-
     public AttrFinderImpl() {}
 
     // You should add also for the top attributes

@@ -10,7 +10,6 @@ import java.util.List;
 
 public class AttributeCounterImpl implements AttributeCounter {
 
-
       @Override
     //  TerraformTree tree
     public int countAttribute(Tree tree) {

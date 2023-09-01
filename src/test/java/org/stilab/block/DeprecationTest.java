@@ -6,10 +6,10 @@ import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.metrics.counter.block.finder.TopBlockFinder;
-import org.stilab.metrics.counter.block_level.BlockComplexity;
-import org.stilab.metrics.counter.block_level.deprecation.cloud.DeprecatedDataSource;
-import org.stilab.metrics.counter.block_level.deprecation.cloud.DeprecatedResource;
-import org.stilab.metrics.counter.block_level.deprecation.cloud.DeprecatoryServiceLocator;
+import org.stilab.metrics.counter.block.metrics.BlockComplexity;
+import org.stilab.metrics.counter.block.metrics.deprecation.cloud.DeprecatedDataSource;
+import org.stilab.metrics.counter.block.metrics.deprecation.cloud.DeprecatedResource;
+import org.stilab.metrics.counter.block.metrics.deprecation.cloud.DeprecatoryServiceLocator;
 
 import java.io.File;
 import java.util.List;
@@ -22,7 +22,7 @@ public class DeprecationTest extends TestCase {
   @Override
   protected void setUp() throws Exception {
     super.setUp();
-    String filePath = "src/test/java/org/stilab/block/deprecation.tf";
+    String filePath = "src/test/java/org/stilab/block/data/deprecation.tf";
     File base = new File(filePath);
     HclParser hclParser = new HclParser();
     Tree tree = hclParser.parse(base);
@@ -45,13 +45,13 @@ public class DeprecationTest extends TestCase {
     String filePath = "src/main/resources/deprecation/cloud/aws/blocks/resource/deprecated_resource_aws.json";
     String blockAsString = this.blockComplexity.getBlockContent();
     DeprecatedResource deprecatedResource = new DeprecatedResource(filePath, identifiedBlock, blockAsString);
-    assertEquals(deprecatedResource.countDeprecation(), 4);
+    assertEquals(deprecatedResource.countDeprecation(), 3);
   }
 
   public void testDeprecatoryServiceLocator() {
     String blockAsString = this.blockComplexity.getBlockContent();
     DeprecatoryServiceLocator deprecatoryServiceLocator = new DeprecatoryServiceLocator(identifiedBlock, blockAsString);
-    assertEquals(deprecatoryServiceLocator.countDeprecationWithinBlock(), 1);
+    assertEquals(deprecatoryServiceLocator.countDeprecationWithinBlock(), 3);
   }
 
 

@@ -5,11 +5,11 @@ import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
 import org.stilab.metrics.checker.BlockCheckerTypeImpl;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
+import org.stilab.metrics.counter.block.metrics.*;
 import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
-import org.stilab.metrics.counter.block_level.BlockComplexity;
-import org.stilab.metrics.counter.block_level.*;
-import org.stilab.metrics.counter.block_level.block_dependency.ImplicitResourceDependency;
-import org.stilab.metrics.counter.block_level.deprecation.DeprecatedFunctionsIdentifier;
+import org.stilab.metrics.counter.block.metrics.block_dependency.ImplicitResourceDependency;
+import org.stilab.metrics.counter.block.metrics.deprecation.DeprecatedFunctionsIdentifier;
+import org.stilab.metrics.counter.block.metrics.deprecation.cloud.DeprecatoryServiceLocator;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -187,6 +187,10 @@ public class MetricsCalculator {
       // Number of Attributes
       AttrFinderImpl attrFinder = new AttrFinderImpl();
       metrics = attrFinder.updateMetric(metrics, identifiedBlock);
+
+      // Number of Deprecated Keywords
+      DeprecatoryServiceLocator deprecatoryServiceLocator = new DeprecatoryServiceLocator(identifiedBlock, blockAsString);
+      metrics = deprecatoryServiceLocator.updateMetrics(metrics, identifiedBlock);
 
       return metrics;
     }
