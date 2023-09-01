@@ -1,6 +1,6 @@
 [
   {
-    "isDeprecated": true,
+    "isDeprecated": false,
     "blockName": "aws",
     "deprecatedAttributes": [
       {
