@@ -6,7 +6,7 @@ import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
 import org.stilab.metrics.checker.BlockCheckerTypeImpl;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
-import org.stilab.metrics.counter.block.size.BlockComplexity;
+import org.stilab.metrics.counter.block_level.BlockComplexity;
 import org.stilab.metrics.counter.block_level.*;
 import org.stilab.metrics.counter.block_level.block_dependency.ImplicitResourceDependency;
 import org.stilab.metrics.counter.block_level.deprecation.DeprecatedFunctionsIdentifier;
@@ -102,6 +102,10 @@ public class MetricsCalculator {
       // "numLiteralExpression" "numStringValues" "sumLengthStringValues" "avgLengthStringValues" "maxLengthStringValues"
       LiteralExpressionIdentifier literalExpressionIdentifier = new LiteralExpressionIdentifier();
       metrics = literalExpressionIdentifier.updateMetric(metrics, identifiedBlock);
+
+      // ADDED:: numEmptyString
+      EmptyStringIdentifier emptyStringIdentifier = new EmptyStringIdentifier(literalExpressionIdentifier);
+      metrics = emptyStringIdentifier.updateMetric(metrics, identifiedBlock);
 
       // Loops Expressions
       // "numLoops" "avgLoops" "maxLoops"
