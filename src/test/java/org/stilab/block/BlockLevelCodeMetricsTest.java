@@ -6,29 +6,29 @@ import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
-import org.sonar.iac.terraform.tree.impl.VariableExprTreeImpl;
 import org.stilab.metrics.checker.BlockCheckerTypeImpl;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
 import org.stilab.metrics.counter.block.finder.TopBlockFinder;
-import org.stilab.metrics.counter.block.size.BlockComplexity;
+import org.stilab.metrics.counter.block_level.BlockComplexity;
 import org.stilab.metrics.counter.block_level.*;
 import org.stilab.metrics.counter.block_level.block_dependency.ImplicitResourceDependency;
 import org.stilab.metrics.counter.block_level.deprecation.DeprecatedFunctionsIdentifier;
-
 import java.io.File;
 import java.util.List;
+
 
 public class BlockLevelCodeMetricsTest extends TestCase {
 
    private BlockTreeImpl identifiedBlock;
    private JSONObject metrics;
 
+   private BlockComplexity blockComplexity;
+
   @Override
   protected void setUp() throws Exception {
 
     super.setUp();
-
     File base = new File("C:\\Users\\Admin\\dev\\sonar-iac\\iac-extensions\\terraform_miner\\src\\test\\java\\org\\stilab\\block\\base.tf");
     HclParser hclParser = new HclParser();
     Tree tree = hclParser.parse(base);
@@ -38,6 +38,7 @@ public class BlockLevelCodeMetricsTest extends TestCase {
     List<BlockTreeImpl> blocks = topBlockFinder.findTopBlock(tree);
     identifiedBlock = blocks.get(0);
     metrics = new JSONObject();
+    blockComplexity = new BlockComplexity("C:\\Users\\Admin\\dev\\sonar-iac\\iac-extensions\\terraform_miner\\src\\test\\java\\org\\stilab\\block\\base.tf", identifiedBlock);
   }
 
   public void testBlockMetaInfoIdentification() {
@@ -46,7 +47,7 @@ public class BlockLevelCodeMetricsTest extends TestCase {
     assertEquals(metrics.get("impacted_block_type"), "aws_elastic_beanstalk_environment tfenvtest");
     assertEquals(metrics.get("block"), "resource");
     assertEquals(metrics.get("start_block"), 1);
-    assertEquals(metrics.get("end_block"), 155);
+    assertEquals(metrics.get("end_block"), 157);
     assertEquals(metrics.get("block_identifiers"), "resource aws_elastic_beanstalk_environment tfenvtest");
   }
 
@@ -54,7 +55,7 @@ public class BlockLevelCodeMetricsTest extends TestCase {
     ComparisonOperatorsIdentifier cmp = new ComparisonOperatorsIdentifier();
     metrics = cmp.updateMetric(metrics, identifiedBlock);
     assertEquals(metrics.get("numComparisonOperators"), 1);
-    assertEquals(metrics.get("avgComparisonOperators"), 0.05);
+    assertEquals(metrics.get("avgComparisonOperators"), 0.04);
     assertEquals(metrics.get("maxComparisonOperators"), 1);
   }
 
@@ -72,7 +73,7 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       metrics = logOper.updateMetric(metrics, identifiedBlock);
 
       assertEquals(metrics.get("numLogiOpers"), 5);
-      assertEquals(metrics.get("avgLogiOpers"), 0.23);
+      assertEquals(metrics.get("avgLogiOpers"), 0.22);
       assertEquals(metrics.get("maxLogiOpers"), 4);
     }
 
@@ -119,7 +120,7 @@ public class BlockLevelCodeMetricsTest extends TestCase {
         = new FunctionCallExpressionIdentifier();
       metrics = functionCallExpressionIdentifier.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numFunctionCall"), 9);
-      assertEquals(metrics.get("avgFunctionCall"), 0.41);
+      assertEquals(metrics.get("avgFunctionCall"), 0.39);
       assertEquals(metrics.get("maxFunctionCall"), 2);
     }
 
@@ -136,7 +137,7 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       HereDocIdentifier hereDocIdentifier = new HereDocIdentifier();
       metrics = hereDocIdentifier.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numHereDocs"), 4);
-      assertEquals(metrics.get("avgHereDocs"), 0.18);
+      assertEquals(metrics.get("avgHereDocs"), 0.17);
 //      assertEquals(metrics.get("maxHereDocs"), 1);
 //      We take into account just the lines between EOF delimiter:
 //               <<-EOF
@@ -176,7 +177,7 @@ public class BlockLevelCodeMetricsTest extends TestCase {
         LoopsExpressionIdentifier loopsExpressionIdentifier = new LoopsExpressionIdentifier();
         metrics = loopsExpressionIdentifier.updateMetric(metrics, identifiedBlock);
         assertEquals(metrics.get("numLoops"), 3);
-        assertEquals(metrics.get("avgLoops"), 0.14);
+        assertEquals(metrics.get("avgLoops"), 0.13);
         assertEquals(metrics.get("maxLoops"), 2);
     }
 
@@ -192,8 +193,8 @@ public class BlockLevelCodeMetricsTest extends TestCase {
     public void testMCCabCCIdentification() {
         MccabeCC mccabeCC = new MccabeCC();
         metrics = mccabeCC.updateMetric(metrics, identifiedBlock);
-        assertEquals(metrics.get("avgMccabeCC"), 1.23);
-        assertEquals(metrics.get("sumMccabeCC"), 27);
+        assertEquals(metrics.get("avgMccabeCC"), 1.22);
+        assertEquals(metrics.get("sumMccabeCC"), 28);
         assertEquals(metrics.get("maxMccabeCC"), 3);
     }
 
@@ -207,7 +208,7 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       ObjectWrapperIdentifier objectWrapperIdentifier = new ObjectWrapperIdentifier();
       metrics = objectWrapperIdentifier.updateMetric(metrics, identifiedBlock);
        assertEquals(metrics.get("numObjects"), 5);
-       assertEquals(metrics.get("avgObjects"), 0.23);
+       assertEquals(metrics.get("avgObjects"), 0.22);
        assertEquals(metrics.get("maxObjects"), 2);
     }
 
@@ -227,8 +228,8 @@ public class BlockLevelCodeMetricsTest extends TestCase {
         ReferenceIdentifier referenceIdentifier = new ReferenceIdentifier();
         metrics = referenceIdentifier.updateMetric(metrics, identifiedBlock);
 
-        assertEquals(metrics.get("numReferences"), 30);
-        assertEquals(metrics.get("avgReferences"), 1.36);
+        assertEquals(metrics.get("numReferences"), 34);
+        assertEquals(metrics.get("avgReferences"), 1.48);
         assertEquals(metrics.get("maxReferences"), 5);
   }
 
@@ -236,8 +237,8 @@ public class BlockLevelCodeMetricsTest extends TestCase {
        VariablesIdentifier variablesIdentifier = new VariablesIdentifier();
        metrics = variablesIdentifier.updateMetric(metrics, identifiedBlock);
 
-       assertEquals(metrics.get("numVars"), 34);
-       assertEquals(metrics.get("avgNumVars"), 1.55);
+       assertEquals(metrics.get("numVars"), 35);
+       assertEquals(metrics.get("avgNumVars"), 1.52);
        assertEquals(metrics.get("maxNumVars"), 8);
     }
 
@@ -254,7 +255,7 @@ public class BlockLevelCodeMetricsTest extends TestCase {
         TemplateExpressionIdentifier templateExpressionIdentifier = new TemplateExpressionIdentifier();
         metrics = templateExpressionIdentifier.updateMetric(metrics, identifiedBlock);
         assertEquals(metrics.get("numTemplateExpression"), 3);
-        assertEquals(metrics.get("avgTemplateExpression"), 0.14);
+        assertEquals(metrics.get("avgTemplateExpression"), 0.13);
 
     }
 
@@ -262,14 +263,14 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       TokenIdentifier tokenIdentifier = new TokenIdentifier();
       metrics = tokenIdentifier.updateMetric(metrics, identifiedBlock);
 
-      assertEquals(metrics.get("textEntropyMeasure"),  5.42);
+      assertEquals(metrics.get("textEntropyMeasure"),  5.41);
       assertEquals(metrics.get("minAttrsTextEntropy"), 2.85);
       assertEquals(metrics.get("maxAttrsTextEntropy"), 5.48);
       assertEquals(metrics.get("avgAttrsTextEntropy"), 4.18);
-      assertEquals(metrics.get("numTokens"), 292);
+      assertEquals(metrics.get("numTokens"), 303);
       assertEquals(metrics.get("minTokensPerAttr"), 3);
       assertEquals(metrics.get("maxTokensPerAttr"), 34);
-      assertEquals(metrics.get("avgTokensPerAttr"), 12.55);
+      assertEquals(metrics.get("avgTokensPerAttr"), 12.48);
 
     }
 
@@ -278,7 +279,7 @@ public class BlockLevelCodeMetricsTest extends TestCase {
         metrics = tupleIdentifier.updateMetric(metrics, identifiedBlock);
 
         assertEquals(metrics.get("numTuples"), 7);
-        assertEquals(metrics.get("avgTuples"), 0.3181818181818182);
+        assertEquals(metrics.get("avgTuples"), 0.3);
         assertEquals(metrics.get("maxTuples"), 2);
 
     }
@@ -291,17 +292,16 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       metrics = tupleElementsIdentifier.updateMetric(metrics, identifiedBlock);
 
       assertEquals(metrics.get("numElemTuples"), 12);
-      assertEquals(metrics.get("avgElemTuples"), 1.7142857142857142);
+      assertEquals(metrics.get("avgElemTuples"), 1.71);
       assertEquals(metrics.get("maxElemTuples"), 5);
     }
 
     public void testComplexityBlock() {
-      BlockComplexity blockComplexity = new BlockComplexity("C:\\Users\\Admin\\dev\\sonar-iac\\iac-extensions\\terraform_miner\\src\\test\\java\\org\\stilab\\block\\base.tf", identifiedBlock);
-      metrics = blockComplexity.updateMetric(metrics, identifiedBlock);
+      metrics = this.blockComplexity.updateMetric(metrics, identifiedBlock);
 
-      assertEquals(metrics.get("depthOfBlock"), 155);
-      assertEquals(metrics.get("loc"), 132);
-      assertEquals(metrics.get("nloc"), 23);
+      assertEquals(metrics.get("depthOfBlock"), 157);
+      assertEquals(metrics.get("loc"), 133);
+      assertEquals(metrics.get("nloc"), 24);
 
     }
 
@@ -323,7 +323,7 @@ public class BlockLevelCodeMetricsTest extends TestCase {
     public void testNumberOfAttributes(){
       AttrFinderImpl attrFinder = new AttrFinderImpl();
       metrics = attrFinder.updateMetric(metrics, identifiedBlock);
-      assertEquals(metrics.get("numAttrs"), 22);
+      assertEquals(metrics.get("numAttrs"), 23);
     }
 
     public void testExplicitResourceDependency(){
@@ -336,12 +336,18 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       ImplicitResourceDependency implicitResourceDependency = new ImplicitResourceDependency();
       metrics = implicitResourceDependency.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numImplicitDependentResources"), 3);
-      assertEquals(metrics.get("numImplicitDependentData"), 0);
+      assertEquals(metrics.get("numImplicitDependentData"), 1);
       assertEquals(metrics.get("numImplicitDependentModules"), 0);
       assertEquals(metrics.get("numImplicitDependentProviders"), 0);
       assertEquals(metrics.get("numImplicitDependentLocals"), 2);
       assertEquals(metrics.get("numImplicitDependentVars"), 10);
     }
 
+    public void testEmptyStringIdentification() {
+      LiteralExpressionIdentifier literalExpressionIdentifier = new LiteralExpressionIdentifier();
+      EmptyStringIdentifier emptyStringIdentifier = new EmptyStringIdentifier(literalExpressionIdentifier);
+      metrics = emptyStringIdentifier.updateMetric(metrics, identifiedBlock);
+      assertEquals(metrics.get("numEmptyString"), 1);
+    }
 
 }
