@@ -5,6 +5,9 @@ import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.ForTupleTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TupleTreeImpl;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -62,7 +65,9 @@ public class TupleElementsIdentifier {
 
     public double avgNumberOfElementsPerDifferentTuples() {
       if (tupleTrees.size() >= 1) {
-        return (double) getTotalNumberOfElementsOfDifferentTuples() / tupleTrees.size();
+        double avgNumberOfElementsPerDifferentTuples = (double) getTotalNumberOfElementsOfDifferentTuples() / tupleTrees.size();
+        BigDecimal roundedAverage = new BigDecimal(avgNumberOfElementsPerDifferentTuples).setScale(2, RoundingMode.HALF_UP);
+        return roundedAverage.doubleValue();
       }
       return 0.0;
     }

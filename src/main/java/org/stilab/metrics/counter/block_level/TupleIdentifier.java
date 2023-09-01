@@ -7,6 +7,9 @@ import org.sonar.iac.terraform.api.tree.ExpressionTree;
 import org.sonar.iac.terraform.tree.impl.*;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
 import org.stilab.utils.ExpressionAnalyzer;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -49,7 +52,9 @@ public class TupleIdentifier {
 
     public double avgNumberOfTuples() {
       if (!attributes.isEmpty()) {
-        return (double) totalNumberOfTuples() / attributes.size();
+        double avgNumberOfTuples = (double) totalNumberOfTuples() / attributes.size();
+        BigDecimal roundedAverage = new BigDecimal(avgNumberOfTuples).setScale(2, RoundingMode.HALF_UP);
+        return roundedAverage.doubleValue();
       }
       return 0.0;
     }
