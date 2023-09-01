@@ -1,4 +1,4 @@
-package org.stilab.metrics.counter.block_level.deprecation.cloud.aws;
+package org.stilab.metrics.counter.block_level.deprecation.cloud;
 
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.metrics.checker.BlockCheckerTypeImpl;
@@ -13,11 +13,9 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AwsDeprecatedResource extends Deprecation {
-  public AwsDeprecatedResource() {}
-
-  public void setParams(String filePath, BlockTreeImpl block, String blockAsString) {
-    super.setParams(filePath, block, blockAsString);
+public class DeprecatedResource extends Deprecation {
+  public DeprecatedResource(String filePath, BlockTreeImpl block, String blockAsString) {
+    super(filePath, block, blockAsString);
   }
 
   public List<String> getDeprecatedUsedResources() {

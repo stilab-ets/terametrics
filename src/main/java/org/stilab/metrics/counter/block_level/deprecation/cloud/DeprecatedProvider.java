@@ -1,4 +1,4 @@
-package org.stilab.metrics.counter.block_level.deprecation.cloud.aws;
+package org.stilab.metrics.counter.block_level.deprecation.cloud;
 
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.metrics.checker.BlockCheckerTypeImpl;
@@ -13,13 +13,9 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AwsProvider extends Deprecation {
-  private final String TOP_LEVEL = "aws";
-
-  public AwsProvider() {}
-
-  public void setParams(String filePath, BlockTreeImpl block, String blockAsString) {
-      super.setParams(filePath, block, blockAsString);
+public class DeprecatedProvider extends Deprecation {
+  public DeprecatedProvider(String filePath, BlockTreeImpl block, String blockAsString) {
+    super(filePath, block, blockAsString);
   }
 
   public List<String> generateProviderDeprecationPattern(){
@@ -31,7 +27,7 @@ public class AwsProvider extends Deprecation {
       List<DeprecatedAttribute> attributes = block.getDeprecatedAttributes();
 
       if (block.getIsDeprecated()) {
-        String p1 = "\\b" + blockName + "\\b";
+        String p1 = "\\b" + blockName + "\\." + "\\b";
         providerAttrs.add(p1);
       }
 

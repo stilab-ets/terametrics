@@ -1,4 +1,4 @@
-package org.stilab.metrics.counter.block_level.deprecation.cloud.aws;
+package org.stilab.metrics.counter.block_level.deprecation.cloud;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,16 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Deprecation {
-
   protected ObjectMapper deprecatedDataSourcesMapper = new ObjectMapper();
   protected List<Block> deprecatedBlocks = new ArrayList<>();
   protected String blockAsString;
 
   protected BlockTreeImpl block;
 
-  public Deprecation() {}
+  public Deprecation(String filePath, BlockTreeImpl block, String blockAsString) {
 
-  public void setParams(String filePath, BlockTreeImpl block, String blockAsString){
     try {
       this.block = block;
 
@@ -32,6 +30,7 @@ public class Deprecation {
     } catch (IOException e) {
       e.printStackTrace();
     }
+
   }
 
   public int countDeprecation() {
