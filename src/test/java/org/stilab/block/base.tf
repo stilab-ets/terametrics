@@ -11,6 +11,8 @@ resource "aws_elastic_beanstalk_environment" "tfenvtest" {
 
   cluster_security_group_id = "${coalesce(join("", aws_security_group.cluster.*.id), var.cluster_security_group_id)}"
 
+  deprecation = data.aws_identitystore_group.example.filter.attribute
+
   server_address = {
     ip = {
       source = "44"
