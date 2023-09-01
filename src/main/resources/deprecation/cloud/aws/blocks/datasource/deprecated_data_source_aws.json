@@ -6,11 +6,13 @@
         [
           {
             "type": "arg",
-            "name": "blacklisted_names"
+            "name": "blacklisted_names",
+            "parent": ""
           },
           {
             "type": "arg",
-            "name": "blacklisted_zone_ids"
+            "name": "blacklisted_zone_ids",
+            "parent": ""
           }
         ]
   },
@@ -20,15 +22,18 @@
     "deprecatedAttributes": [
       {
         "type": "arg",
-        "name": "rotation_enabled"
+        "name": "rotation_enabled",
+        "parent": ""
       },
       {
         "type": "arg",
-        "name": "rotation_lambda_arn"
+        "name": "rotation_lambda_arn",
+        "parent": ""
       },
       {
         "type": "arg",
-        "name": "rotation_rules"
+        "name": "rotation_rules",
+        "parent": ""
       }
     ]
   },
@@ -38,15 +43,18 @@
     "deprecatedAttributes": [
       {
         "type": "arg",
-        "name": "assume_role_policy_document"
+        "name": "assume_role_policy_document",
+        "parent": ""
       },
       {
         "type": "arg",
-        "name": "role_id"
+        "name": "role_id",
+        "parent": ""
       },
       {
         "type": "arg",
-        "name": "role_name"
+        "name": "role_name",
+        "parent": ""
       }
     ]
   },
@@ -56,7 +64,8 @@
     "deprecatedAttributes": [
       {
         "type": "arg",
-        "name": "current"
+        "name": "current",
+        "parent": ""
       }
     ]
   },
@@ -71,7 +80,8 @@
     "deprecatedAttributes": [
         {
           "type": "arg",
-          "name": "tags_all"
+          "name": "tags_all",
+          "parent": ""
         }
     ]
   },
@@ -86,7 +96,8 @@
     "deprecatedAttributes": [
       {
         "type": "arg",
-        "name": "kibana_endpoint"
+        "name": "kibana_endpoint",
+        "parent": ""
       }
     ]
   },
@@ -96,7 +107,8 @@
     "deprecatedAttributes": [
       {
         "type": "arg",
-        "name": "tags_all"
+        "name": "tags_all",
+        "parent": ""
       }
     ]
   },
@@ -106,7 +118,8 @@
     "deprecatedAttributes": [
       {
         "type": "arg",
-        "name": "db_security_groups"
+        "name": "db_security_groups",
+        "parent": ""
       }
     ]
   },
@@ -116,7 +129,8 @@
     "deprecatedAttributes": [
       {
         "type": "arg",
-        "name": "security_group_names"
+        "name": "security_group_names",
+        "parent": ""
       }
     ]
   },
@@ -126,11 +140,13 @@
     "deprecatedAttributes": [
       {
         "type": "arg",
-        "name": "vpc_classic_link_id"
+        "name": "vpc_classic_link_id",
+        "parent": ""
       },
       {
         "type": "arg",
-        "name": "vpc_classic_link_security_groups"
+        "name": "vpc_classic_link_security_groups",
+        "parent": ""
       }
     ]
   },
@@ -140,7 +156,8 @@
     "deprecatedAttributes": [
       {
         "type": "arg",
-        "name": "cluster_security_groups"
+        "name": "cluster_security_groups",
+        "parent": ""
       }
     ]
   },
@@ -149,8 +166,9 @@
     "blockName": "aws_identitystore_group",
     "deprecatedAttributes": [
       {
-        "type": "nested",
-        "name": "filter"
+        "type": "arg",
+        "name": "filter",
+        "parent": ""
       }
     ]
   },
@@ -159,8 +177,9 @@
     "blockName": "aws_identitystore_user",
     "deprecatedAttributes": [
       {
-        "type": "nested",
-        "name": "filter"
+        "type": "arg",
+        "name": "filter",
+        "parent": ""
       }
     ]
   },
@@ -170,11 +189,13 @@
     "deprecatedAttributes": [
       {
         "type": "arg",
-        "name": "number_cache_clusters"
+        "name": "number_cache_clusters",
+        "parent": ""
       },
       {
         "type": "arg",
-        "name": "replication_group_description"
+        "name": "replication_group_description",
+        "parent": ""
       }
     ]
   },
@@ -184,11 +205,13 @@
     "deprecatedAttributes": [
       {
         "type": "arg",
-        "name": "source_json"
+        "name": "source_json",
+        "parent": ""
       },
       {
         "type": "arg",
-        "name": "override_json"
+        "name": "override_json",
+        "parent": ""
       }
     ]
   },
@@ -208,7 +231,8 @@
     "deprecatedAttributes": [
       {
         "type": "arg",
-        "name": "result_map"
+        "name": "result_map",
+        "parent": ""
       }
     ]
   },

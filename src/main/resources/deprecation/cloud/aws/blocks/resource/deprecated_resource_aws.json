@@ -90,7 +90,7 @@
     "blockName": "aws_api_gateway_api_key",
     "deprecatedAttributes": [
       {
-        "type": "nested",
+        "type": "arg",
         "name": "stage_key",
         "parent": ""
       }
@@ -163,11 +163,6 @@
         "type": "arg",
         "name": "min_adjustment_magnitude",
         "parent": "step_adjustment"
-      },
-      {
-        "type": "arg",
-        "name": "",
-        "parent": ""
       }
     ]
   },
@@ -696,7 +691,7 @@
     ]
   },
   {
-    "isDeprecated": false,
+    "isDeprecated": true,
     "blockName": "aws_s3_bucket",
     "deprecatedAttributes": [
       {
@@ -814,7 +809,7 @@
     "blockName": "aws_budgets_budget",
     "deprecatedAttributes": [
       {
-        "type": "nested",
+        "type": "args",
         "name": "cost_filters",
         "parent": ""
       }
@@ -980,7 +975,8 @@
       },
       {
         "type": "arg",
-        "name": "admin_create_user_config"
+        "name": "admin_create_user_config",
+        "parent": ""
       }
     ]
   },
@@ -1083,27 +1079,6 @@
       {
         "type": "arg",
         "name": "hours_of_operation_arn",
-        "parent": ""
-      }
-    ]
-  },
-  {
-    "isDeprecated": false,
-    "blockName": "aws_db_event_subscription",
-    "deprecatedAttributes": [
-      {
-        "type": "arg",
-        "name": "",
-        "parent": ""
-      },
-      {
-        "type": "arg",
-        "name": "",
-        "parent": ""
-      },
-      {
-        "type": "arg",
-        "name": "",
         "parent": ""
       }
     ]

@@ -19,6 +19,10 @@ public class BlockComplexity implements IBlockComplexity {
         this.blockContent = blockContent;
       }
 
+      public String getBlockContent() {
+        return this.blockContent;
+      }
+
       public BlockComplexity(String filePath, BlockTreeImpl blockTree) {
         this.blockTree    = blockTree;
         this.startLine    = blockTree.value().textRange().start().line();

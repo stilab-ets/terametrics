@@ -1,11 +1,12 @@
 [
   {
     "isDeprecated": true,
-    "blockName": "provider",
+    "blockName": "aws",
     "deprecatedAttributes": [
       {
         "type": "arg",
-        "name": "skip_get_ec2_platforms"
+        "name": "skip_get_ec2_platforms",
+        "parent": ""
       },
       {
         "type": "nested",
@@ -19,23 +20,28 @@
       },
       {
         "type": "arg",
-        "name": "kinesis_analytics"
+        "name": "kinesis_analytics",
+        "parent": ""
       },
       {
         "type": "arg",
-        "name": "r53"
+        "name": "r53",
+        "parent": ""
       },
       {
         "type": "arg",
-        "name": "skip_get_ec2_platforms"
+        "name": "skip_get_ec2_platforms",
+        "parent": ""
       },
       {
         "type": "arg",
-        "name": "s3_force_path_style"
+        "name": "s3_force_path_style",
+        "parent": ""
       },
       {
         "type": "arg",
-        "name": "shared_credentials_file"
+        "name": "shared_credentials_file",
+        "parent": ""
       }
     ]
   }
