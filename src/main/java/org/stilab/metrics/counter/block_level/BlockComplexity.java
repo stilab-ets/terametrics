@@ -1,4 +1,4 @@
-package org.stilab.metrics.counter.block.size;
+package org.stilab.metrics.counter.block_level;
 
 import org.json.simple.JSONObject;
 import org.stilab.interfaces.IBlockComplexity;
