@@ -18,15 +18,15 @@ public class DeprecatoryServiceLocator {
       this.deprecations = new ArrayList<>( Arrays.asList(
                           // AWS Context
                           new DeprecatedDataSource(
-                            "src/main/resources/deprecation/cloud/aws/blocks/datasource/deprecated_data_source_aws.json",
+                            "deprecated_data_source_aws.json",
                             identifiedBlock,
                             blockAsString),
 
-                          new DeprecatedProvider("src/main/resources/deprecation/cloud/aws/blocks/provider/deprecated_provider_aws.json",
+                          new DeprecatedProvider("deprecated_provider_aws.json",
                             identifiedBlock,
                             blockAsString),
 
-                          new DeprecatedResource("src/main/resources/deprecation/cloud/aws/blocks/resource/deprecated_resource_aws.json",
+                          new DeprecatedResource("deprecated_resource_aws.json",
                             identifiedBlock,
                             blockAsString)
       ));

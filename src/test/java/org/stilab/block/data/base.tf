@@ -5,11 +5,11 @@ resource "aws_elastic_beanstalk_environment" "tfenvtest" {
   distance = ["0.0.0.0", "45872", [0, 1, 5, 6 , 8]]
   math = 4 + 5 + 44
   count = var.create_vpc && var.enable_ipv6 && var.create_database_subnet_route_table && length(var.database_subnets) > 0 && var.create_database_internet_gateway_route ? 1 : 0
-  num = compact("", compact(null, ""))
+  num = compact(":*", compact(null, ""))
   iam_role_tags                 = try(each.value.iam_role_tags, var.fargate_profile_defaults.iam_role_tags, {})
   iam_role_additional_policies  = try(each.value.iam_role_additional_policies, var.fargate_profile_defaults.iam_role_additional_policies, [])
 
-  cluster_security_group_id = "${coalesce(join("", aws_security_group.cluster.*.id), var.cluster_security_group_id)}"
+  cluster_security_group_id = "${coalesce(join("*", aws_security_group.cluster.*.id), var.cluster_security_group_id)}"
 
   deprecation = data.aws_identitystore_group.example.filter.attribute
 

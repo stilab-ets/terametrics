@@ -2,7 +2,7 @@ package org.stilab.metrics.counter.block.metrics;
 
 import org.json.simple.JSONObject;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
-import org.stilab.utils.ExpressionAnalyzer;
+import org.stilab.utils.spliters.ExpressionAnalyzer;
 import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.api.tree.ExpressionTree;
 import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;

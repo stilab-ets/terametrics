@@ -1,4 +1,4 @@
-package org.stilab.utils;
+package org.stilab.metrics.counter.block;
 
 import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
@@ -9,15 +9,14 @@ import org.stilab.metrics.counter.block.metrics.*;
 import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
 import org.stilab.metrics.counter.block.metrics.block_dependency.ImplicitResourceDependency;
 import org.stilab.metrics.counter.block.metrics.deprecation.DeprecatedFunctionsIdentifier;
-import org.stilab.metrics.counter.block.metrics.deprecation.cloud.DeprecatoryServiceLocator;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-public class MetricsCalculator {
+public class BlockMetricsCalculator {
 
-    public MetricsCalculator() {  }
+    public BlockMetricsCalculator() {  }
 
     public JSONObject measureMetrics(BlockTreeImpl identifiedBlock, String blockAsString) {
 
@@ -104,8 +103,8 @@ public class MetricsCalculator {
       metrics = literalExpressionIdentifier.updateMetric(metrics, identifiedBlock);
 
       // ADDED:: numEmptyString
-      EmptyStringIdentifier emptyStringIdentifier = new EmptyStringIdentifier(literalExpressionIdentifier);
-      metrics = emptyStringIdentifier.updateMetric(metrics, identifiedBlock);
+      SpecialStringIdentifier specialStringIdentifier = new SpecialStringIdentifier(literalExpressionIdentifier);
+      metrics = specialStringIdentifier.updateMetric(metrics, identifiedBlock);
 
       // Loops Expressions
       // "numLoops" "avgLoops" "maxLoops"
@@ -189,8 +188,8 @@ public class MetricsCalculator {
       metrics = attrFinder.updateMetric(metrics, identifiedBlock);
 
       // Number of Deprecated Keywords
-      DeprecatoryServiceLocator deprecatoryServiceLocator = new DeprecatoryServiceLocator(identifiedBlock, blockAsString);
-      metrics = deprecatoryServiceLocator.updateMetrics(metrics, identifiedBlock);
+//      DeprecatoryServiceLocator deprecatoryServiceLocator = new DeprecatoryServiceLocator(identifiedBlock, blockAsString);
+//      metrics = deprecatoryServiceLocator.updateMetrics(metrics, identifiedBlock);
 
       return metrics;
     }

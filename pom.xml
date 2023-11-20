@@ -12,8 +12,8 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8.0_161-b12</maven.compiler.source>
+        <maven.compiler.target>1.8.0_161-b12</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -31,6 +31,12 @@
         <artifactId>sonar-iac-terraform</artifactId>
         <version>1.17.0.3976</version>
       </dependency>
+
+<!--      <dependency>-->
+<!--        <groupId>org.sonarsource.iac</groupId>-->
+<!--        <artifactId>sonar-iac-terraform</artifactId>-->
+<!--        <version>1.15.0.3752</version>-->
+<!--      </dependency>-->
 
       <dependency>
         <groupId>com.googlecode.json-simple</groupId>
@@ -58,7 +64,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <!--        <version>1.8</version>-->
+<!--                  <version>1.8</version>-->
           <configuration>
             <archive>
               <manifest>
@@ -68,6 +74,11 @@
           </configuration>
         </plugin>
       </plugins>
+      <resources>
+        <resource>
+          <directory>src/main/resources</directory>
+        </resource>
+      </resources>
     </build>
 
 </project>

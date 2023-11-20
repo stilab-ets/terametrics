@@ -1,0 +1,2926 @@
+[
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_api_management_custom_domain",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "proxy",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_api_management_diagnostic",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "enabled",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_api_management_api_operation",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "response.representation.sample",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_api_management_property",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_api_management",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "security.enabled_triple_des_ciphers",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_app_service",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_app_service_active_slot",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_app_service_certificate",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "hosting_environment_profile_id",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_app_service_environment",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "user_whitelisted_ip_ranges",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_app_service_plan",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_app_service_hybrid_connection",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_app_service_slot",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "node_config.workload_metadata_config.node_metadata",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "workload_identity_config.0.identity_namespace",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "pod_security_policy_config",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "enable_binary_authorization",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "provider",
+        "parent": "network_policy"
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_app_service_source_control_token",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "max_pods_per_node",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "taints",
+        "parent": "node_config"
+      },
+      {
+        "type": "nested",
+        "name": "workload_metadata_config",
+        "parent": "node_config"
+      },
+      {
+        "type": "arg",
+        "name": "name_prefix",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "zone",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "region",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_backup_policy_file_share",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "tags",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_backup_policy_vm",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "tags",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_backup_protected_vm",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "tags",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_batch_pool",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "environment",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "max_task_retry_count",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_cdn_endpoint",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "host_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_cognitive_account",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "network_acls.virtual_network_subnet_ids",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "outbound_network_access_restrited ",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_container_registry",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "georeplication_locations",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "storage_account_id",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_cost_management_export_resource_group",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_cosmosdb_account",
+    "deprecatedAttributes": [
+      {
+        "type": "nested",
+        "name": "geolocation.prefix",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "primary_master_key",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "secondary_master_key",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "primary_readonly_master_key",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "secondary_readonly_master_key",
+        "parent": ""
+      },
+
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_dataset_azure_blob",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_dashboard",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "ip_version",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_dataset_binary",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_compute_network_peering",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "auto_create_routes",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_dataset_cosmosdp_sqlapi",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_dataset_delimited_text",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_dataset_http",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_dataset_json",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_dataset_mysql",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_dataset_parquet",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_dataset_postgresql",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_dataset_snowflake",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "structure_column",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_dataset_sql_server_table",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_integration_runtime_azure",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_integration_runtime_azure_ssis",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_integration_runtime_self_hosted",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "auth_key_1",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "auth_key_2",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_azure_blob_storage",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_azure_databricks",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_file_storage",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_azure_function",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_azure_sql_database",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_azure_table_storage",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_cosmosdb_mongoapi",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_cosmosdb",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_data_lake_storage_gen2",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_key_vault",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_mysql",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_odata",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_postgresql",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_sftp",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_snowflake",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_sql_server",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_synapse",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_web",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_pipeline",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_trigger_schedule",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_data_lake_analytics_account",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_data_lake_analytics_firewall_rule",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_data_lake_store_file",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_data_lake_store_firewall_rule",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_data_lake_store",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_data_lake_store_virtual_network_rule",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_data_share_dataset_data_lake_gen1",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_devspace_controller",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_eventgrid_event_subscription",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "topic_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "eventhub_endpoint",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "hybrid_connection_endpoint",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_azure_function",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "resource_group_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_eventhub_namespace_disaster_recovery_config",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "alternate_name",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_firewall_policy",
+    "deprecatedAttributes": [
+      {
+        "type": "nested",
+        "name": "network_rule_fqdn_enabled",
+        "parent": "dns"
+      },
+      {
+        "type": "nested",
+        "name": "user_assigned_identity_ids",
+        "parent": "identity"
+      },
+      {
+        "type": "nested",
+        "name": "principal_id",
+        "parent": "identity"
+      },
+      {
+        "type": "nested",
+        "name": "tenant_id",
+        "parent": "identity"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_frontdoor",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "backend_pools_send_receive_timeout_seconds",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "enforce_backend_pools_certificate_name_check",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "location",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_function_app",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "client_affinity_enabled",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "storage_connection_string",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_function_app_host_keys",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "master_key",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_function_app_slot",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "client_affinity_enabled",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_hdinsight_hadoop_cluster",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "gateway.enabled",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "head_node.min_instance_count",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "head_node.min_instance_count",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "zookeeper_worker.min_instance_count",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_hdinsight_hbase_cluster",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "gateway.enabled",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "head_node.min_instance_count",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "worker_node.min_instance_count",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "zookeeper_worker.min_instance_count",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_hdinsight_interactive_query_cluster",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "gateway.enabled",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "head_node.min_instance_count",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "worker_node.min_instance_count",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "zookeeper_worker.min_instance_count",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_hdinsight_kafka_cluster",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "gateway.enabled",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "head_node.min_instance_count",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "worker_node.min_instance_count",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "zookeeper_worker.min_instance_count",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "kafka_management_worker.min_instance_count",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_hdinsight_ml_services_cluster",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_hdinsight_rserver_cluster",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_hdinsight_spark_cluster",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "gateway.enabled",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "head_node.min_instance_count",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "worker_node.min_instance_count",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "zookeeper_worker.min_instance_count",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "azurerm_hdinsight_storm_cluster",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_hpc_cache",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "access_rule.root_squash_enabled",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_azure_function",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_azure_function",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_azure_function",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_azure_function",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "azurerm_data_factory_linked_service_azure_function",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "data_factory_name",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "",
+        "parent": ""
+      }
+    ]
+  }
+]

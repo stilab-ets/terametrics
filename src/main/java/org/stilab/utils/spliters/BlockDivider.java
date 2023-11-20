@@ -1,10 +1,13 @@
-package org.stilab.utils;
+package org.stilab.utils.spliters;
 
 import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.metrics.BlockLabelIdentifier;
+import org.stilab.metrics.counter.block.BlockLabelIdentifier;
 import org.stilab.metrics.counter.block.finder.TopBlockFinder;
+import org.stilab.utils.ServiceCounter;
+import org.stilab.utils.mapper.BlockPosition;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -12,13 +15,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlockDivider {
+
       private String filePath;
+
       public BlockDivider(String filePath) {
         this.filePath = filePath;
       }
+
       public List<BlockPosition> divideFilePerBlock() {
 
         String fileContent = parseFileContent(filePath);
+
         List<BlockPosition> blockPositions = new ArrayList<>();
 
         // Call Hcl Parser

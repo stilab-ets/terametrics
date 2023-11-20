@@ -82,6 +82,16 @@ public class ImplicitResourceDependency {
         .size();
     }
 
+    public int numOfInvokedEach() {
+      List<VariableExprTreeImpl> eachDependency = new ArrayList<>();
+      for (VariableExprTreeImpl local: vars) {
+        if (local.name().equals("each")) {
+          eachDependency.add(local);
+        }
+      }
+      return eachDependency.size();
+    }
+
     public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
 
       VariablesIdentifier variablesIdentifier = new VariablesIdentifier();
@@ -93,6 +103,7 @@ public class ImplicitResourceDependency {
       int numDependentProviders = this.numOfInvokedProviders();
       int numDependentLocals = this.numOfInvokedLocals();
       int numDependentVars = this.numOfInvokedVars();
+      int numDependentEach = this.numOfInvokedEach();
 
       metrics.put("numImplicitDependentResources", numDependentResources);
       metrics.put("numImplicitDependentData", numDependentData);
@@ -100,9 +111,12 @@ public class ImplicitResourceDependency {
       metrics.put("numImplicitDependentProviders", numDependentProviders);
       metrics.put("numImplicitDependentLocals", numDependentLocals);
       metrics.put("numImplicitDependentVars", numDependentVars);
+      metrics.put("numImplicitDependentEach", numDependentEach);
 
       return metrics;
     }
+
+
 
 
 }

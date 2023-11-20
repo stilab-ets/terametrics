@@ -13,6 +13,8 @@ import org.stilab.metrics.counter.block.counter.NestedBlockIdentifier;
 import org.stilab.metrics.counter.block.finder.TopBlockFinder;
 import org.stilab.metrics.counter.block.metrics.block_dependency.ImplicitResourceDependency;
 import org.stilab.metrics.counter.block.metrics.deprecation.DeprecatedFunctionsIdentifier;
+import org.stilab.metrics.counter.block.metrics.deprecation.cloud.DeprecatoryServiceLocator;
+
 import java.io.File;
 import java.util.List;
 
@@ -21,7 +23,6 @@ public class BlockLevelCodeMetricsTest extends TestCase {
 
    private BlockTreeImpl identifiedBlock;
    private JSONObject metrics;
-
    private BlockComplexity blockComplexity;
 
   @Override
@@ -167,9 +168,9 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       //  Number of String values means number of hard coded things
       assertEquals(metrics.get("numStringValues"), 16);
       //  SUM of Length of literal Expressions (in term Of tokens)
-      assertEquals(metrics.get("sumLengthStringValues"), 3896);
+      assertEquals(metrics.get("sumLengthStringValues"), 3899);
       //  Average Length Of Literal Expressions (in term of Tokens)
-      assertEquals(metrics.get("avgLengthStringValues"), 243.5);
+      assertEquals(metrics.get("avgLengthStringValues"), 243.69);
       //  MAX Length Of Literal Expressions (in term of tokens)
       assertEquals(metrics.get("maxLengthStringValues"), 1717);
 
@@ -343,13 +344,25 @@ public class BlockLevelCodeMetricsTest extends TestCase {
       assertEquals(metrics.get("numImplicitDependentProviders"), 0);
       assertEquals(metrics.get("numImplicitDependentLocals"), 2);
       assertEquals(metrics.get("numImplicitDependentVars"), 10);
+      assertEquals(metrics.get("numImplicitDependentEach"), 2);
     }
 
     public void testEmptyStringIdentification() {
       LiteralExpressionIdentifier literalExpressionIdentifier = new LiteralExpressionIdentifier();
-      EmptyStringIdentifier emptyStringIdentifier = new EmptyStringIdentifier(literalExpressionIdentifier);
-      metrics = emptyStringIdentifier.updateMetric(metrics, identifiedBlock);
-      assertEquals(metrics.get("numEmptyString"), 3);
+      SpecialStringIdentifier specialStringIdentifier = new SpecialStringIdentifier(literalExpressionIdentifier);
+      metrics = specialStringIdentifier.updateMetric(metrics, identifiedBlock);
+      assertEquals(metrics.get("numEmptyString"), 1);
+      assertEquals(metrics.get("numWildCardSuffixString"), 1);
+      assertEquals(metrics.get("numStarString"), 1);
+   }
+
+    public void testDeprecationKeywordsIdentification(){
+      DeprecatoryServiceLocator deprecatoryServiceLocator = new DeprecatoryServiceLocator(identifiedBlock,
+        blockComplexity.getBlockContent());
+      metrics = deprecatoryServiceLocator.updateMetrics(metrics, identifiedBlock);
+      assertEquals(metrics.get("numDeprecatedKeywords"), 1);
     }
+
+
 
 }

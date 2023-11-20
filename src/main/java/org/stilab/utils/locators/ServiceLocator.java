@@ -1,7 +1,10 @@
-package org.stilab.utils;
+package org.stilab.utils.locators;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.stilab.utils.spliters.BlockDivider;
+import org.stilab.utils.mapper.BlockPosition;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;

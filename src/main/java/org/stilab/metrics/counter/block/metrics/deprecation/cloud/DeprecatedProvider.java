@@ -2,8 +2,8 @@ package org.stilab.metrics.counter.block.metrics.deprecation.cloud;
 
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.metrics.checker.BlockCheckerTypeImpl;
-import org.stilab.utils.Block;
-import org.stilab.utils.DeprecatedAttribute;
+import org.stilab.utils.mapper.Block;
+import org.stilab.utils.mapper.DeprecatedAttribute;
 
 import java.util.ArrayList;
 import java.util.HashSet;

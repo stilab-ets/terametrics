@@ -1,4 +1,4 @@
-package org.stilab.utils;
+package org.stilab.utils.spliters;
 
 import org.sonar.iac.common.api.tree.Tree;
 

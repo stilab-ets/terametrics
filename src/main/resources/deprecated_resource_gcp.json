@@ -1,0 +1,786 @@
+[
+  {
+    "isDeprecated": false,
+    "blockName": "google_bigtable_instance",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "cluster_id",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "zone",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "num_nodes",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "storage_type",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_cloudfunctions_function",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "trigger_bucket",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "trigger_topic",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "retry_on_failure",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_compute_backend_service",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "custom_request_headers",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "iap",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_compute_disk",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "disk_encryption_key_raw",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "disk_encryption_key_sha256",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "google_compute_global_forwarding_rule",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "labels",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_compute_image",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "create_timeout",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "google_compute_instance",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "create_timeout",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "network",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_compute_instance_from_template",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "network_interface.*.address",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_compute_instance_group_manager",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "version",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "auto_healing_policies",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "rolling_update_policy",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "instance_template",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "update_strategy",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "min_ready_sec",
+        "parent": "update_policy"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_compute_region_instance_group_manager",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "version",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "auto_healing_policies",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "rolling_update_policy",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "update_strategy",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "min_ready_sec",
+        "parent": "update_policy"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_compute_snapshot",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "snapshot_encryption_key_raw",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "snapshot_encryption_key_sha256",
+        "parent": ""
+      },
+      {
+        "type": "source_disk_encryption_key_raw",
+        "name": "source_disk_encryption_key_sha256",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "source_disk_link",
+        "parent": ""
+      }
+
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "google_container_analysis_note",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_container_cluster",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "enable_binary_authorization",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "enable_tpu",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "pod_security_policy_config",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "private_cluster",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "master_ipv4_cidr_block",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "taints",
+        "parent": "node_config"
+      },
+      {
+        "type": "nested",
+        "name": "workload_metadata_config",
+        "parent": "node_config"
+      },
+      {
+        "type": "arg",
+        "name": "use_ip_aliases",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "node_ipv4_cidr_block",
+        "parent": "ip_allocation_policy"
+      },
+      {
+        "type": "nested",
+        "name": "create_subnetwork",
+        "parent": "ip_allocation_policy"
+      },
+      {
+        "type": "nested",
+        "name": "subnetwork_name",
+        "parent": "ip_allocation_policy"
+      },
+      {
+        "type": "nested",
+        "name": "use_ip_aliases",
+        "parent": "ip_allocation_policy"
+      },
+      {
+        "type": "nested",
+        "name": "kubernetes_dashboard",
+        "parent": "addons_config"
+      },
+      {
+        "type": "arg",
+        "name": "zone",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "region",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "additional_zones",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "instance_group_urls",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "username",
+        "parent": "master_auth"
+      },
+      {
+        "type": "nested",
+        "name": "password",
+        "parent": "master_auth"
+      },
+      {
+        "type": "arg",
+        "name": "node_config.workload_metadata_config.node_metadata",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "workload_identity_config.0.identity_namespace",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "pod_security_policy_config",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "enable_binary_authorization",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "provider",
+        "parent": "network_policy"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_container_node_pool",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "max_pods_per_node",
+        "parent": ""
+      },
+      {
+        "type": "nested",
+        "name": "taints",
+        "parent": "node_config"
+      },
+      {
+        "type": "nested",
+        "name": "workload_metadata_config",
+        "parent": "node_config"
+      },
+      {
+        "type": "arg",
+        "name": "name_prefix",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "zone",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "region",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_endpoints_service",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "protoc_output",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_dataproc_cluster",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "cluster_config",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "google_filestore_instance",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_organization_custom_role",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "deleted",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_project",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "app_engine",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "org_id",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "folder_id",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_project_custom_role",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "deleted",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_project_iam_policy",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "authoritative",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "restore_policy",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "disable_project",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_service_account",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "policy_data",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_cloudfunctions_function",
+    "deprecatedAttributes": [
+      {
+        "type": "nested",
+        "name": "runtime",
+        "parent": "nodejs6"
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_cloudiot_registry",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "event_notification_config",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_compute_forwarding_rule",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "ip_version",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_compute_network",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "ipv4_range",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_compute_network_peering",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "auto_create_routes",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_compute_subnetwork",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "enable_flow_logs",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_monitoring_alert_policy",
+    "deprecatedAttributes": [
+      {
+        "type": "arg",
+        "name": "labels",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "is_internal",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "internal_checker",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": true,
+    "blockName": "google_project_services",
+    "deprecatedAttributes": []
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_service_account_key",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "pgp_key",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "private_key_fingerprint",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "private_key_encrypted",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_storage_bucket",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "is_live",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "bucket_policy_only",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_compute_instance_template",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "enable_display",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_kms_crypto_key",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "self_link",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_kms_key_ring",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "self_link",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_pubsub_subscription",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "path",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_sql_database_instance",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "authorized_gae_applications",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "crash_safe_replication",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "replication_type",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_cloud_run_v2_job",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "startup_probe",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "liveness_probe",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_cloud_run_v2_service",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "liveness_probe.tcp_socket",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_dataplex_datascan",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "dataQualityResult",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "dataProfileResult",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_firebase_project_location",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "google_firebase_project_location",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_privateca_certificate",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "config_values",
+        "parent": ""
+      },
+      {
+        "type": "arg",
+        "name": "pem_certificates",
+        "parent": ""
+      }
+    ]
+  },
+  {
+    "isDeprecated": false,
+    "blockName": "google_secret_manager_secret",
+    "deprecatedAttributes":
+    [
+      {
+        "type": "arg",
+        "name": "replication.automatic",
+        "parent": ""
+      }
+    ]
+  }
+]

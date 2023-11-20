@@ -2,7 +2,7 @@ package org.stilab.metrics.counter.block.metrics;
 
 import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.metrics.BlockLabelIdentifier;
+import org.stilab.metrics.counter.block.BlockLabelIdentifier;
 import java.util.List;
 
 public class BlockMetaInfo {

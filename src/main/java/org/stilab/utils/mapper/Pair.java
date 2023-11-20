@@ -1,4 +1,4 @@
-package org.stilab.utils;
+package org.stilab.utils.mapper;
 
 public class Pair<T, U> {
   private T first;

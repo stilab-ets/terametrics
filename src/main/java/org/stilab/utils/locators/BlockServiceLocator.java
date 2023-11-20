@@ -1,10 +1,13 @@
-package org.stilab.utils;
+package org.stilab.utils.locators;
 
 import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.metrics.counter.block.finder.BlockFinderByIndex;
 import org.stilab.metrics.counter.block.finder.TopBlockFinder;
+import org.stilab.utils.ServiceCounter;
+import org.stilab.utils.mapper.Pair;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;

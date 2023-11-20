@@ -2,8 +2,10 @@ package org.stilab;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import org.json.simple.JSONObject;
-import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.utils.*;
+import org.stilab.metrics.counter.block.MetricsCalculatorBlocks;
+import org.stilab.utils.locators.ServiceLocator;
+import org.stilab.utils.mapper.BlockPosition;
+import org.stilab.utils.spliters.BlockDivider;
 
 import java.util.List;
 

@@ -1,8 +1,10 @@
-package org.stilab.utils;
+package org.stilab.metrics.counter.block;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
+import org.stilab.utils.mapper.BlockPosition;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,10 +16,10 @@ public class MetricsCalculatorBlocks {
         this.blockPositions = blockPositions;
       }
       public List<JSONObject> measureMetricsPerBlocks() {
-          MetricsCalculator metricsCalculator = new MetricsCalculator();
+          BlockMetricsCalculator blockMetricsCalculator = new BlockMetricsCalculator();
           List<JSONObject> objects = new ArrayList<>();
           for (BlockPosition blockPosition: this.blockPositions) {
-            JSONObject jsonObject  = metricsCalculator.measureMetrics(
+            JSONObject jsonObject  = blockMetricsCalculator.measureMetrics(
                  (BlockTreeImpl) blockPosition.getObject(),
                 (String) blockPosition.getContent()
             );

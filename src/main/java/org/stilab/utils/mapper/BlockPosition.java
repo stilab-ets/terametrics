@@ -1,4 +1,4 @@
-package org.stilab.utils;
+package org.stilab.utils.mapper;
 
 import org.json.simple.JSONObject;
 

@@ -5,9 +5,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.stilab.utils.BlockDivider;
-import org.stilab.utils.BlockPosition;
-import org.stilab.utils.MetricsCalculatorBlocks;
+import org.stilab.utils.spliters.BlockDivider;
+import org.stilab.utils.mapper.BlockPosition;
+import org.stilab.metrics.counter.block.MetricsCalculatorBlocks;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

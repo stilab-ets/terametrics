@@ -5,7 +5,7 @@ import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.api.tree.ExpressionTree;
 import org.sonar.iac.terraform.tree.impl.*;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
-import org.stilab.utils.ExpressionAnalyzer;
+import org.stilab.utils.spliters.ExpressionAnalyzer;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
