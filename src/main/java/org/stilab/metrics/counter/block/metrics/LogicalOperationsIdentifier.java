@@ -18,9 +18,9 @@ import java.util.stream.Stream;
 public class LogicalOperationsIdentifier {
 
   //    Decisions Numbers
-  public List<String> operators = new ArrayList<>(Arrays.asList("!", "&&", "||"));
-  public List<TerraformTreeImpl> decisions = new ArrayList<>();
-  public List<AttributeTreeImpl> attributes = new ArrayList<>();
+  private List<String> operators = new ArrayList<>(Arrays.asList("!", "&&", "||"));
+  private List<TerraformTreeImpl> decisions = new ArrayList<>();
+  private List<AttributeTreeImpl> attributes = new ArrayList<>();
   public List<TerraformTreeImpl> identifyLogicalOperationsOperations(AttributeTreeImpl attribute){
     ExpressionTree expressionTree = attribute.value();
     List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
@@ -43,11 +43,11 @@ public class LogicalOperationsIdentifier {
   }
 
   public List<TerraformTreeImpl> filterLogicalOperationsFromAttributesList(List<AttributeTreeImpl> attributes) {
-    List<TerraformTreeImpl> decisions = new ArrayList<>();
+    List<TerraformTreeImpl> localDecisions = new ArrayList<>();
     for (AttributeTreeImpl attributeTree: attributes) {
-      decisions.addAll(this.identifyLogicalOperationsOperations(attributeTree));
+      localDecisions.addAll(this.identifyLogicalOperationsOperations(attributeTree));
     }
-    return decisions;
+    return localDecisions;
   }
 
   public List<TerraformTreeImpl> filterLogicalOperationsFromBlock(BlockTreeImpl blockTree){

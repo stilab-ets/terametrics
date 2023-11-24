@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class ImplicitResourceDependency {
 
-    private List<VariableExprTreeImpl> vars;
+    private List<VariableExprTreeImpl> variableExprTrees;
 
     private List<String> providerPrefixes = new ArrayList<>(
       Arrays.asList("aws", "google", "azurerm", "kubernetes", "oci", "alicloud", "google-beta", "archive", "helm", "null",
@@ -23,9 +23,9 @@ public class ImplicitResourceDependency {
 
     public int numOfInvokedVars(){
         List<VariableExprTreeImpl> variablesConfigDependency = new ArrayList<>();
-        for (VariableExprTreeImpl var: vars) {
-            if (var.name().equals("var")) {
-              variablesConfigDependency.add(var);
+        for (VariableExprTreeImpl variable: variableExprTrees) {
+            if (variable.name().equals("var")) {
+              variablesConfigDependency.add(variable);
             }
         }
         return variablesConfigDependency.size();
@@ -33,7 +33,7 @@ public class ImplicitResourceDependency {
 
     public int numOfInvokedLocals(){
       List<VariableExprTreeImpl> localsConfigDependency = new ArrayList<>();
-      for (VariableExprTreeImpl local: vars) {
+      for (VariableExprTreeImpl local: variableExprTrees) {
         if (local.name().equals("local")) {
           localsConfigDependency.add(local);
         }
@@ -43,9 +43,8 @@ public class ImplicitResourceDependency {
 
     public int numOfInvokedProviders(){
       List<VariableExprTreeImpl> providerConfigDependency = new ArrayList<>();
-      for (VariableExprTreeImpl provider: vars) {
+      for (VariableExprTreeImpl provider: variableExprTrees) {
         if (provider.name().equals("provider") || providerPrefixes.contains(provider.name())) {
-          System.out.println(provider.name());
           providerConfigDependency.add(provider);
         }
       }
@@ -54,9 +53,9 @@ public class ImplicitResourceDependency {
 
     public int numOfInvokedModules(){
       List<VariableExprTreeImpl> moduleConfigDependency = new ArrayList<>();
-      for (VariableExprTreeImpl local: vars) {
-        if (local.name().equals("module")) {
-          moduleConfigDependency.add(local);
+      for (VariableExprTreeImpl module: variableExprTrees) {
+        if (module.name().equals("module")) {
+          moduleConfigDependency.add(module);
         }
       }
       return moduleConfigDependency.size();
@@ -64,27 +63,27 @@ public class ImplicitResourceDependency {
 
     public int numOfInvokedData() {
       List<VariableExprTreeImpl> dataConfigDependency = new ArrayList<>();
-      for (VariableExprTreeImpl local: vars) {
-        if (local.name().equals("data")) {
-          dataConfigDependency.add(local);
+      for (VariableExprTreeImpl data: variableExprTrees) {
+        if (data.name().equals("data")) {
+          dataConfigDependency.add(data);
         }
       }
       return dataConfigDependency.size();
     }
 
     public int numOfInvokedResources(){
-      return vars.stream()
-        .filter(resource -> providerPrefixes.stream()
+      return variableExprTrees.stream()
+          .filter(resource -> providerPrefixes.stream()
           .anyMatch(prefix -> resource.name().startsWith(prefix + "_")))
-        .collect(Collectors.toList())
-        .size();
+          .collect(Collectors.toList())
+          .size();
     }
 
     public int numOfInvokedEach() {
       List<VariableExprTreeImpl> eachDependency = new ArrayList<>();
-      for (VariableExprTreeImpl local: vars) {
-        if (local.name().equals("each")) {
-          eachDependency.add(local);
+      for (VariableExprTreeImpl each: variableExprTrees) {
+        if (each.name().equals("each")) {
+          eachDependency.add(each);
         }
       }
       return eachDependency.size();
@@ -93,7 +92,7 @@ public class ImplicitResourceDependency {
     public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
 
       VariablesIdentifier variablesIdentifier = new VariablesIdentifier();
-      this.vars = variablesIdentifier.filterVarsFromBlock(identifiedBlock);
+      this.variableExprTrees = variablesIdentifier.filterVarsFromBlock(identifiedBlock);
 
       int numDependentResources = this.numOfInvokedResources();
       int numDependentData = this.numOfInvokedData();

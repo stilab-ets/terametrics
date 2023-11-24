@@ -25,7 +25,7 @@ public class ObjectWrapperIdentifier {
 
       List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
 
-      Stream<TerraformTreeImpl> objects = trees
+      Stream<TerraformTreeImpl> localObjects = trees
         .stream()
         .filter(child -> child instanceof ObjectTreeImpl)
         .map(child -> (TerraformTreeImpl) child );
@@ -35,7 +35,7 @@ public class ObjectWrapperIdentifier {
         .filter(child -> child instanceof ForObjectTreeImpl)
         .map(child -> (TerraformTreeImpl) child);
 
-      Stream<TerraformTreeImpl> combinedFilters = Stream.concat(objects, forObjects);
+      Stream<TerraformTreeImpl> combinedFilters = Stream.concat(localObjects, forObjects);
 
       return combinedFilters.collect(Collectors.toList());
     }

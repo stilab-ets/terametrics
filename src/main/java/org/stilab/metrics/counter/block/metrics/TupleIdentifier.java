@@ -24,11 +24,11 @@ public class TupleIdentifier {
     public List<TerraformTreeImpl> filterTupleIdentifier(AttributeTreeImpl attributeTree) {
       ExpressionTree expressionTree = attributeTree.value();
       List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
-      Stream<TerraformTreeImpl> tuples = trees.stream().filter(child -> child instanceof TupleTreeImpl)
+      Stream<TerraformTreeImpl> localTuples = trees.stream().filter(child -> child instanceof TupleTreeImpl)
         .map(child -> (TerraformTreeImpl) child );
       Stream<TerraformTreeImpl> forTuples = trees.stream().filter(child -> child instanceof ForTupleTreeImpl)
         .map(child -> (TerraformTreeImpl) child);
-      Stream<TerraformTreeImpl> combinedFilters = Stream.concat(tuples, forTuples);
+      Stream<TerraformTreeImpl> combinedFilters = Stream.concat(localTuples, forTuples);
       return combinedFilters.collect(Collectors.toList());
     }
 
