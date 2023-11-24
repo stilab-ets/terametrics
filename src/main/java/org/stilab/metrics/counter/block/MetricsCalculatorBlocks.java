@@ -62,9 +62,9 @@ public class MetricsCalculatorBlocks {
         result.put("data", jsonArray);
         try (FileWriter fileWriter = new FileWriter(filePath)) {
           fileWriter.write(result.toString());
-          logger.info("JSON objects saved to file: " + filePath);
+          logger.info(String.format("JSON objects saved to file: %s", filePath));
         } catch (IOException e) {
-          logger.severe("Error while saving JSON objects to file: " + e.getMessage());
+          logger.severe(String.format("Error while saving JSON objects to file: %s", e.getMessage()));
         }
       }
 }

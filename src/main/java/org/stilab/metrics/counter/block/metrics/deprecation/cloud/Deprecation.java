@@ -3,15 +3,15 @@ package org.stilab.metrics.counter.block.metrics.deprecation.cloud;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
+import org.stilab.metrics.counter.block.MetricsCalculatorBlocks;
 import org.stilab.utils.mapper.Block;
-
 import java.io.*;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.logging.Logger;
 
 public class Deprecation {
+  private static final Logger logger = Logger.getLogger(MetricsCalculatorBlocks.class.getName());
   protected ObjectMapper deprecatedDataSourcesMapper = new ObjectMapper();
   protected List<Block> deprecatedBlocks = new ArrayList<>();
   protected String blockAsString;
@@ -20,7 +20,6 @@ public class Deprecation {
   public Deprecation(String filePath, BlockTreeImpl block, String blockAsString) {
     this.block = block;
     this.blockAsString = blockAsString;
-
     try {
       // Load the resource as an InputStream
       InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
@@ -28,7 +27,7 @@ public class Deprecation {
       if (inputStream != null) {
         readDataFromInputStream(inputStream);
       } else {
-        System.err.println("Resource not found: " + filePath);
+        logger.severe(String.format("Error while reading objects to file: %s", filePath));
       }
     } catch (IOException e) {
       e.printStackTrace();
@@ -40,11 +39,9 @@ public class Deprecation {
       // Read the content from the InputStream
       StringBuilder contentBuilder = new StringBuilder();
       String line;
-
       while ((line = reader.readLine()) != null) {
         contentBuilder.append(line).append('\n');
       }
-
       // Parse the JSON content into the deprecatedBlocks list
       String jsonContent = contentBuilder.toString();
       deprecatedBlocks = deprecatedDataSourcesMapper.readValue(jsonContent, new TypeReference<List<Block>>() {});
