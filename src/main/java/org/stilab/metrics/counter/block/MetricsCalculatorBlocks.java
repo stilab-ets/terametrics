@@ -9,8 +9,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class MetricsCalculatorBlocks {
+
+      private static final Logger logger = Logger.getLogger(MetricsCalculatorBlocks.class.getName());
+
       private List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions;
 
       public MetricsCalculatorBlocks(List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions) {
@@ -19,7 +23,7 @@ public class MetricsCalculatorBlocks {
       public List<JSONObject> measureMetricsPerBlocks() {
           BlockMetricsCalculator blockMetricsCalculator = new BlockMetricsCalculator();
           List<JSONObject> objects = new ArrayList<>();
-          for (BlockPosition blockPosition: this.blockPositions) {
+          for (BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer> blockPosition: this.blockPositions) {
             JSONObject jsonObject  = blockMetricsCalculator.measureMetrics(
                  (BlockTreeImpl) blockPosition.getObject(),
                 (String) blockPosition.getContent()
@@ -58,9 +62,9 @@ public class MetricsCalculatorBlocks {
         result.put("data", jsonArray);
         try (FileWriter fileWriter = new FileWriter(filePath)) {
           fileWriter.write(result.toString());
-          System.out.println("JSON objects saved to file: " + filePath);
+          logger.info("JSON objects saved to file: " + filePath);
         } catch (IOException e) {
-          System.err.println("Error while saving JSON objects to file: " + e.getMessage());
+          logger.severe("Error while saving JSON objects to file: " + e.getMessage());
         }
       }
 }
