@@ -14,7 +14,7 @@ import java.util.List;
 
 public class NestedBlockIdentifier implements BlockTypeCounter {
 
-    public List<BlockTreeImpl> nestedBlock = new ArrayList<>();
+    private List<BlockTreeImpl> nestedBlocks = new ArrayList<>();
     @Override
     public int blockTypeCounter(Tree tree) {
       Tree bodyTree = (new BodyTreeFinder()).find(tree);
@@ -23,11 +23,11 @@ public class NestedBlockIdentifier implements BlockTypeCounter {
 
     public List<BlockTreeImpl> identifyNestedBlock(BlockTreeImpl blockTree) {
       BodyTreeImpl bodyTree = (BodyTreeImpl) blockTree.value();
-      nestedBlock = this.getAllNestedBlocks(bodyTree);
-      return nestedBlock;
+      nestedBlocks = this.getAllNestedBlocks(bodyTree);
+      return nestedBlocks;
     }
     public int countNestedBlock() {
-      return nestedBlock.size();
+      return nestedBlocks.size();
     }
 
     public List<BlockTreeImpl> getAllNestedBlocks(Tree tree) {
@@ -54,14 +54,13 @@ public class NestedBlockIdentifier implements BlockTypeCounter {
 
     public double avgDepthNestedBlocks(List<BlockTreeImpl> nestedBlocks){
       int sum = 0;
-      for (BlockTreeImpl nestedBlock: nestedBlocks) {
-        int dep = depthOfBlock(nestedBlock);
-//        System.out.println(dep);
+      for (BlockTreeImpl nstdBlock: nestedBlocks) {
+        int dep = depthOfBlock(nstdBlock);
         sum += dep;
       }
       if (!nestedBlocks.isEmpty()) {
         double averageDepth = (double) sum / nestedBlocks.size();
-        BigDecimal roundedAverage = new BigDecimal(averageDepth).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(averageDepth).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;
@@ -70,8 +69,8 @@ public class NestedBlockIdentifier implements BlockTypeCounter {
     public int maxDepthNestedBlocks(List<BlockTreeImpl> nestedBlocks){
       int maxDepth = 0; // Initialize maxDepth to 0 or some appropriate minimum value
 
-      for (BlockTreeImpl nestedBlock: nestedBlocks) {
-        int dep = depthOfBlock(nestedBlock);
+      for (BlockTreeImpl nstdBlock: nestedBlocks) {
+        int dep = depthOfBlock(nstdBlock);
         if (dep > maxDepth) {
           maxDepth = dep;
         }
@@ -82,8 +81,8 @@ public class NestedBlockIdentifier implements BlockTypeCounter {
     public int minDepthNestedBlocks(List<BlockTreeImpl> nestedBlocks){
       int minDepth = Integer.MAX_VALUE; // Initialize minDepth to a large value
 
-      for (BlockTreeImpl nestedBlock: nestedBlocks) {
-        int dep = depthOfBlock(nestedBlock);
+      for (BlockTreeImpl nstdBlock: nestedBlocks) {
+        int dep = depthOfBlock(nstdBlock);
         if (dep < minDepth) {
           minDepth = dep;
         }

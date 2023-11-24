@@ -8,10 +8,9 @@ public class BodyTreeFinder {
 
   public Tree find(Tree blockTree) {
     Optional<BodyTreeImpl> bodyTreeOptional = blockTree.children().stream()
-      .filter(tree1 -> tree1 instanceof BodyTreeImpl)
-      .map(tree1 -> (BodyTreeImpl) tree1)
+      .filter(BodyTreeImpl.class::isInstance)
+      .map(BodyTreeImpl.class::cast)
       .findFirst();
-    BodyTreeImpl bodyTree = bodyTreeOptional.orElse(null);
-    return bodyTree;
+    return bodyTreeOptional.orElse(null);
   }
 }

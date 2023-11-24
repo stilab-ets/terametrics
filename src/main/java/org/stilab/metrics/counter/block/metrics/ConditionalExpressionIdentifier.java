@@ -16,18 +16,18 @@ import java.util.stream.Stream;
 
 public class ConditionalExpressionIdentifier {
 
-    public List<TerraformTreeImpl> conditions = new ArrayList<>();
-    public List<AttributeTreeImpl> attributes = new ArrayList<>();
-    public ConditionalExpressionIdentifier(){}
+    private List<TerraformTreeImpl> conditions = new ArrayList<>();
+    private List<AttributeTreeImpl> attributes = new ArrayList<>();
+
     public List<TerraformTreeImpl> filterConditions(AttributeTreeImpl attributeTree) {
       ExpressionTree expressionTree = attributeTree.value();
       List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
       Stream<TerraformTreeImpl> conditionFilter = trees.stream()
-                                                    .filter(child -> child instanceof ConditionTreeImpl)
-                                                    .map(child -> (TerraformTreeImpl) child);
+                                                    .filter(ConditionTreeImpl.class::isInstance)
+                                                    .map(TerraformTreeImpl.class::cast);
       Stream<TerraformTreeImpl> ifDirectiveFilter = trees.stream()
-                                                    .filter(child -> child instanceof TemplateIfDirectiveTreeImpl)
-                                                    .map(child -> (TerraformTreeImpl) child);
+                                                    .filter(TemplateIfDirectiveTreeImpl.class::isInstance)
+                                                    .map(TerraformTreeImpl.class::cast);
       List<TerraformTreeImpl> combinedFilters = Stream.concat(conditionFilter, ifDirectiveFilter).collect(Collectors.toList());
       List<SyntaxTokenImpl> tokens = identifyTokens(attributeTree);
       combinedFilters.addAll(tokens);
@@ -36,12 +36,11 @@ public class ConditionalExpressionIdentifier {
 
     public List<SyntaxTokenImpl> identifyTokens(AttributeTreeImpl attributeTree) {
       List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(attributeTree.value());
-      List<SyntaxTokenImpl> syntaxTokens = trees.stream()
-        .filter(tree -> tree instanceof SyntaxTokenImpl)
-        .map(tree -> (SyntaxTokenImpl) tree)
+      return trees.stream()
+        .filter(SyntaxTokenImpl.class::isInstance)
+        .map(SyntaxTokenImpl.class::cast)
         .filter(token -> token.value().equals("if") )
         .collect(Collectors.toList());
-      return syntaxTokens;
     }
 
     public List<TerraformTreeImpl> filterConditionsFromAttributesList(List<AttributeTreeImpl> attributeTrees) {
@@ -65,7 +64,7 @@ public class ConditionalExpressionIdentifier {
     public double avgNumberOfConditionsPerAttribute(){
       if (!attributes.isEmpty()){
         double avgNumberOfConditionsPerAttribute = (double) conditions.size()  / attributes.size();
-        BigDecimal roundedAverage = new BigDecimal(avgNumberOfConditionsPerAttribute).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfConditionsPerAttribute).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;

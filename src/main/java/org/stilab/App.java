@@ -2,15 +2,22 @@ package org.stilab;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import org.json.simple.JSONObject;
+import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.metrics.counter.block.MetricsCalculatorBlocks;
 import org.stilab.utils.locators.ServiceLocator;
 import org.stilab.utils.mapper.BlockPosition;
 import org.stilab.utils.spliters.BlockDivider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 public class App {
-    @Parameter(names = {"-f", "--file"}, description = "Path and name of file to use")
+
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
+
+
+  @Parameter(names = {"-f", "--file"}, description = "Path and name of file to use")
     private String file;
     @Parameter(names = {"-i", "--impactedLineIndex"}, description = "Index of the impacted Line")
     private int impactedLineIndex;
@@ -61,7 +68,8 @@ public class App {
               if (bloc) { // Measure the metrics for the given script per block
 
                 BlockDivider blockDivider = new BlockDivider(file);
-                List<BlockPosition> blockPositions = blockDivider.divideFilePerBlock();
+                List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions = blockDivider.divideFilePerBlock();
+
                 MetricsCalculatorBlocks metricsCalculatorBlocks = new MetricsCalculatorBlocks(blockPositions);
                 List<JSONObject> objects = metricsCalculatorBlocks.measureMetricsPerBlocks();
 
@@ -70,7 +78,7 @@ public class App {
 
               }
           } catch (Exception e) {
-             System.err.println("Error while identifying the right block: " + e.getMessage());
+            logger.error("Error while identifying the right block: {}", e.getMessage(), e);
           }
         }
     }

@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MetricsCalculatorBlocks {
-      private List<BlockPosition> blockPositions;
-      public MetricsCalculatorBlocks(List<BlockPosition> blockPositions) {
+      private List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions;
+
+      public MetricsCalculatorBlocks(List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions) {
         this.blockPositions = blockPositions;
       }
       public List<JSONObject> measureMetricsPerBlocks() {

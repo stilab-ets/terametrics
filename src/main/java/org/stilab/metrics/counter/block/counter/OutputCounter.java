@@ -14,7 +14,7 @@ public class OutputCounter implements BlockTypeCounter {
     BlockCheckerType blockCheckerType = new BlockCheckerTypeImpl();
 
     return (int) tree.children().stream()
-      .filter(child -> child instanceof BlockTree)
+      .filter(BlockTree.class::isInstance)
       .filter(child -> blockCheckerType.isOutput((BlockTree) child))
       .count();
   }

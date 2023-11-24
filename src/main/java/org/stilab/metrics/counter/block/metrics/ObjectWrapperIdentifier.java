@@ -19,8 +19,6 @@ public class ObjectWrapperIdentifier {
     List<TerraformTreeImpl> objects = new ArrayList<>();
     List<AttributeTreeImpl> attributes = new ArrayList<>();
 
-    public ObjectWrapperIdentifier() {}
-
     public List<TerraformTreeImpl> identifyObjects(AttributeTreeImpl attributeTree) {
 
       ExpressionTree expressionTree = attributeTree.value();
@@ -63,7 +61,7 @@ public class ObjectWrapperIdentifier {
     public double avgNumberOfObjects() {
       if (!attributes.isEmpty()) {
         double avgNumberOfObjects = (double) totalNumberOfObjects() / attributes.size();
-        BigDecimal roundedAverage = new BigDecimal(avgNumberOfObjects).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfObjects).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;

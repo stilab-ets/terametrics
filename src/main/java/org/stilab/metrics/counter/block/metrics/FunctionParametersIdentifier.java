@@ -38,9 +38,9 @@ public class FunctionParametersIdentifier {
 
     //  Avg Number Of Parameters Per Block
     public double avgNumberParamsPerBlock() {
-      if (this.functionCallTrees.size() >= 1) {
+      if (!this.functionCallTrees.isEmpty()) {
         double avgNumberParamsPerBlock = (double) totalNumberParamsPerBlock() / this.functionCallTrees.size();
-        BigDecimal roundedAverage = new BigDecimal(avgNumberParamsPerBlock).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberParamsPerBlock).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;

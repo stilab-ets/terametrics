@@ -20,8 +20,6 @@ public class TemplateExpressionIdentifier {
     public List<TemplateExpressionTreeImpl> templateExpressionPerBlock = new ArrayList<>();
     public List<AttributeTreeImpl> attributes = new ArrayList<>();
 
-    public TemplateExpressionIdentifier(){}
-
     public List<TemplateExpressionTreeImpl> filterTemplateExpression(AttributeTreeImpl attributeTree) {
       ExpressionTree expressionTree = attributeTree.value();
       List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
@@ -52,8 +50,7 @@ public class TemplateExpressionIdentifier {
     public double avgNumOfTemplateExpressionPerBlock() {
       if (!attributes.isEmpty()) {
         double avgNumOfTemplateExpressionPerBlock = (double) totalNumberOfTemplateExpressionsPerBlock() / attributes.size();
-        BigDecimal roundedAverage = new BigDecimal(avgNumOfTemplateExpressionPerBlock).setScale(2,
-          RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumOfTemplateExpressionPerBlock).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;

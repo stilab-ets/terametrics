@@ -15,7 +15,6 @@ public class MetaArgumentIdentifier {
       private List<TerraformTreeImpl> terraformTrees = new ArrayList<>();
       private List<String> meta_args_attributes = new ArrayList<>(Arrays.asList("depends_on", "count", "for_each", "provider"));
       private List<String> meta_args_blocks = new ArrayList<>(Arrays.asList("lifecycle", "provisioner", "connection"));
-      public MetaArgumentIdentifier() { }
 
       // From attribute
       public boolean isMetaArgumentFromAttribute(AttributeTreeImpl attribute) {

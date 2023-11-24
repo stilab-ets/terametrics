@@ -59,8 +59,7 @@ public class SplatExpressionIdentifier {
     public double avgSplatExpressions() {
       if (!attributes.isEmpty()) {
         double avgSplatExpressions = (double) totalSplatExpressions() / attributes.size();
-        BigDecimal roundedAverage = new BigDecimal(avgSplatExpressions).setScale(2,
-          RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgSplatExpressions).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;

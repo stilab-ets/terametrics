@@ -14,10 +14,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LiteralExpressionIdentifier {
+    private List<LiteralExprTreeImpl> literalExprTrees = new ArrayList<>();
 
-    public LiteralExpressionIdentifier() {}
-    public List<LiteralExprTreeImpl> literalExprTrees = new ArrayList<>();
-    public List<AttributeTreeImpl> attributes = new ArrayList<>();
+    private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
     public List<LiteralExprTreeImpl> filterLiteralExpr
       (AttributeTreeImpl attributeTree) {
@@ -109,7 +108,7 @@ public class LiteralExpressionIdentifier {
       int domino = numStringValues();
       if (domino!=0) {
         double avgLengthOfStringLiteralExpr = (double) sumLengthOfStringLiteralExpr() / domino;
-        BigDecimal roundedAverage = new BigDecimal(avgLengthOfStringLiteralExpr).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgLengthOfStringLiteralExpr).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;

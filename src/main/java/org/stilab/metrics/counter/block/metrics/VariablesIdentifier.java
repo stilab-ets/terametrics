@@ -20,8 +20,6 @@ public class VariablesIdentifier {
     public List<VariableExprTreeImpl> variables = new ArrayList<>();
     public List<AttributeTreeImpl> attributes = new ArrayList<>();
 
-    public VariablesIdentifier(){}
-
     public List<VariableExprTreeImpl> filterVariablesExpr(AttributeTreeImpl attributeTree) {
 
       ExpressionTree expressionTree = attributeTree.value();
@@ -57,8 +55,7 @@ public class VariablesIdentifier {
     public double avgNumberOfVars(){
       if (!attributes.isEmpty()) {
         double avgNumberOfElementsPerDifferentObjects = (double) totalNumberOfVars() / attributes.size();
-        BigDecimal roundedAverage = new BigDecimal(avgNumberOfElementsPerDifferentObjects).setScale(2,
-          RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfElementsPerDifferentObjects).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;

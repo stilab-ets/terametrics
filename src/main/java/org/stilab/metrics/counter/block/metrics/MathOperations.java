@@ -68,7 +68,7 @@ public class MathOperations {
   public double avgNumberOfMathOperation() {
     if (!attributes.isEmpty()) {
       double avgNumberOfMathOperation = (double) totalNumberOfMathOperation() / attributes.size();
-      BigDecimal roundedAverage = new BigDecimal(avgNumberOfMathOperation).setScale(2, RoundingMode.HALF_UP);
+      BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfMathOperation).setScale(2, RoundingMode.HALF_UP);
       return roundedAverage.doubleValue();
     }
     return 0.0;

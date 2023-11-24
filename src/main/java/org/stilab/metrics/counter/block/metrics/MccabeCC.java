@@ -47,7 +47,7 @@ public class MccabeCC {
     public double avgMccabeCC(List<AttributeTreeImpl> attributes) {
       if (!attributes.isEmpty()) {
         double avgMccabeCC = (double) sumMccabeCC(attributes) / attributes.size();
-        BigDecimal roundedAverage = new BigDecimal(avgMccabeCC).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgMccabeCC).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;

@@ -9,8 +9,8 @@ public class TopBlockFinder {
 
   public List<BlockTreeImpl> findTopBlock(Tree root) {
     return root.children().stream()
-      .filter(node -> node instanceof BlockTreeImpl)
-      .map(node -> (BlockTreeImpl) node)
+      .filter(BlockTreeImpl.class::isInstance)
+      .map(BlockTreeImpl.class::cast)
       .collect(Collectors.toList());
 
   }

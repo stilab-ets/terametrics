@@ -17,8 +17,6 @@ public class ReferenceIdentifier {
     public List<TerraformTreeImpl> pointers = new ArrayList<>();
     public List<AttributeTreeImpl> attributes = new ArrayList<>();
 
-    public ReferenceIdentifier(){}
-
     public List<TerraformTreeImpl> filterAttributesAccess(AttributeTreeImpl attributeTree) {
       ExpressionTree expressionTree = attributeTree.value();
       List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
@@ -52,7 +50,7 @@ public class ReferenceIdentifier {
     public double avgAttributeAccess(){
       if (!attributes.isEmpty()) {
         double avgNumberOfElementsPerDifferentObjects = (double) this.pointers.size() / attributes.size();
-        BigDecimal roundedAverage = new BigDecimal(avgNumberOfElementsPerDifferentObjects).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfElementsPerDifferentObjects).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;

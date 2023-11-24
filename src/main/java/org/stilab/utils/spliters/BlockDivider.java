@@ -1,5 +1,6 @@
 package org.stilab.utils.spliters;
 
+import org.json.simple.JSONObject;
 import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
@@ -22,11 +23,11 @@ public class BlockDivider {
         this.filePath = filePath;
       }
 
-      public List<BlockPosition> divideFilePerBlock() {
+      public List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> divideFilePerBlock() {
 
         String fileContent = parseFileContent(filePath);
 
-        List<BlockPosition> blockPositions = new ArrayList<>();
+        List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions = new ArrayList<>();
 
         // Call Hcl Parser
         HclParser hclParser = new HclParser();
@@ -59,7 +60,7 @@ public class BlockDivider {
             int depthOfBlock = end_index - start_index + 1;
 
             // Block Position
-            BlockPosition blockPosition = new BlockPosition<>(start_index, end_index, blockContent, blockTree, block_identifiers, depthOfBlock);
+            BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer> blockPosition = new BlockPosition<>(start_index, end_index, blockContent, blockTree, block_identifiers, depthOfBlock);
 
             blockPositions.add(blockPosition);
           }
@@ -83,9 +84,8 @@ public class BlockDivider {
         try {
           // Read all bytes from the file and convert them to a string
           byte[] contentBytes = Files.readAllBytes(Paths.get(filePath));
-          String content = new String(contentBytes);
 
-          return content;
+          return new String(contentBytes);
         } catch (IOException e) {
           // Handle any errors that may occur during file reading
           e.printStackTrace();

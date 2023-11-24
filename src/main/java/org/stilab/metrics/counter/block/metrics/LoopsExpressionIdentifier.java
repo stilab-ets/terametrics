@@ -23,8 +23,6 @@ public class LoopsExpressionIdentifier {
     public List<TerraformTreeImpl> loops = new ArrayList<>();
     public List<AttributeTreeImpl> attributes = new ArrayList<>();
 
-    public LoopsExpressionIdentifier(){}
-
     public List<TerraformTreeImpl> filterLoops
       (AttributeTreeImpl attributeTree) {
 
@@ -74,7 +72,7 @@ public class LoopsExpressionIdentifier {
     public double avgNumberOfLoops(){
       if (!attributes.isEmpty()) {
         double avgNumberOfLoops = (double) totalNumberOfLoops() / attributes.size();
-        BigDecimal roundedAverage = new BigDecimal(avgNumberOfLoops).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfLoops).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;

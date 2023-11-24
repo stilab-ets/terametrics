@@ -17,8 +17,6 @@ import java.util.stream.Stream;
 
 public class LogicalOperationsIdentifier {
 
-  public LogicalOperationsIdentifier() {}
-
   //    Decisions Numbers
   public List<String> operators = new ArrayList<>(Arrays.asList("!", "&&", "||"));
   public List<TerraformTreeImpl> decisions = new ArrayList<>();
@@ -65,7 +63,7 @@ public class LogicalOperationsIdentifier {
   public double avgNumberOfLogicalOperations(){
     if(!attributes.isEmpty()){
       double avgNumberOfLogicalOperations = (double) totalNumberOfLogicalOperations() / attributes.size();
-      BigDecimal roundedAverage = new BigDecimal(avgNumberOfLogicalOperations).setScale(2, RoundingMode.HALF_UP);
+      BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfLogicalOperations).setScale(2, RoundingMode.HALF_UP);
       return roundedAverage.doubleValue();
     }
     return 0.0;

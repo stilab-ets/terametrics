@@ -16,7 +16,9 @@ import java.util.List;
 
 public class BlockMetricsCalculator {
 
-    public BlockMetricsCalculator() {  }
+    public BlockMetricsCalculator() {
+//      Constructor
+    }
 
     public JSONObject measureMetrics(BlockTreeImpl identifiedBlock, String blockAsString) {
 

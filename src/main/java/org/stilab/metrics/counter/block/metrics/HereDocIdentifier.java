@@ -12,12 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HereDocIdentifier {
-    public List<LiteralExprTreeImpl> hereDocs = new ArrayList<>();
+    private List<LiteralExprTreeImpl> hereDocs = new ArrayList<>();
 
-    public List<AttributeTreeImpl> attributes = new ArrayList<>();
+  private List<AttributeTreeImpl> attributes = new ArrayList<>();
     LiteralExpressionIdentifier literalExpressionIdentifier = new LiteralExpressionIdentifier();
     LiteralExpressionHereDocIdentifier literalExpressionHereDocIdentifier = new LiteralExpressionHereDocIdentifier();
-    public HereDocIdentifier() {}
     public List<LiteralExprTreeImpl> filterHereDoc(AttributeTreeImpl attributeTree){
       List<LiteralExprTreeImpl> exprs = literalExpressionIdentifier.filterLiteralExpr(attributeTree);
       return literalExpressionHereDocIdentifier.filterHereDocFromLiteralExpressions(exprs);
@@ -43,23 +42,10 @@ public class HereDocIdentifier {
     public double avgNumberOfHereDoc() {
       if (!attributes.isEmpty()) {
         double avgNumberOfHereDoc = (double) totalNumberOfHereDoc() / attributes.size();
-        BigDecimal roundedAverage = new BigDecimal(avgNumberOfHereDoc).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfHereDoc).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;
-    }
-    public int maxNumberOfHereDoc() {
-      if (attributes.isEmpty()){ return 0; }
-
-      int max = filterHereDoc(attributes.get(0)).size();
-
-      for (AttributeTreeImpl attribute: attributes) {
-        int value = filterHereDoc(attribute).size();
-        if (value > max) {
-          max = value;
-        }
-      }
-      return max;
     }
 
     public int totalLinesOfHereDoc(){
@@ -82,7 +68,6 @@ public class HereDocIdentifier {
       this.filterHereDocsFromBlock(identifiedBlock);
       int numHereDocs = this.totalNumberOfHereDoc();
       double avgHereDocs = this.avgNumberOfHereDoc();
-      int maxHereDocs = this.maxNumberOfHereDoc();
       metrics.put("numHereDocs", numHereDocs);
       metrics.put("avgHereDocs", avgHereDocs);
 

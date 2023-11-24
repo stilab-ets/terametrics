@@ -5,6 +5,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.utils.spliters.BlockDivider;
 import org.stilab.utils.mapper.BlockPosition;
 import org.stilab.metrics.counter.block.MetricsCalculatorBlocks;
@@ -29,7 +30,7 @@ public class BlockLevelCodeMetricsSaverTest extends TestCase {
       targetPathToSaveMetrics = "src/test/java/org/stilab/block/data/base_metrics.json";
 
       BlockDivider blockDivider = new BlockDivider(hclFilePath);
-      List<BlockPosition> blockPositions = blockDivider.divideFilePerBlock();
+      List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions = blockDivider.divideFilePerBlock();
       MetricsCalculatorBlocks metricsCalculatorBlocks = new MetricsCalculatorBlocks(blockPositions);
       List<JSONObject> objects = metricsCalculatorBlocks.measureMetricsPerBlocks();
 

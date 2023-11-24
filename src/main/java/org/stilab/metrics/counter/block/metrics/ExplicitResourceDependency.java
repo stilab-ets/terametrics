@@ -12,8 +12,7 @@ import java.util.List;
 
 public class ExplicitResourceDependency {
 
-    public List<AttributeTreeImpl> attributes = new ArrayList<>();
-    public ExplicitResourceDependency() {}
+    private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
     public int numberOfDependentResources(List<AttributeTreeImpl> attributes) {
 

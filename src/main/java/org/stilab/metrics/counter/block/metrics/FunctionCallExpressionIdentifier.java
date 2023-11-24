@@ -16,17 +16,15 @@ import java.util.stream.Collectors;
 
 public class FunctionCallExpressionIdentifier {
 
-    public List<FunctionCallTreeImpl> functionsCallPerBlock = new ArrayList<>();
-    public List<AttributeTreeImpl> attributes = new ArrayList<>();
-
-    public FunctionCallExpressionIdentifier()  {}
+    private List<FunctionCallTreeImpl> functionsCallPerBlock = new ArrayList<>();
+    private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
     public List<FunctionCallTreeImpl> filterFunctionCall(AttributeTreeImpl attributeTree) {
       ExpressionTree expressionTree = attributeTree.value();
       List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
       return trees.stream()
-                  .filter(child -> child instanceof FunctionCallTreeImpl)
-                  .map(child -> (FunctionCallTreeImpl) child)
+                  .filter(FunctionCallTreeImpl.class::isInstance)
+                  .map(FunctionCallTreeImpl.class::cast)
                   .collect(Collectors.toList());
     }
 
@@ -53,9 +51,9 @@ public class FunctionCallExpressionIdentifier {
 
     public double avgNumberOfFunctionCall(){
 
-      if (attributes.size()>0) {
+      if (!attributes.isEmpty()) {
         double avgNumberOfFunctionCall = (double) functionsCallPerBlock.size() / attributes.size();
-        BigDecimal roundedAverage = new BigDecimal(avgNumberOfFunctionCall).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfFunctionCall).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
 

@@ -2,6 +2,7 @@ package org.stilab.utils.locators;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.utils.spliters.BlockDivider;
 import org.stilab.utils.mapper.BlockPosition;
 
@@ -30,7 +31,7 @@ public class ServiceLocator {
 
     public List<JSONObject> obtainAllBlockPosition(){
       BlockDivider blockDivider = new BlockDivider(filePath);
-      List<BlockPosition> blockPositions = blockDivider.divideFilePerBlock();
+      List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions = blockDivider.divideFilePerBlock();
 
       List<JSONObject> objects = new ArrayList<>();
       for (BlockPosition blockPosition: blockPositions) {
@@ -41,7 +42,7 @@ public class ServiceLocator {
 
     public List<BlockPosition> getRightBlocks() {
         BlockDivider blockDivider = new BlockDivider(filePath);
-        List<BlockPosition> blockPositions = blockDivider.divideFilePerBlock();
+        List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions = blockDivider.divideFilePerBlock();
         List<BlockPosition> filteredBlocks = new ArrayList<>();
         for(BlockPosition position: blockPositions) {
           if (position.getIdentifier().equals(this.blockIdentifier)) {

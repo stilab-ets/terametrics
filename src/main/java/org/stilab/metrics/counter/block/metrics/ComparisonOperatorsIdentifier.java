@@ -17,10 +17,9 @@ import java.util.stream.Stream;
 
 public class ComparisonOperatorsIdentifier {
 
-    public ComparisonOperatorsIdentifier() {}
-    public List<String> operators = new ArrayList<>(Arrays.asList("==", "!=", "<", ">", "<=", ">="));
-    public List<BinaryExpressionTreeImpl> comparisonOperations = new ArrayList<>();
-    public List<AttributeTreeImpl> attributes = new ArrayList<>();
+    private List<String> operators = new ArrayList<>(Arrays.asList("==", "!=", "<", ">", "<=", ">="));
+    private List<BinaryExpressionTreeImpl> comparisonOperations = new ArrayList<>();
+    private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
     public List<BinaryExpressionTreeImpl> identifyComparisonOperators(AttributeTreeImpl attribute) {
 
@@ -30,11 +29,10 @@ public class ComparisonOperatorsIdentifier {
 
       Stream<BinaryExpressionTreeImpl> binaryOperations = trees
         .stream()
-        .filter(child -> child instanceof BinaryExpressionTreeImpl)
+        .filter(BinaryExpressionTreeImpl.class::isInstance)
         .filter(child -> operators.contains(
           ((BinaryExpressionTreeImpl) child).operator().value()
-        ))
-        .map(child -> (BinaryExpressionTreeImpl) child);
+        )).map(BinaryExpressionTreeImpl.class::cast);
 
       return binaryOperations.collect(Collectors.toList());
     }
@@ -61,7 +59,7 @@ public class ComparisonOperatorsIdentifier {
     public double avgNumberOfComparisonOperation(){
       if (!attributes.isEmpty()){
         double avgNumberOfComparisonOperation = (double) totalNumberOfComparisonOperation() / attributes.size();
-        BigDecimal roundedAverage = new BigDecimal(avgNumberOfComparisonOperation).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfComparisonOperation).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;

@@ -17,16 +17,14 @@ import java.util.stream.Collectors;
 
 public class IndexAccessIdentifier {
 
-      List<IndexAccessExprTreeImpl> indexAccess = new ArrayList<>();
-      List<AttributeTreeImpl> attributes = new ArrayList<>();
-
-      public IndexAccessIdentifier() {}
+      private List<IndexAccessExprTreeImpl> indexAccess = new ArrayList<>();
+      private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
       public List<IndexAccessExprTreeImpl> identifyIndexAccess(AttributeTreeImpl attributeTree) {
         ExpressionTree expressionTree = attributeTree.value();
         List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
-        return trees.stream().filter(child -> child instanceof IndexAccessExprTreeImpl)
-                .map(child -> (IndexAccessExprTreeImpl) child)
+        return trees.stream().filter(IndexAccessExprTreeImpl.class::isInstance)
+                .map(IndexAccessExprTreeImpl.class::cast)
                 .collect(Collectors.toList());
       }
 
@@ -51,7 +49,7 @@ public class IndexAccessIdentifier {
       public double avgIndexAccessExpressions() {
         if (!attributes.isEmpty()){
           double avgIndexAccessExpressions = (double) totalIndexAccessExpressions() / attributes.size();
-          BigDecimal roundedAverage = new BigDecimal(avgIndexAccessExpressions).setScale(2, RoundingMode.HALF_UP);
+          BigDecimal roundedAverage = BigDecimal.valueOf(avgIndexAccessExpressions).setScale(2, RoundingMode.HALF_UP);
           return roundedAverage.doubleValue();
         }
         return 0.0;

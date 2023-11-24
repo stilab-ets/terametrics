@@ -147,8 +147,7 @@ public class TokenIdentifier {
     }
 
     double avgAttrsTokens = (double) sum / tokensPerAttrs.size();
-    BigDecimal roundedAverage = new BigDecimal(avgAttrsTokens).setScale(2,
-      RoundingMode.HALF_UP);
+    BigDecimal roundedAverage = BigDecimal.valueOf(avgAttrsTokens).setScale(2, RoundingMode.HALF_UP);
     return roundedAverage.doubleValue();
   }
 
@@ -168,8 +167,8 @@ public class TokenIdentifier {
       }
 
     double minAttrsTextEntropy = min;
-    BigDecimal roundedAverage = new BigDecimal(minAttrsTextEntropy).setScale(2,
-      RoundingMode.HALF_UP);
+    BigDecimal roundedAverage = BigDecimal.valueOf(minAttrsTextEntropy).setScale(2, RoundingMode.HALF_UP);
+
     return roundedAverage.doubleValue();
   }
 
@@ -187,8 +186,7 @@ public class TokenIdentifier {
     }
 
     double maxAttrsTextEntropy = max;
-    BigDecimal roundedAverage = new BigDecimal(maxAttrsTextEntropy).setScale(2,
-      RoundingMode.HALF_UP);
+    BigDecimal roundedAverage = BigDecimal.valueOf(maxAttrsTextEntropy).setScale(2, RoundingMode.HALF_UP);
     return roundedAverage.doubleValue();
   }
 
@@ -204,8 +202,7 @@ public class TokenIdentifier {
     }
 
     double avgAttrsTextEntropy = (double) sum / textEntropyPerAttrs.size();
-    BigDecimal roundedAverage = new BigDecimal(avgAttrsTextEntropy).setScale(2,
-      RoundingMode.HALF_UP);
+    BigDecimal roundedAverage = BigDecimal.valueOf(avgAttrsTextEntropy).setScale(2, RoundingMode.HALF_UP);
     return roundedAverage.doubleValue();
   }
 

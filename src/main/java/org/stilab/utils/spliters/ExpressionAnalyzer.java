@@ -10,14 +10,14 @@ public class ExpressionAnalyzer {
 
   private ExpressionAnalyzer() {}
 
-  public static ExpressionAnalyzer getInstance() {
-    if (instance == null) {
-      synchronized (ExpressionAnalyzer.class) {
+  public static synchronized ExpressionAnalyzer getInstance() {
+//    if (instance == null) {
+//      synchronized (ExpressionAnalyzer.class) {
         if (instance == null) {
           instance = new ExpressionAnalyzer();
         }
-      }
-    }
+//      }
+//    }
     return instance;
   }
 

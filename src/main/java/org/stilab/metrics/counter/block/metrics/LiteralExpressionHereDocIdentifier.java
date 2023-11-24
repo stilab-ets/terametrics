@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class LiteralExpressionHereDocIdentifier {
-
-    public LiteralExpressionHereDocIdentifier() {}
     private Matcher getHereDocMatcher(LiteralExprTreeImpl exprTree) {
       return Pattern.compile("<<(-)?([A-Z_]+)").matcher(exprTree.value());
     }
@@ -68,7 +66,7 @@ public class LiteralExpressionHereDocIdentifier {
       int totalNumberOfHereDoc = totalNumberOfHereDoc(exprTrees);
       if (totalNumberOfHereDoc >= 1) {
         double avgNumberLinesPerHereDoc = (double) totalLinesOfHereDoc(exprTrees) / totalNumberOfHereDoc;
-        BigDecimal roundedAverage = new BigDecimal(avgNumberLinesPerHereDoc).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberLinesPerHereDoc).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;

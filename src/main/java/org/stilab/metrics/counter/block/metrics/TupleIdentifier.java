@@ -18,8 +18,8 @@ import java.util.stream.Stream;
 public class TupleIdentifier {
 
     public List<TerraformTreeImpl> tuples = new ArrayList<>();
+
     public List<AttributeTreeImpl> attributes = new ArrayList<>();
-    public TupleIdentifier() {}
 
     public List<TerraformTreeImpl> filterTupleIdentifier(AttributeTreeImpl attributeTree) {
       ExpressionTree expressionTree = attributeTree.value();
@@ -53,7 +53,7 @@ public class TupleIdentifier {
     public double avgNumberOfTuples() {
       if (!attributes.isEmpty()) {
         double avgNumberOfTuples = (double) totalNumberOfTuples() / attributes.size();
-        BigDecimal roundedAverage = new BigDecimal(avgNumberOfTuples).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfTuples).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;

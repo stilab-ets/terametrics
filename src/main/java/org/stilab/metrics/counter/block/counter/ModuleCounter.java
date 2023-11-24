@@ -11,7 +11,7 @@ public class ModuleCounter implements BlockTypeCounter {
   public int blockTypeCounter(Tree tree) {
     BlockCheckerType blockCheckerType = new BlockCheckerTypeImpl();
     return (int) tree.children().stream()
-      .filter(child -> child instanceof BlockTree)
+      .filter(BlockTree.class::isInstance)
       .filter(child -> blockCheckerType.isModule((BlockTree) child))
       .count();
   }

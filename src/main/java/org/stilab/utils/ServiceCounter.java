@@ -17,13 +17,13 @@ public class ServiceCounter {
   }
 
   // Public static method to access the singleton instance
-  public static ServiceCounter getInstance() {
-    if (instance == null) {
-      synchronized (ServiceCounter.class) {
+  public static synchronized ServiceCounter getInstance() {
+//    if (instance == null) {
+//      synchronized (ServiceCounter.class) {
         if (instance == null) {
           instance = new ServiceCounter();
-        }
-      }
+//        }
+//      }
     }
     return instance;
   }

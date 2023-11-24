@@ -10,18 +10,19 @@ import java.util.stream.Collectors;
 
 public class AttrFinderImpl {
     private List<AttributeTreeImpl> attributes = new ArrayList<>();
-    public AttrFinderImpl() {}
+
+    public AttrFinderImpl() {
+      //  Constructor
+    }
 
     // You should add also for the top attributes
     public List<AttributeTreeImpl> getAttributes(BlockTreeImpl nested) {
 
-      List<AttributeTreeImpl> topAttributes = nested.value().statements()
+      return nested.value().statements()
         .stream()
-        .filter(child -> child instanceof AttributeTreeImpl)
-        .map(child -> (AttributeTreeImpl) child)
+        .filter(AttributeTreeImpl.class::isInstance)
+        .map(AttributeTreeImpl.class::cast)
         .collect(Collectors.toList());
-
-      return topAttributes;
     }
 
     // You should add also for the all attributes (tops + blocks)

@@ -21,8 +21,6 @@ public class ImplicitResourceDependency {
         "azuread", "awscc", "ad", "kubectl")
     );
 
-    public ImplicitResourceDependency() {}
-
     public int numOfInvokedVars(){
         List<VariableExprTreeImpl> variablesConfigDependency = new ArrayList<>();
         for (VariableExprTreeImpl var: vars) {

@@ -66,7 +66,7 @@ public class TupleElementsIdentifier {
     public double avgNumberOfElementsPerDifferentTuples() {
       if (tupleTrees.size() >= 1) {
         double avgNumberOfElementsPerDifferentTuples = (double) getTotalNumberOfElementsOfDifferentTuples() / tupleTrees.size();
-        BigDecimal roundedAverage = new BigDecimal(avgNumberOfElementsPerDifferentTuples).setScale(2, RoundingMode.HALF_UP);
+        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfElementsPerDifferentTuples).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
       }
       return 0.0;
