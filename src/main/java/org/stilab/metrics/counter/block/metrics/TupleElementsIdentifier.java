@@ -88,7 +88,7 @@ public class TupleElementsIdentifier {
       // max values
       if (max == 0) {
         List<ForTupleTreeImpl> forTuples = filterOnlyForTupleTreeImpl(tupleTrees);
-        if (forTuples.size() > 0 ) {
+        if (!forTuples.isEmpty()) {
           max = 1;
         }
       }
