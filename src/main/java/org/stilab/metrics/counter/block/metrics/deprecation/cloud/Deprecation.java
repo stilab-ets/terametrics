@@ -3,7 +3,6 @@ package org.stilab.metrics.counter.block.metrics.deprecation.cloud;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.metrics.counter.block.MetricsCalculatorBlocks;
 import org.stilab.utils.mapper.Block;
 import java.io.*;
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class Deprecation {
-  private static final Logger logger = Logger.getLogger(MetricsCalculatorBlocks.class.getName());
+  private static final Logger logger = Logger.getLogger(Deprecation.class.getName());
   protected ObjectMapper deprecatedDataSourcesMapper = new ObjectMapper();
   protected List<Block> deprecatedBlocks = new ArrayList<>();
   protected String blockAsString;
