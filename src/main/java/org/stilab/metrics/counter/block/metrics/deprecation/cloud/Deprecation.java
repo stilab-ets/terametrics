@@ -7,6 +7,7 @@ import org.stilab.utils.mapper.Block;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Deprecation {
@@ -26,7 +27,7 @@ public class Deprecation {
       if (inputStream != null) {
         readDataFromInputStream(inputStream);
       } else {
-        logger.severe(String.format("Error while reading objects to file: %s", filePath));
+        logger.log(Level.SEVERE, "Error while reading objects to file {0} ", filePath);
       }
     } catch (IOException e) {
       e.printStackTrace();
