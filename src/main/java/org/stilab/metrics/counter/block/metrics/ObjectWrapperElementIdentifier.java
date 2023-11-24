@@ -23,16 +23,16 @@ public class ObjectWrapperElementIdentifier {
   public List<ObjectTreeImpl> filterOnlyObjectTreeImpl() {
 
     return objects.stream()
-      .filter(child -> child instanceof ObjectTreeImpl)
-      .map(child -> (ObjectTreeImpl) child )
+      .filter(ObjectTreeImpl.class::isInstance)
+      .map(ObjectTreeImpl.class::cast)
       .collect(Collectors.toList());
   }
 
   public List<ForObjectTreeImpl> filterOnlyForObjectTreeImpl() {
 
     return objects.stream()
-      .filter(child -> child instanceof ForObjectTreeImpl)
-      .map(child -> (ForObjectTreeImpl) child )
+      .filter(ForObjectTreeImpl.class::isInstance)
+      .map(ForObjectTreeImpl.class::cast)
       .collect(Collectors.toList());
   }
 
@@ -85,7 +85,7 @@ public class ObjectWrapperElementIdentifier {
 
     if (max == 0) {
       List<ForObjectTreeImpl> forTuples = filterOnlyForObjectTreeImpl();
-      if (forTuples.size() > 0 ) {
+      if (!forTuples.isEmpty()) {
         max = 1;
       }
     }
