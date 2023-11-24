@@ -20,8 +20,8 @@ public class LoopsExpressionIdentifier {
     // ForTupleTreeImpl
     // TemplateForDirectiveTreeImpl
 
-    public List<TerraformTreeImpl> loops = new ArrayList<>();
-    public List<AttributeTreeImpl> attributes = new ArrayList<>();
+    private List<TerraformTreeImpl> loops = new ArrayList<>();
+    private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
     public List<TerraformTreeImpl> filterLoops
       (AttributeTreeImpl attributeTree) {
@@ -32,16 +32,16 @@ public class LoopsExpressionIdentifier {
         .getAllNestedExpressions(expressionTree);
 
       Stream<TerraformTreeImpl> forObjs = trees.stream()
-        .filter(child -> child instanceof ForObjectTreeImpl)
-        .map(child -> (TerraformTreeImpl) child);
+        .filter(ForObjectTreeImpl.class::isInstance)
+        .map(TerraformTreeImpl.class::cast);
 
       Stream<TerraformTreeImpl> forTuples = trees.stream()
-        .filter( child -> child instanceof ForTupleTreeImpl)
-        .map(child -> (TerraformTreeImpl) child);
+        .filter(ForTupleTreeImpl.class::isInstance)
+        .map(TerraformTreeImpl.class::cast);
 
       Stream<TerraformTreeImpl> forTemplateDirective = trees.stream()
-        .filter( child -> child instanceof TemplateForDirectiveTreeImpl)
-        .map(child -> (TerraformTreeImpl) child);
+        .filter(TemplateForDirectiveTreeImpl.class::isInstance)
+        .map(TerraformTreeImpl.class::cast);
 
       Stream<TerraformTreeImpl> combinedFiltersLevel1 = Stream.concat(forObjs, forTuples);
 
