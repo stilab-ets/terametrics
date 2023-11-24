@@ -16,15 +16,13 @@ import java.util.stream.Collectors;
 public class LiteralExpressionIdentifier {
     private List<LiteralExprTreeImpl> literalExprTrees = new ArrayList<>();
 
-    private List<AttributeTreeImpl> attributes = new ArrayList<>();
-
     public List<LiteralExprTreeImpl> filterLiteralExpr
       (AttributeTreeImpl attributeTree) {
       ExpressionTree expressionTree = attributeTree.value();
       List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
       return trees.stream()
-        .filter(child -> child instanceof LiteralExprTreeImpl)
-        .map(child -> (LiteralExprTreeImpl) child )
+        .filter(LiteralExprTreeImpl.class::isInstance)
+        .map(LiteralExprTreeImpl.class::cast)
         .collect(Collectors.toList());
     }
 
@@ -38,8 +36,7 @@ public class LiteralExpressionIdentifier {
     }
 
     public List<LiteralExprTreeImpl> filterLiteralExprFromBlock(BlockTreeImpl blockTree) {
-      attributes = (new AttrFinderImpl()).getAllAttributes(blockTree);
-      literalExprTrees = this.filterLiteralExprFromAttributesList(attributes);
+      literalExprTrees = this.filterLiteralExprFromAttributesList((new AttrFinderImpl()).getAllAttributes(blockTree));
       return literalExprTrees;
     }
 
