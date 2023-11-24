@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ServiceLocator {
@@ -70,7 +71,7 @@ public class ServiceLocator {
       }
       try (FileWriter fileWriter = new FileWriter(target)) {
         fileWriter.write(jsonArray.toString());
-        logger.info(String.format("JSON objects saved to file: %s", target));
+        logger.log(Level.INFO, "JSON objects saved to file {0} ", target);
       } catch (IOException e) {
         logger.severe(String.format("Error while saving JSON objects to file: %s", e.getMessage()));
       }

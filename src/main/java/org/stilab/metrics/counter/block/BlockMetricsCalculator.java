@@ -16,10 +16,6 @@ import java.util.List;
 
 public class BlockMetricsCalculator {
 
-    public BlockMetricsCalculator() {
-//      Constructor
-    }
-
     public JSONObject measureMetrics(BlockTreeImpl identifiedBlock, String blockAsString) {
 
       JSONObject metrics = new JSONObject();
@@ -188,10 +184,6 @@ public class BlockMetricsCalculator {
       // Number of Attributes
       AttrFinderImpl attrFinder = new AttrFinderImpl();
       metrics = attrFinder.updateMetric(metrics, identifiedBlock);
-
-      // Number of Deprecated Keywords
-//      DeprecatoryServiceLocator deprecatoryServiceLocator = new DeprecatoryServiceLocator(identifiedBlock, blockAsString);
-//      metrics = deprecatoryServiceLocator.updateMetrics(metrics, identifiedBlock);
 
       return metrics;
     }

@@ -14,7 +14,7 @@ import java.util.List;
 
 public class App {
 
-    private static final Logger logger = LoggerFactory.getLogger(App.class);
+  private static final Logger logger = LoggerFactory.getLogger(App.class);
 
 
   @Parameter(names = {"-f", "--file"}, description = "Path and name of file to use")
