@@ -21,25 +21,28 @@ public class MathOperations {
 //    PrefixExpressionTreeImpl -----> -
 //    BinaryExpressionTreeImpl -----> +,-,*,/,%
 
-  public List<String> operators = new ArrayList<>(Arrays.asList("-", "+", "*", "/", "%"));
-  public List<TerraformTreeImpl> mathOperators = new ArrayList<>();
-  public List<AttributeTreeImpl> attributes = new ArrayList<>();
+  private List<String> operators = new ArrayList<>(Arrays.asList("-", "+", "*", "/", "%"));
+  private List<TerraformTreeImpl> mathOperators = new ArrayList<>();
+  private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
   public List<TerraformTreeImpl> identifyMathOperations(AttributeTreeImpl attribute) {
     ExpressionTree expressionTree = attribute.value();
+
     List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
+
     Stream<TerraformTreeImpl> unaryOperations = trees
       .stream()
-      .filter(child -> child instanceof PrefixExpressionTreeImpl)
+      .filter(PrefixExpressionTreeImpl.class::isInstance)
       .filter(child -> operators.contains(
         ((PrefixExpressionTreeImpl) child).prefix().value()
-      )).map(child -> (TerraformTreeImpl) child);
+      )).map(TerraformTreeImpl.class::cast);
+
     Stream<TerraformTreeImpl> binaryOperations = trees
       .stream()
-      .filter(child -> child instanceof BinaryExpressionTreeImpl)
+      .filter(BinaryExpressionTreeImpl.class::isInstance)
       .filter(child -> operators.contains(
         ((BinaryExpressionTreeImpl) child).operator().value()
-      )).map(child -> (TerraformTreeImpl) child);
+      )).map(TerraformTreeImpl.class::cast);
 
     Stream<TerraformTreeImpl> combinedFilters = Stream.concat(unaryOperations, binaryOperations);
 
