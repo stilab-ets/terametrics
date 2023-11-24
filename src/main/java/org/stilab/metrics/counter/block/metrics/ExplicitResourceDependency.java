@@ -6,13 +6,9 @@ import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
 import org.stilab.metrics.counter.attr.finder.AttrFinderImpl;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExplicitResourceDependency {
-
-    private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
     public int numberOfDependentResources(List<AttributeTreeImpl> attributes) {
 
@@ -29,8 +25,7 @@ public class ExplicitResourceDependency {
     }
 
     public int getNumberOfResourceDependency(BlockTreeImpl blockTree){
-      attributes = (new AttrFinderImpl()).getAllAttributes(blockTree);
-      return numberOfDependentResources(attributes);
+      return numberOfDependentResources((new AttrFinderImpl()).getAllAttributes(blockTree));
     }
 
     public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
