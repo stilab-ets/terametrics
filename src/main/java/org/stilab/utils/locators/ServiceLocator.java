@@ -3,7 +3,6 @@ package org.stilab.utils.locators;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.metrics.counter.block.MetricsCalculatorBlocks;
 import org.stilab.utils.spliters.BlockDivider;
 import org.stilab.utils.mapper.BlockPosition;
 
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class ServiceLocator {
-    private static final Logger logger = Logger.getLogger(MetricsCalculatorBlocks.class.getName());
+    private static final Logger logger = Logger.getLogger(ServiceLocator.class.getName());
     private String blockIdentifier;
     private String filePath;
     private String target;
@@ -23,7 +22,6 @@ public class ServiceLocator {
       this.filePath = filePath;
       this.target = target;
     }
-
 
     public ServiceLocator(String blockIdentifier, String filePath, String target) {
         this.blockIdentifier = blockIdentifier;
@@ -76,9 +74,5 @@ public class ServiceLocator {
       } catch (IOException e) {
         logger.severe(String.format("Error while saving JSON objects to file: %s", e.getMessage()));
       }
-    }
-
-    public String getBlockIdentifier() {
-      return blockIdentifier;
     }
 }
