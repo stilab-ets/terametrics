@@ -25,12 +25,12 @@ public class SplatExpressionIdentifier {
         getAllNestedExpressions(expressionTree);
 
       Stream<TerraformTreeImpl> splatAccessFilter = trees.stream()
-        .filter(child -> child instanceof AttributeSplatAccessTreeImpl)
-        .map(child -> (TerraformTreeImpl) child);
+        .filter(AttributeSplatAccessTreeImpl.class::isInstance)
+        .map(TerraformTreeImpl.class::cast);
 
       Stream<TerraformTreeImpl> indexSplatAccess = trees.stream()
-        .filter(child -> child instanceof IndexSplatAccessTreeImpl)
-        .map( child -> (TerraformTreeImpl) child);
+        .filter(IndexSplatAccessTreeImpl.class::isInstance)
+        .map(TerraformTreeImpl.class::cast);
 
       Stream<TerraformTreeImpl> combinedFilters = Stream.concat(
         splatAccessFilter, indexSplatAccess

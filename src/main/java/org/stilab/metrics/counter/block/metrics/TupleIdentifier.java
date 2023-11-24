@@ -17,17 +17,17 @@ import java.util.stream.Stream;
 
 public class TupleIdentifier {
 
-    public List<TerraformTreeImpl> tuples = new ArrayList<>();
+    private List<TerraformTreeImpl> tuples = new ArrayList<>();
 
-    public List<AttributeTreeImpl> attributes = new ArrayList<>();
+    private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
     public List<TerraformTreeImpl> filterTupleIdentifier(AttributeTreeImpl attributeTree) {
       ExpressionTree expressionTree = attributeTree.value();
       List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
-      Stream<TerraformTreeImpl> localTuples = trees.stream().filter(child -> child instanceof TupleTreeImpl)
-        .map(child -> (TerraformTreeImpl) child );
-      Stream<TerraformTreeImpl> forTuples = trees.stream().filter(child -> child instanceof ForTupleTreeImpl)
-        .map(child -> (TerraformTreeImpl) child);
+      Stream<TerraformTreeImpl> localTuples = trees.stream().filter(TupleTreeImpl.class::isInstance)
+        .map(TerraformTreeImpl.class::cast);
+      Stream<TerraformTreeImpl> forTuples = trees.stream().filter(ForTupleTreeImpl.class::isInstance)
+        .map(TerraformTreeImpl.class::cast);
       Stream<TerraformTreeImpl> combinedFilters = Stream.concat(localTuples, forTuples);
       return combinedFilters.collect(Collectors.toList());
     }

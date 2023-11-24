@@ -17,15 +17,15 @@ import java.util.stream.Collectors;
 
 public class TemplateExpressionIdentifier {
 
-    public List<TemplateExpressionTreeImpl> templateExpressionPerBlock = new ArrayList<>();
-    public List<AttributeTreeImpl> attributes = new ArrayList<>();
+    private List<TemplateExpressionTreeImpl> templateExpressionPerBlock = new ArrayList<>();
+    private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
     public List<TemplateExpressionTreeImpl> filterTemplateExpression(AttributeTreeImpl attributeTree) {
       ExpressionTree expressionTree = attributeTree.value();
       List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
       return trees.stream()
-        .filter(child -> child instanceof TemplateExpressionTreeImpl)
-        .map(child -> (TemplateExpressionTreeImpl) child)
+        .filter(TemplateExpressionTreeImpl.class::isInstance)
+        .map(TemplateExpressionTreeImpl.class::cast)
         .collect(Collectors.toList());
     }
 

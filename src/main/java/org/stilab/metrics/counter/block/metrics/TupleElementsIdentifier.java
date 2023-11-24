@@ -8,14 +8,13 @@ import org.sonar.iac.terraform.tree.impl.TupleTreeImpl;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class TupleElementsIdentifier {
 
-    public List<TerraformTreeImpl> tupleTrees = new ArrayList<>();
+    private List<TerraformTreeImpl> tupleTrees;
     public TupleElementsIdentifier(List<TerraformTreeImpl> tupleTrees){
       this.tupleTrees = tupleTrees;
     }
@@ -23,16 +22,16 @@ public class TupleElementsIdentifier {
     public List<TupleTreeImpl> filterOnlyTupleTreeImpl(List<TerraformTreeImpl> terraformTreeList) {
 
       return terraformTreeList.stream()
-        .filter(child -> child instanceof TupleTreeImpl)
-        .map(child -> (TupleTreeImpl) child )
+        .filter(TupleTreeImpl.class::isInstance)
+        .map(TupleTreeImpl.class::cast)
         .collect(Collectors.toList());
     }
 
     public List<ForTupleTreeImpl> filterOnlyForTupleTreeImpl(List<TerraformTreeImpl> forTupleTreeImplList) {
 
       return forTupleTreeImplList.stream()
-        .filter(child -> child instanceof ForTupleTreeImpl)
-        .map(child -> (ForTupleTreeImpl) child )
+        .filter(ForTupleTreeImpl.class::isInstance)
+        .map(ForTupleTreeImpl.class::cast)
         .collect(Collectors.toList());
     }
 
@@ -64,7 +63,7 @@ public class TupleElementsIdentifier {
     }
 
     public double avgNumberOfElementsPerDifferentTuples() {
-      if (tupleTrees.size() >= 1) {
+      if (!tupleTrees.isEmpty()) {
         double avgNumberOfElementsPerDifferentTuples = (double) getTotalNumberOfElementsOfDifferentTuples() / tupleTrees.size();
         BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfElementsPerDifferentTuples).setScale(2, RoundingMode.HALF_UP);
         return roundedAverage.doubleValue();
