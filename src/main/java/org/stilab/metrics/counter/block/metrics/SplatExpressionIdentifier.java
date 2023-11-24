@@ -16,8 +16,8 @@ import java.util.stream.Stream;
 
 public class SplatExpressionIdentifier {
 
-    public List<TerraformTreeImpl> splatExpressions = new ArrayList<>();
-    public List<AttributeTreeImpl> attributes = new ArrayList<>();
+    private List<TerraformTreeImpl> splatExpressions = new ArrayList<>();
+    private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
     public List<TerraformTreeImpl> filterSplats(AttributeTreeImpl attributeTree ) {
       ExpressionTree expressionTree = attributeTree.value();
