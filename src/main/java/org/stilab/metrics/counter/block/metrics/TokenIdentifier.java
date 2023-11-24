@@ -41,11 +41,9 @@ public class TokenIdentifier {
   public List<String> tokenizer(Tree root) {
     List<SyntaxTokenImpl>  tokens  = this.identifyTokens(root);
     List<String> values = new ArrayList<>();
-    int counter = 0;
     for (SyntaxTokenImpl token: tokens) {
       if (!token.value().trim().isEmpty()) {
         values.add(token.value());
-        counter+=1;
       }
     }
     return values;
@@ -59,7 +57,7 @@ public class TokenIdentifier {
       if (!Objects.equals(token.value(), "")) {
         char[] chars = token.value().toCharArray();
         for (char c : chars) {
-          if ((!Character.isWhitespace(c)) && ((c != ' ')) ) {
+          if ((!Character.isWhitespace(c)) && (c != ' ') ) {
               values.add(c);
           }
         }

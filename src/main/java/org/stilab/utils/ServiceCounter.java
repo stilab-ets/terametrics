@@ -76,8 +76,7 @@ public class ServiceCounter {
   public Matcher matchSingleLineCommentDoubleSlash(String parsedContent) {
     // Remove single-line-comment-double-slash from the content
     Pattern pattern2 = Pattern.compile(LexicalConstant.SINGLE_LINE_COMMENT_DOUBLE_SLASH);
-    Matcher matcher2 = pattern2.matcher(parsedContent);
-    return matcher2;
+    return pattern2.matcher(parsedContent);
   }
 
   public int countLineOfCode(String parsedContent) {

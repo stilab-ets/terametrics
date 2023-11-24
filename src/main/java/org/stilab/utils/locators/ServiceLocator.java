@@ -15,8 +15,8 @@ import java.util.logging.Logger;
 public class ServiceLocator {
     private static final Logger logger = Logger.getLogger(ServiceLocator.class.getName());
     private String blockIdentifier;
-    private String filePath;
-    private String target;
+    private final String filePath;
+    private final String target;
 
     public ServiceLocator(String filePath, String target) {
       this.filePath = filePath;
@@ -34,17 +34,17 @@ public class ServiceLocator {
       List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions = blockDivider.divideFilePerBlock();
 
       List<JSONObject> objects = new ArrayList<>();
-      for (BlockPosition blockPosition: blockPositions) {
+      for (BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer> blockPosition: blockPositions) {
         objects.add(blockPosition.toJson());
       }
       return objects;
     }
 
-    public List<BlockPosition> getRightBlocks() {
+    public List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> getRightBlocks() {
         BlockDivider blockDivider = new BlockDivider(filePath);
         List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions = blockDivider.divideFilePerBlock();
-        List<BlockPosition> filteredBlocks = new ArrayList<>();
-        for(BlockPosition position: blockPositions) {
+        List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> filteredBlocks = new ArrayList<>();
+        for(BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer> position: blockPositions) {
           if (position.getIdentifier().equals(this.blockIdentifier)) {
             filteredBlocks.add(position);
           }
@@ -54,9 +54,9 @@ public class ServiceLocator {
 
     public List<JSONObject> saveIdentifiedBlocks() {
 
-      List<BlockPosition> blockPositions = this.getRightBlocks();
+      List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions = this.getRightBlocks();
       List<JSONObject> objects = new ArrayList<>();
-      for (BlockPosition blockPosition: blockPositions) {
+      for (BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer> blockPosition: blockPositions) {
         objects.add(blockPosition.toJson());
       }
       return objects;

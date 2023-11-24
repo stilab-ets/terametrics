@@ -32,13 +32,13 @@ public class BlockComplexity implements IBlockComplexity {
       }
 
       @Override
-      public int number_code_lines() {
+      public int numberCodeLines() {
           int value = ServiceCounter.getInstance().countLineOfCode(this.blockContent);
           return Math.max(value, 0);
       }
 
       @Override
-      public int number_non_code_lines() {
+      public int numberNonCodeLines() {
         int blanks   = ServiceCounter.getInstance().countBlankLinesInsideBlock(this.blockContent);
         int comments = ServiceCounter.getInstance().countCommentsLines(this.blockContent);
         return Math.max(blanks + comments, 0);
@@ -56,10 +56,10 @@ public class BlockComplexity implements IBlockComplexity {
         int depthOfBlock = this.depthOfBlock();
         metrics.put("depthOfBlock", depthOfBlock);
         //  11. Number of lines of code
-        int loc = this.number_code_lines();
+        int loc = this.numberCodeLines();
         metrics.put("loc", loc);
         //  12. Number of Non-line of code ( comments + blank)
-        int nloc = this.number_non_code_lines();
+        int nloc = this.numberNonCodeLines();
         metrics.put("nloc", nloc);
 
         return metrics;

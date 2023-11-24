@@ -70,7 +70,6 @@ public class DeprecatedResource extends Deprecation {
       while (matcher.find()) {
         resourceDeprecation +=1;
         // Print the matched content
-        String matchedContent = matcher.group();
       }
     }
     return resourceDeprecation;

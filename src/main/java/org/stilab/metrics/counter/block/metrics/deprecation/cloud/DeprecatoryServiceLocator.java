@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DeprecatoryServiceLocator {
-    public List<Deprecation> deprecations;
+    private List<Deprecation> deprecations;
 
     public DeprecatoryServiceLocator(BlockTreeImpl identifiedBlock, String blockAsString) {
       this.deprecations = new ArrayList<>( Arrays.asList(
