@@ -14,8 +14,8 @@ import java.util.List;
 
 public class ReferenceIdentifier {
 
-    public List<TerraformTreeImpl> pointers = new ArrayList<>();
-    public List<AttributeTreeImpl> attributes = new ArrayList<>();
+    private List<TerraformTreeImpl> pointers = new ArrayList<>();
+    private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
     public List<TerraformTreeImpl> filterAttributesAccess(AttributeTreeImpl attributeTree) {
       ExpressionTree expressionTree = attributeTree.value();
