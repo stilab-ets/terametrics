@@ -25,9 +25,8 @@ public class TextEntropy {
       double probability = (double) characterFrequency.get(c) / totalCharacters;
       entropy -= probability * log2(probability);
     }
-//
-    double textEntropy = (double) entropy;
-    BigDecimal roundedAverage = BigDecimal.valueOf(textEntropy).setScale(2, RoundingMode.HALF_UP);
+
+    BigDecimal roundedAverage = BigDecimal.valueOf(entropy).setScale(2, RoundingMode.HALF_UP);
     return roundedAverage.doubleValue();
 
   }
