@@ -24,9 +24,7 @@ public class MetricsCalculatorBlocks {
           BlockMetricsCalculator blockMetricsCalculator = new BlockMetricsCalculator();
           List<JSONObject> objects = new ArrayList<>();
           for (BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer> blockPosition: this.blockPositions) {
-            JSONObject jsonObject  = blockMetricsCalculator.measureMetrics(
-                 (BlockTreeImpl) blockPosition.getObject(),
-                (String) blockPosition.getContent()
+            JSONObject jsonObject  = blockMetricsCalculator.measureMetrics(blockPosition.getObject(), blockPosition.getContent()
             );
             objects.add(jsonObject);
           }
