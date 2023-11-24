@@ -17,16 +17,16 @@ import java.util.stream.Collectors;
 
 public class VariablesIdentifier {
 
-    public List<VariableExprTreeImpl> variables = new ArrayList<>();
-    public List<AttributeTreeImpl> attributes = new ArrayList<>();
+    private List<VariableExprTreeImpl> variables = new ArrayList<>();
+    private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
     public List<VariableExprTreeImpl> filterVariablesExpr(AttributeTreeImpl attributeTree) {
 
       ExpressionTree expressionTree = attributeTree.value();
       List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
       return trees.stream()
-        .filter(child -> child instanceof VariableExprTreeImpl)
-        .map(child -> (VariableExprTreeImpl) child)
+        .filter(VariableExprTreeImpl.class::isInstance)
+        .map(VariableExprTreeImpl.class::cast)
         .collect(Collectors.toList());
 
     }
@@ -61,7 +61,7 @@ public class VariablesIdentifier {
     public int maxNumberOfVars(){
       if (attributes.isEmpty()){ return 0; }
 
-      int max = filterVariablesExpr(attributes.get(0)).size();;
+      int max = filterVariablesExpr(attributes.get(0)).size();
       for (AttributeTreeImpl attribute: attributes){
         int value = filterVariablesExpr(attribute).size();
         if ( value > max ){
