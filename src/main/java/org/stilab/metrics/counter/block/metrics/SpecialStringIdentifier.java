@@ -16,10 +16,8 @@ public class SpecialStringIdentifier {
       List<LiteralExprTreeImpl> literalExprTrees = literalExpressionIdentifier.filterLiteralExprFromBlock(identifiedBlock);
       int numEmptyString = 0;
       for (LiteralExprTreeImpl literalExprTree: literalExprTrees) {
-          if (literalExpressionIdentifier.isLiteralExprValueString(literalExprTree)) {
-            if (literalExprTree.value().isEmpty()) {
+          if (literalExpressionIdentifier.isLiteralExprValueString(literalExprTree) && literalExprTree.value().isEmpty()) {
               numEmptyString += 1;
-            }
           }
       }
       return numEmptyString;
@@ -29,10 +27,8 @@ public class SpecialStringIdentifier {
       List<LiteralExprTreeImpl> literalExprTrees = literalExpressionIdentifier.filterLiteralExprFromBlock(identifiedBlock);
       int numWildCardSuffix = 0;
       for (LiteralExprTreeImpl literalExprTree: literalExprTrees) {
-        if (literalExpressionIdentifier.isLiteralExprValueString(literalExprTree)) {
-          if (literalExprTree.value().equals(":*")) {
+        if (literalExpressionIdentifier.isLiteralExprValueString(literalExprTree) && literalExprTree.value().equals(":*")) {
             numWildCardSuffix += 1;
-          }
         }
       }
       return numWildCardSuffix;
@@ -42,10 +38,8 @@ public class SpecialStringIdentifier {
       List<LiteralExprTreeImpl> literalExprTrees = literalExpressionIdentifier.filterLiteralExprFromBlock(identifiedBlock);
       int numStar = 0;
       for (LiteralExprTreeImpl literalExprTree: literalExprTrees) {
-        if (literalExpressionIdentifier.isLiteralExprValueString(literalExprTree)) {
-          if (literalExprTree.value().equals("*")) {
+        if (literalExpressionIdentifier.isLiteralExprValueString(literalExprTree) && literalExprTree.value().equals("*")) {
             numStar += 1;
-          }
         }
       }
       return numStar;
