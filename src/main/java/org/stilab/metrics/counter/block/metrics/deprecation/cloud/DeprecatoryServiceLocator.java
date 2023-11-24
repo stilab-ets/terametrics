@@ -8,13 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DeprecatoryServiceLocator {
-  public List<Deprecation> deprecations;
-    private String blockAsString;
-    private BlockTreeImpl identifiedBlock;
+    public List<Deprecation> deprecations;
 
     public DeprecatoryServiceLocator(BlockTreeImpl identifiedBlock, String blockAsString) {
-      this.identifiedBlock = identifiedBlock;
-      this.blockAsString = blockAsString;
       this.deprecations = new ArrayList<>( Arrays.asList(
                           // AWS Context
                           new DeprecatedDataSource(

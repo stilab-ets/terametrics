@@ -21,7 +21,6 @@ public class DeprecatedResource extends Deprecation {
     List<String> resources = new ArrayList<>();
     BlockCheckerTypeImpl blockCheckerType = new BlockCheckerTypeImpl();
 
-//    System.out.println(this.block.labels().get(0).value().equals("aws_s3_bucket"));
     for (Block block : this.deprecatedBlocks) {
       String blockName = block.getBlockName();
       List<DeprecatedAttribute> attributes = block.getDeprecatedAttributes();
@@ -39,7 +38,6 @@ public class DeprecatedResource extends Deprecation {
 
             if (blockCheckerType.isResource(this.block) && this.block.labels().get(0).value().equals(blockName)) {
               String p2 = "\\b" + attribute.getName() + "\\b";
-//              System.out.println(p2);
               resources.add(p2);
             }
 
@@ -49,7 +47,6 @@ public class DeprecatedResource extends Deprecation {
 
             if (blockCheckerType.isResource(this.block) && this.block.labels().get(0).value().equals(blockName)) {
               String p4 = "\\b" + attribute.getName() + "\\b";
-//              System.out.println(p4);
               resources.add(p4);
             }
           }
@@ -59,27 +56,21 @@ public class DeprecatedResource extends Deprecation {
     return resources;
   }
 
+  @Override
   public int countDeprecation(){
     Set<String> resourcePatterns = new HashSet<>();
     resourcePatterns.addAll(this.getDeprecatedUsedResources());
     int resourceDeprecation = 0;
 
     for (String patternString :resourcePatterns) {
-
-//      System.out.println(patternString);
-
       // Compile the pattern
       Pattern pattern = Pattern.compile(patternString);
-
       // Find matches in the blockAsString
       Matcher matcher = pattern.matcher(blockAsString);
-
       while (matcher.find()) {
         resourceDeprecation +=1;
-
-//         Print the matched content
+        // Print the matched content
         String matchedContent = matcher.group();
-//        System.out.println("Matched: " + matchedContent);
       }
     }
     return resourceDeprecation;

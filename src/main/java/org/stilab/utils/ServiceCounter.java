@@ -18,12 +18,8 @@ public class ServiceCounter {
 
   // Public static method to access the singleton instance
   public static synchronized ServiceCounter getInstance() {
-//    if (instance == null) {
-//      synchronized (ServiceCounter.class) {
         if (instance == null) {
           instance = new ServiceCounter();
-//        }
-//      }
     }
     return instance;
   }
@@ -65,7 +61,6 @@ public class ServiceCounter {
     return content.toString();
   }
 
-
   public Matcher matchMultiLineComment(String parsedContent){
     // Remove multi-line comments from the content
     Pattern pattern = Pattern.compile(LexicalConstant.MULTI_LINE_COMMENT);
@@ -87,8 +82,6 @@ public class ServiceCounter {
     return matcher2;
   }
 
-
-
   public int countLineOfCode(String parsedContent) {
     parsedContent = matchMultiLineComment(parsedContent).replaceAll("");
     parsedContent = matchSingleLineCommentHash(parsedContent).replaceAll("");
@@ -105,9 +98,7 @@ public class ServiceCounter {
   }
 
   public int countCommentsLines(String parsedContent) {
-//    System.out.println(countSingleLineDoubleSlash(parsedContent));
     return countMultilineComments(parsedContent) + countSingleLineHashComments(parsedContent) ;
-//      + countSingleLineDoubleSlash(parsedContent);
   }
 
   public int countBlankLinesInsideBlock(String parsedContent) {
@@ -132,10 +123,6 @@ public class ServiceCounter {
     return commentCount;
   }
 
-  public int countLines(String text) {
-    return text.split("\r\n|\r|\n").length;
-  }
-
   public int countNonBlankLines(String comment) {
     String[] lines = comment.split("\r\n|\r|\n");
     int nonBlankLineCount = 0;
@@ -156,12 +143,4 @@ public class ServiceCounter {
     return commentCount;
   }
 
-  public int countSingleLineDoubleSlash(String content) {
-    Matcher matcher = matchSingleLineCommentDoubleSlash(content);
-    int commentCount = 0;
-    while (matcher.find()) {
-      commentCount++;
-    }
-    return commentCount;
-  }
 }

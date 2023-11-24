@@ -11,13 +11,10 @@ public class ExpressionAnalyzer {
   private ExpressionAnalyzer() {}
 
   public static synchronized ExpressionAnalyzer getInstance() {
-//    if (instance == null) {
-//      synchronized (ExpressionAnalyzer.class) {
+
         if (instance == null) {
           instance = new ExpressionAnalyzer();
         }
-//      }
-//    }
     return instance;
   }
 
@@ -26,7 +23,6 @@ public class ExpressionAnalyzer {
     if (expressionTree != null) {
       nestedExpressions.add( expressionTree );
       List<Tree> children = expressionTree.children();
-//      System.out.println(children);
       for (Tree child : children) {
         nestedExpressions.addAll( getAllNestedExpressions(child)  );
       }

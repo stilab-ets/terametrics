@@ -58,6 +58,7 @@ public class DeprecatedProvider extends Deprecation {
     return providerAttrs;
   }
 
+  @Override
   public int countDeprecation() {
     Set<String> providerPatterns = new HashSet<>();
     providerPatterns.addAll(this.generateProviderDeprecationPattern());

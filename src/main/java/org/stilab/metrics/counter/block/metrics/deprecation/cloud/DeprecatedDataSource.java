@@ -60,6 +60,7 @@ public class DeprecatedDataSource extends Deprecation {
       return dataSources;
   }
 
+  @Override
   public int countDeprecation(){
       Set<String> dataSourcePatterns = new HashSet<>();
       dataSourcePatterns.addAll(this.getDeprecatedDataSourcesUsedInBlock());
