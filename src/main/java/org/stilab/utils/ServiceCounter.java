@@ -1,12 +1,10 @@
 package org.stilab.utils;
 
 import org.sonar.iac.common.parser.grammar.LexicalConstant;
-import org.stilab.metrics.counter.block.MetricsCalculatorBlocks;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -66,15 +64,13 @@ public class ServiceCounter {
   public Matcher matchMultiLineComment(String parsedContent){
     // Remove multi-line comments from the content
     Pattern pattern = Pattern.compile(LexicalConstant.MULTI_LINE_COMMENT);
-    Matcher matcher = pattern.matcher(parsedContent);
-    return matcher;
+    return pattern.matcher(parsedContent);
   }
 
   public Matcher matchSingleLineCommentHash(String parsedContent) {
     // Remove single-line comments from the content
     Pattern pattern1 = Pattern.compile(LexicalConstant.SINGLE_LINE_COMMENT_HASH);
-    Matcher matcher1 = pattern1.matcher(parsedContent);
-    return matcher1;
+    return pattern1.matcher(parsedContent);
   }
 
   public Matcher matchSingleLineCommentDoubleSlash(String parsedContent) {
