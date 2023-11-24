@@ -13,19 +13,19 @@ import java.util.List;
 public class MetaArgumentIdentifier {
 
       private List<TerraformTreeImpl> terraformTrees = new ArrayList<>();
-      private List<String> meta_args_attributes = new ArrayList<>(Arrays.asList("depends_on", "count", "for_each", "provider"));
-      private List<String> meta_args_blocks = new ArrayList<>(Arrays.asList("lifecycle", "provisioner", "connection"));
+      private List<String> metaArgsAttributes = new ArrayList<>(Arrays.asList("depends_on", "count", "for_each", "provider"));
+      private List<String> metaArgsBlocks = new ArrayList<>(Arrays.asList("lifecycle", "provisioner", "connection"));
 
       // From attribute
       public boolean isMetaArgumentFromAttribute(AttributeTreeImpl attribute) {
         SyntaxToken token = attribute.key();
-        return this.meta_args_attributes.contains(token.value());
+        return this.metaArgsAttributes.contains(token.value());
       }
 
       // From Block
       public boolean isMetaArgumentFromBlock(BlockTree nestedBlock) {
         SyntaxToken token = nestedBlock.key();
-        return this.meta_args_blocks.contains(token.value());
+        return this.metaArgsBlocks.contains(token.value());
       }
 
       public void filterMetaArgumentsFromAttributesList( List<AttributeTreeImpl> attributeTrees ){
@@ -58,12 +58,12 @@ public class MetaArgumentIdentifier {
         return terraformTrees;
       }
 
-      public int meta_args_count() {  return this.terraformTrees.size();  }
+      public int metaArgsCount() {  return this.terraformTrees.size();  }
 
       public JSONObject updateMetrics(JSONObject metrics, BlockTreeImpl identifiedBlock) {
 
         this.filterMetaArguments(identifiedBlock);
-        int numMetaArg = this.meta_args_count();
+        int numMetaArg = this.metaArgsCount();
         metrics.put("numMetaArg", numMetaArg);
 
         return metrics;
