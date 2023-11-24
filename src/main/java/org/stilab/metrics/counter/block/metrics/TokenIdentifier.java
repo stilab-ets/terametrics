@@ -64,7 +64,7 @@ public class TokenIdentifier {
           }
         }
 
-        if (token.comments().size() > 0) {
+        if (!token.comments().isEmpty()) {
           for (Comment comment : token.comments()) {
             char[] commentChars = comment.value().toCharArray();
             for (char c : commentChars) {
@@ -140,7 +140,7 @@ public class TokenIdentifier {
       sum += value; // Add up all values in the list
     }
 
-    double avgAttrsTokens = (double) sum / tokensPerAttrs.size();
+    double avgAttrsTokens = sum / tokensPerAttrs.size();
     BigDecimal roundedAverage = BigDecimal.valueOf(avgAttrsTokens).setScale(2, RoundingMode.HALF_UP);
     return roundedAverage.doubleValue();
   }
@@ -195,7 +195,7 @@ public class TokenIdentifier {
       sum += value; // Add up all values in the list
     }
 
-    double avgAttrsTextEntropy = (double) sum / textEntropyPerAttrs.size();
+    double avgAttrsTextEntropy = sum / textEntropyPerAttrs.size();
     BigDecimal roundedAverage = BigDecimal.valueOf(avgAttrsTextEntropy).setScale(2, RoundingMode.HALF_UP);
     return roundedAverage.doubleValue();
   }
