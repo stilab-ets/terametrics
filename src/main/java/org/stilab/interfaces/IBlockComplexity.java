@@ -4,7 +4,7 @@ public interface IBlockComplexity {
 
   int depthOfBlock();
 
-  public int number_code_lines();
+  public int numberCodeLines();
 
-  public int number_non_code_lines();
+  public int numberNonCodeLines();
 }
