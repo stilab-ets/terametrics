@@ -27,13 +27,13 @@ public class ObjectWrapperIdentifier {
 
       Stream<TerraformTreeImpl> localObjects = trees
         .stream()
-        .filter(child -> child instanceof ObjectTreeImpl)
-        .map(child -> (TerraformTreeImpl) child );
+        .filter(ObjectTreeImpl.class::isInstance)
+        .map(TerraformTreeImpl.class::cast);
 
       Stream<TerraformTreeImpl> forObjects = trees
         .stream()
-        .filter(child -> child instanceof ForObjectTreeImpl)
-        .map(child -> (TerraformTreeImpl) child);
+        .filter(ForObjectTreeImpl.class::isInstance)
+        .map(TerraformTreeImpl.class::cast);
 
       Stream<TerraformTreeImpl> combinedFilters = Stream.concat(localObjects, forObjects);
 
