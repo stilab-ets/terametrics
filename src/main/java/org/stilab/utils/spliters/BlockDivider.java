@@ -1,6 +1,5 @@
 package org.stilab.utils.spliters;
 
-import org.json.simple.JSONObject;
 import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
@@ -35,7 +34,6 @@ public class BlockDivider {
         try{
           // Parse the Content Of The HCL FILE
           Tree tree = hclParser.parse(fileContent);
-
           // GET THE TOP BLOCK
           TopBlockFinder topBlockFinder = new TopBlockFinder();
           List<BlockTreeImpl> blocks = topBlockFinder.findTopBlock(tree);
@@ -43,38 +41,29 @@ public class BlockDivider {
           for (BlockTreeImpl blockTree: blocks) {
 
             // identify the start index
-            int start_index = blockTree.key().textRange().start().line();
-
+            int startIndex = blockTree.key().textRange().start().line();
             // identify the end index
-            int end_index   = blockTree.value().textRange().end().line();
-
-            String blockContent = ServiceCounter.getInstance().extractDesiredContent(fileContent, start_index, end_index);
-
+            int endIndex   = blockTree.value().textRange().end().line();
+            String blockContent = ServiceCounter.getInstance().extractDesiredContent(fileContent, startIndex, endIndex);
             // Construct the block identifier
             BlockLabelIdentifier blockLabelIdentifier = new BlockLabelIdentifier();
             List<String> labels = blockLabelIdentifier.identifyLabelsOfBlock(blockTree);
             labels.add(0, blockTree.key().value());
-            String block_identifiers = this.concatElementsOfList(labels);
-
+            String blockIdentifiers = this.concatElementsOfList(labels);
             // compute the size of the block
-            int depthOfBlock = end_index - start_index + 1;
-
+            int depthOfBlock = endIndex - startIndex + 1;
             // Block Position
-            BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer> blockPosition = new BlockPosition<>(start_index, end_index, blockContent, blockTree, block_identifiers, depthOfBlock);
-
+            BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer> blockPosition = new BlockPosition<>(startIndex, endIndex, blockContent, blockTree, blockIdentifiers, depthOfBlock);
             blockPositions.add(blockPosition);
           }
         } catch ( Exception e) {
           // Handle the exception appropriately (e.g., logging, error handling, etc.)
-
           e.printStackTrace();
-
           // Return an empty list of BlockPosition in case of exception
           return blockPositions;
         }
         return blockPositions;
       }
-
 
       public String concatElementsOfList(List<String> stringList) {
         return String.join(" ", stringList);
@@ -84,7 +73,6 @@ public class BlockDivider {
         try {
           // Read all bytes from the file and convert them to a string
           byte[] contentBytes = Files.readAllBytes(Paths.get(filePath));
-
           return new String(contentBytes);
         } catch (IOException e) {
           // Handle any errors that may occur during file reading
