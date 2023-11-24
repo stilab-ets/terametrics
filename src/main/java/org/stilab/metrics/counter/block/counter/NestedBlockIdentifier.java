@@ -32,18 +32,18 @@ public class NestedBlockIdentifier implements BlockTypeCounter {
 
     public List<BlockTreeImpl> getAllNestedBlocks(Tree tree) {
 
-      List<BlockTreeImpl> nestedBlocks = new ArrayList<>();
+      List<BlockTreeImpl> localNstdBlocks = new ArrayList<>();
 
       if (tree != null) {
         if (tree instanceof BlockTreeImpl) {
-          nestedBlocks.add((BlockTreeImpl) tree);
+          localNstdBlocks.add((BlockTreeImpl) tree);
         }
         List<Tree> children = tree.children();
         for (Tree child : children) {
-          nestedBlocks.addAll(getAllNestedBlocks(child));
+          localNstdBlocks.addAll(getAllNestedBlocks(child));
         }
       }
-      return nestedBlocks;
+      return localNstdBlocks;
     }
 
     public int depthOfBlock(BlockTreeImpl identifiedBlock) {
