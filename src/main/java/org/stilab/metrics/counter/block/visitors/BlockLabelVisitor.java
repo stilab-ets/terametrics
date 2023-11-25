@@ -1,12 +1,12 @@
-package org.stilab.metrics.counter.block;
+package org.stilab.metrics.counter.block.data.repository;
 
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class BlockLabelIdentifier {
-  public BlockLabelIdentifier() {
+public class BlockLabelVisitor {
+  public BlockLabelVisitor() {
 //    Constructor
   }
   public List<String> identifyLabelsOfBlock(BlockTreeImpl blockTree) {

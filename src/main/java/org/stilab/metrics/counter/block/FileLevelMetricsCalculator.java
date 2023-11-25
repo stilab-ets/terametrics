@@ -32,17 +32,48 @@ public class MetricsCalculatorBlocks {
         return objects;
       }
 
+
+
       public JSONObject getHead(JSONArray jsonArray) {
         JSONObject head = new JSONObject();
         head.put("num_blocks", jsonArray.size());
         int fileLoc = 0;
-        // Loop using a simple for loop
+        // Loop using a simple
+        // for loop
+        int isResource = 0;
+        int isModule = 0;
+        int isData = 0;
+        int isTerraform = 0;
+        int isProvider = 0;
+        int isVariable =  0;
+        int isOutput =  0;
+        int isLocals =  0;
+
         for (int i = 0; i < jsonArray.size(); i++) {
           JSONObject jsonObject = (JSONObject) jsonArray.get(i);
           int blockLoc = (int) jsonObject.get("loc");
+
+          isResource += (int) jsonObject.get("isResource");
+          isModule += (int) jsonObject.get("isModule");
+          isData += (int) jsonObject.get("isData");
+          isTerraform += (int) jsonObject.get("isTerraform");
+          isProvider += (int) jsonObject.get("isProvider");
+          isVariable += (int) jsonObject.get("isVariable");
+          isOutput += (int) jsonObject.get("isOutput");
+          isLocals += (int) jsonObject.get("isLocals");
+
           fileLoc = blockLoc + fileLoc;
         }
+
         head.put("num_lines_of_code", fileLoc);
+        head.put("num_resources", isResource);
+        head.put("num_modules", isModule);
+        head.put("num_data", isData);
+        head.put("num_terraform", isTerraform);
+        head.put("num_providers", isProvider);
+        head.put("num_variables", isVariable);
+        head.put("num_outputs", isOutput);
+        head.put("num_locals", isLocals);
         return head;
       }
 
