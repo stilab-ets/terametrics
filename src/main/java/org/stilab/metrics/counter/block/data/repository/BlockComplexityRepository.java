@@ -5,13 +5,13 @@ import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.metrics.counter.block.visitors.BlockComplexity;
 
 public class BlockComplexityRepository implements Repository {
-      private String filePath;
-      public BlockComplexityRepository(String filePath) {
-        this.filePath = filePath;
+      private String blockAsString;
+      public BlockComplexityRepository(String blockAsString) {
+        this.blockAsString = blockAsString;
       }
       @Override
       public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-        BlockComplexity blockComplexity = new BlockComplexity(filePath, identifiedBlock);
+        BlockComplexity blockComplexity = new BlockComplexity(identifiedBlock, blockAsString);
         int depthOfBlock = blockComplexity.depthOfBlock();
         metrics.put("depthOfBlock", depthOfBlock);
         //  11. Number of lines of code

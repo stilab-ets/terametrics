@@ -4,22 +4,19 @@ import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
 import org.stilab.metrics.counter.block.visitors.TupleElementsVisitor;
+import org.stilab.metrics.counter.block.visitors.TupleVisitor;
 
 import java.util.List;
 
 public class TupleElementsRepository implements Repository {
 
-
-  private List<TerraformTreeImpl> tupleTrees;
-
-  public TupleElementsRepository(List<TerraformTreeImpl> tupleTrees){
-    this.tupleTrees = tupleTrees;
-  }
-
   @Override
   public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-      TupleElementsVisitor tupleElementsVisitor = new TupleElementsVisitor(this.tupleTrees);
+      TupleVisitor tupleVisitor = new TupleVisitor();
+      List<TerraformTreeImpl> tuples = tupleVisitor.filterTuplesFromBlock(identifiedBlock);
+
+      TupleElementsVisitor tupleElementsVisitor = new TupleElementsVisitor(tuples);
 
       int numElemTuples = tupleElementsVisitor.getTotalNumberOfElementsOfDifferentTuples();
       double avgElemTuples = tupleElementsVisitor.avgNumberOfElementsPerDifferentTuples();

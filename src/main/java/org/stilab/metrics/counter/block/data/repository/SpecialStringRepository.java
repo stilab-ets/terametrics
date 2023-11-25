@@ -7,16 +7,13 @@ import org.stilab.metrics.counter.block.visitors.SpecialStringVisitor;
 
 public class SpecialStringRepository implements Repository {
 
-  private LiteralExpressionVisitor literalExpressionVisitor;
-
-  public SpecialStringRepository(LiteralExpressionVisitor literalExpressionVisitor) {
-    this.literalExpressionVisitor = literalExpressionVisitor;
-  }
 
   @Override
   public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-      SpecialStringVisitor specialStringVisitor = new SpecialStringVisitor(this.literalExpressionVisitor);
+      LiteralExpressionVisitor literalExpressionVisitor = new LiteralExpressionVisitor();
+
+      SpecialStringVisitor specialStringVisitor = new SpecialStringVisitor(literalExpressionVisitor);
 
       metrics.put("numEmptyString", specialStringVisitor.numberOfEmptyString(identifiedBlock));
       metrics.put("numWildCardSuffixString", specialStringVisitor.numberOfWildCardSuffixString(identifiedBlock));
