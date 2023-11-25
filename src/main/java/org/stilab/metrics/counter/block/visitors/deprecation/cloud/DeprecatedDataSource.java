@@ -1,7 +1,7 @@
 package org.stilab.metrics.counter.block.visitors.deprecation.cloud;
 
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.metrics.counter.block.counter.BlockCheckerTypeImpl;
+import org.stilab.metrics.counter.block.visitors.BlockCheckerTypeVisitor;
 import org.stilab.utils.mapper.Block;
 import org.stilab.utils.mapper.DeprecatedAttribute;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class DeprecatedDataSource extends Deprecation {
   public List<String> getDeprecatedDataSourcesUsedInBlock() {
 
       List<String> dataSources = new ArrayList<>();
-      BlockCheckerTypeImpl blockCheckerType = new BlockCheckerTypeImpl();
+      BlockCheckerTypeVisitor blockCheckerType = new BlockCheckerTypeVisitor();
 
       for (Block block: this.deprecatedBlocks) {
         String topLevelPrefix = "(?!data\\.)";

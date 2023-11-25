@@ -1,7 +1,7 @@
 package org.stilab.metrics.counter.block.visitors.deprecation.cloud;
 
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.metrics.counter.block.counter.BlockCheckerTypeImpl;
+import org.stilab.metrics.counter.block.visitors.BlockCheckerTypeVisitor;
 import org.stilab.utils.mapper.Block;
 import org.stilab.utils.mapper.DeprecatedAttribute;
 
@@ -19,7 +19,7 @@ public class DeprecatedProvider extends Deprecation {
 
   public List<String> generateProviderDeprecationPattern(){
     List<String> providerAttrs = new ArrayList<>();
-    BlockCheckerTypeImpl blockCheckerType = new BlockCheckerTypeImpl();
+    BlockCheckerTypeVisitor blockCheckerType = new BlockCheckerTypeVisitor();
 
     for (Block block: this.deprecatedBlocks) {
       String blockName = block.getBlockName();

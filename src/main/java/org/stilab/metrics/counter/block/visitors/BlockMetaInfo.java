@@ -2,8 +2,7 @@ package org.stilab.metrics.counter.block.visitors;
 
 import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.metrics.counter.block.data.repository.Repository;
-import org.stilab.metrics.counter.block.BlockLabelIdentifier;
+
 import java.util.List;
 
 public class BlockMetaInfo {
@@ -22,8 +21,8 @@ public class BlockMetaInfo {
 
     public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-      BlockLabelIdentifier blockLabelIdentifier = new BlockLabelIdentifier();
-      List<String> labels = blockLabelIdentifier.identifyLabelsOfBlock(identifiedBlock);
+      BlockLabelVisitor blockLabelVisitor = new BlockLabelVisitor();
+      List<String> labels = blockLabelVisitor.identifyLabelsOfBlock(identifiedBlock);
 
       metrics.put(IMPACTED_BLOCK_TYPE, this.concatElementsOfList(labels));
       metrics.put(BLOCK_TYPE, identifiedBlock.key().value());

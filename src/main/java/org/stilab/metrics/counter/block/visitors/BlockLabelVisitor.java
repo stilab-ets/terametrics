@@ -1,4 +1,4 @@
-package org.stilab.metrics.counter.block.data.repository;
+package org.stilab.metrics.counter.block.visitors;
 
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import java.util.List;
