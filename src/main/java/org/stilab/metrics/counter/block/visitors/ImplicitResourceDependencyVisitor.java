@@ -93,31 +93,4 @@ public class ImplicitResourceDependencyVisitor {
       return eachDependency.size();
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
-//
-//      VariablesVisitor variablesVisitor = new VariablesVisitor();
-//      this.variableExprTrees = variablesVisitor.filterVarsFromBlock(identifiedBlock);
-//
-//      int numDependentResources = this.numOfInvokedResources();
-//      int numDependentData = this.numOfInvokedData();
-//      int numDependentModules = this.numOfInvokedModules();
-//      int numDependentProviders = this.numOfInvokedProviders();
-//      int numDependentLocals = this.numOfInvokedLocals();
-//      int numDependentVars = this.numOfInvokedVars();
-//      int numDependentEach = this.numOfInvokedEach();
-//
-//      metrics.put("numImplicitDependentResources", numDependentResources);
-//      metrics.put("numImplicitDependentData", numDependentData);
-//      metrics.put("numImplicitDependentModules", numDependentModules);
-//      metrics.put("numImplicitDependentProviders", numDependentProviders);
-//      metrics.put("numImplicitDependentLocals", numDependentLocals);
-//      metrics.put("numImplicitDependentVars", numDependentVars);
-//      metrics.put("numImplicitDependentEach", numDependentEach);
-//
-//      return metrics;
-//    }
-
-
-
-
 }

@@ -69,18 +69,5 @@ public class MccabeCC {
       return max;
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//
-//      List<AttributeTreeImpl> attributes = getAllAttributes(identifiedBlock);
-//      double avgMccabeCC = this.avgMccabeCC(attributes);
-//      int sumMccabeCC = this.sumMccabeCC(attributes);
-//      int maxMccabeCC = this.maxMccabeCC(attributes);
-//
-//      metrics.put("avgMccabeCC", avgMccabeCC);
-//      metrics.put("sumMccabeCC", sumMccabeCC);
-//      metrics.put("maxMccabeCC", maxMccabeCC);
-//
-//      return metrics;
-//    }
 
 }

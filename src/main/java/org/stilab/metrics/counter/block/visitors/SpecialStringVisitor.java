@@ -45,10 +45,4 @@ public class SpecialStringVisitor {
       return numStar;
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//      metrics.put("numEmptyString", numberOfEmptyString(identifiedBlock));
-//      metrics.put("numWildCardSuffixString", numberOfWildCardSuffixString(identifiedBlock));
-//      metrics.put("numStarString", numberOfStarString(identifiedBlock));
-//      return metrics;
-//    }
 }

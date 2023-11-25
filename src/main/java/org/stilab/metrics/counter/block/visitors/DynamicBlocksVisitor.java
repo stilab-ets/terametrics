@@ -31,13 +31,4 @@ public class DynamicBlocksVisitor {
       return this.dynamicBlock.size();
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//
-//      this.filterDynamicBlock(identifiedBlock);
-//      int numDynamicBlock = this.countDynamicBlock();
-//
-//      metrics.put("numDynamicBlocks", numDynamicBlock);
-//
-//      return metrics;
-//    }
 }

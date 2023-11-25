@@ -1,12 +1,9 @@
 package org.stilab.metrics.counter.block.visitors;
 
-import org.json.simple.JSONObject;
-import org.stilab.metrics.counter.block.data.repository.Repository;
-import org.stilab.metrics.counter.interfaces.IBlockComplexity;
 import org.stilab.utils.ServiceCounter;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 
-public class BlockComplexity implements IBlockComplexity{
+public class BlockComplexity{
       private String blockContent;
       private int startLine = 0;
       private int endLine = 0;
@@ -27,42 +24,19 @@ public class BlockComplexity implements IBlockComplexity{
         this.blockContent = ServiceCounter.getInstance().parseFileContentByPart(filePath, this.startLine, this.endLine);
       }
 
-      @Override
       public int depthOfBlock() {
         return this.endLine - this.startLine + 1;
       }
 
-      @Override
       public int numberCodeLines() {
           int value = ServiceCounter.getInstance().countLineOfCode(this.blockContent);
           return Math.max(value, 0);
       }
 
-      @Override
       public int numberNonCodeLines() {
         int blanks   = ServiceCounter.getInstance().countBlankLinesInsideBlock(this.blockContent);
         int comments = ServiceCounter.getInstance().countCommentsLines(this.blockContent);
         return Math.max(blanks + comments, 0);
       }
 
-//      public int countBlank() {
-//        return ServiceCounter.getInstance().countBlankLinesInsideBlock(this.blockContent);
-//      }
-//
-//      public int countComment() {
-//        return ServiceCounter.getInstance().countCommentsLines(this.blockContent);
-//      }
-//      public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//
-//        int depthOfBlock = this.depthOfBlock();
-//        metrics.put("depthOfBlock", depthOfBlock);
-//        //  11. Number of lines of code
-//        int loc = this.numberCodeLines();
-//        metrics.put("loc", loc);
-//        //  12. Number of Non-line of code ( comments + blank)
-//        int nloc = this.numberNonCodeLines();
-//        metrics.put("nloc", nloc);
-//
-//        return metrics;
-//      }
 }

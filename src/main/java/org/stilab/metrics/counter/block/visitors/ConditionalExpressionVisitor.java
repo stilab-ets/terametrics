@@ -85,17 +85,4 @@ public class ConditionalExpressionVisitor{
       return max;
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//
-//      this.filtersConditionsFromBlock(identifiedBlock);
-//      int numConditions = this.totalNumberOfConditions();
-//      int maxConditionsPerAttr = this.maxNumberOfConditionsPerAttribute();
-//      double avgConditionsPerAttr = this.avgNumberOfConditionsPerAttribute();
-//
-//      metrics.put("numConditions", numConditions);
-//      metrics.put("avgConditions", avgConditionsPerAttr);
-//      metrics.put("maxConditions",maxConditionsPerAttr);
-//
-//      return metrics;
-//    }
 }

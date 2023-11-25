@@ -36,11 +36,5 @@ public class LookUpFunctionVisitor {
     return lookups;
   }
 
-//  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
-//      this.identifyLookUpFunction(identifiedBlock);
-//      int numLookUpFunctionCall = this.lookups.size();
-//      metrics.put("numLookUpFunctionCall", numLookUpFunctionCall);
-//      return metrics;
-//    }
 
 }

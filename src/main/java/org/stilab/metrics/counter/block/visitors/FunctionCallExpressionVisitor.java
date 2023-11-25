@@ -74,15 +74,4 @@ public class FunctionCallExpressionVisitor {
       return max;
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//      this.filterFCfromBlock(identifiedBlock);
-//      int numFunctionCall = this.totalNumberOfFunctionCall();
-//      double avgFunctionCall = this.avgNumberOfFunctionCall();
-//      int maxFunctionCall = this.maxNumberOfFunctionCall();
-//      metrics.put("numFunctionCall", numFunctionCall);
-//      metrics.put("avgFunctionCall", avgFunctionCall);
-//      metrics.put("maxFunctionCall", maxFunctionCall);
-//      return metrics;
-//    }
-
 }

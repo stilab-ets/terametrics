@@ -71,17 +71,4 @@ public class VariablesVisitor {
       return max;
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//
-//      this.filterVarsFromBlock(identifiedBlock);
-//      int numVars = this.totalNumberOfVars();
-//      double avgNumVars = this.avgNumberOfVars();
-//      int maxNumVars = this.maxNumberOfVars();
-//
-//      metrics.put("numVars", numVars);
-//      metrics.put("avgNumVars", avgNumVars);
-//      metrics.put("maxNumVars", maxNumVars);
-//
-//      return metrics;
-//    }
 }

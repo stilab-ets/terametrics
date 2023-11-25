@@ -78,18 +78,4 @@ public class ComparisonOperatorsVisitor{
       return max;
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
-//
-//      this.filterComparisonOperatorsFromBlock(identifiedBlock);
-//      int numComparisonOperators = this.totalNumberOfComparisonOperation();
-//      double avgComparisonOperators = this.avgNumberOfComparisonOperation();
-//      int maxComparisonOperators = this.maxNumberOfComparisonOperation();
-//
-//      metrics.put("numComparisonOperators", numComparisonOperators);
-//      metrics.put("avgComparisonOperators", avgComparisonOperators);
-//      metrics.put("maxComparisonOperators", maxComparisonOperators);
-//
-//      return metrics;
-//    }
-
 }

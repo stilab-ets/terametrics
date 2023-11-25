@@ -93,15 +93,4 @@ public class ObjectWrapperElementVisitor {
 
   }
 
-//  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//
-//    int numElementObjects = this.getTotalNumberOfElementsOfDifferentObjects();
-//    double avgElementObjects = this.avgNumberOfElementsPerDifferentObjects();
-//    int maxElementObjects = this.maxNumberOfElementsPerDifferentObjects();
-//    metrics.put("numElemObjects", numElementObjects);
-//    metrics.put("avgElemObjects", avgElementObjects);
-//    metrics.put("maxElemObjects", maxElementObjects);
-//    return metrics;
-//  }
-
 }

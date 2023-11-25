@@ -87,18 +87,4 @@ public class LogicalOperationsVisitor {
 
   }
 
-//  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
-//
-//    this.filterLogicalOperationsFromBlock(identifiedBlock);
-//    int numLogiOpers = this.totalNumberOfLogicalOperations();
-//    double avgLogiOpers = this.avgNumberOfLogicalOperations();
-//    int maxLogiOpers = this.maxNumberOfLogicalOperations();
-//
-//    metrics.put("numLogiOpers", numLogiOpers);
-//    metrics.put("avgLogiOpers", avgLogiOpers);
-//    metrics.put("maxLogiOpers", maxLogiOpers);
-//
-//    return metrics;
-//  }
-
 }

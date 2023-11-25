@@ -62,17 +62,4 @@ public class FunctionParametersVisitor {
       return max;
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//
-//      this.identifyUsedParametersInBlock(identifiedBlock);
-//      int numParams = this.totalNumberParamsPerBlock();
-//      double avgParams = this.avgNumberParamsPerBlock();
-//      int maxParams = this.maxNumberParamsPerBlock();
-//
-//      metrics.put("numParams", numParams);
-//      metrics.put("avgParams", avgParams);
-//      metrics.put("maxParams", maxParams);
-//
-//      return metrics;
-//    }
 }

@@ -59,12 +59,4 @@ public class MetaArgumentVisitor {
 
       public int metaArgsCount() {  return this.terraformTrees.size();  }
 
-//      public JSONObject updateMetrics(JSONObject metrics, BlockTreeImpl identifiedBlock) {
-//
-//        this.filterMetaArguments(identifiedBlock);
-//        int numMetaArg = this.metaArgsCount();
-//        metrics.put("numMetaArg", numMetaArg);
-//
-//        return metrics;
-//      }
 }

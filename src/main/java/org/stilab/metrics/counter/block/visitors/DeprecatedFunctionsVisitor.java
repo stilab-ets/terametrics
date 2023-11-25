@@ -33,11 +33,4 @@ public class DeprecatedFunctionsVisitor {
     return deprecatedFunctions;
   }
 
-//  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
-//    this.identifyDeprecatedFunctions(identifiedBlock);
-//    int numDeprecatedFunctions = this.deprecatedFunctions.size();
-//    metrics.put("numDeprecatedFunctions", numDeprecatedFunctions);
-//    return metrics;
-//  }
-
 }

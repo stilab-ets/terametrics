@@ -111,22 +111,4 @@ public class LiteralExpressionVisitor {
       return 0.0;
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
-//
-//      this.filterLiteralExprFromBlock(identifiedBlock);
-//
-//      int numLiteralExpressions = totalNumberOfLiteralExpressions();
-//      int numStringValues = numStringValues();
-//      int sumLengthStringValues = sumLengthOfStringLiteralExpr();
-//      double avgLengthStringValues = avgLengthOfStringLiteralExpr();
-//      int maxLengthStringValues = maxLengthOfStringLiteralExpr();
-//  //
-//      metrics.put("numLiteralExpression", numLiteralExpressions);
-//      metrics.put("numStringValues", numStringValues);
-//      metrics.put("sumLengthStringValues", sumLengthStringValues);
-//      metrics.put("avgLengthStringValues", avgLengthStringValues);
-//      metrics.put("maxLengthStringValues", maxLengthStringValues);
-//
-//      return metrics;
-//    }
 }

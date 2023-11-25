@@ -30,8 +30,4 @@ public class ExplicitResourceDependencyVisitor {
       return numberOfDependentResources((new AttrFinderImpl()).getAllAttributes(blockTree));
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//      metrics.put("numExplicitResourceDependency", getNumberOfResourceDependency(identifiedBlock));
-//      return metrics;
-//    }
 }

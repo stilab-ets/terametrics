@@ -56,16 +56,4 @@ public class TemplateExpressionVisitor {
       return 0.0;
   }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//
-//      this.filterTemplateExpressionsFromBlock(identifiedBlock);
-//      int numTemplateExpression = this.totalNumberOfTemplateExpressionsPerBlock();
-//      double avgNumTemplateExpression = avgNumOfTemplateExpressionPerBlock();
-//
-//      metrics.put("numTemplateExpression", numTemplateExpression);
-//      metrics.put("avgTemplateExpression", avgNumTemplateExpression);
-//
-//      return metrics;
-//    }
-
 }

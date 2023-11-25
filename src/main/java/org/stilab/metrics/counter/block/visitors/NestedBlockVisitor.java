@@ -95,16 +95,4 @@ public class NestedBlockVisitor implements BlockTypeCounter {
       return minDepth;
     }
 
-    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-      List<BlockTreeImpl> nstdBlocks = this.identifyNestedBlock(identifiedBlock);
-      int numNestedBlocks = this.countNestedBlock();
-
-      metrics.put("numNestedBlocks", numNestedBlocks);
-      metrics.put("avgDepthNestedBlocks", avgDepthNestedBlocks(nstdBlocks));
-      metrics.put("maxDepthNestedBlocks", maxDepthNestedBlocks(nstdBlocks));
-      metrics.put("minDepthNestedBlocks", minDepthNestedBlocks(nstdBlocks));
-
-      return metrics;
-    }
-
 }

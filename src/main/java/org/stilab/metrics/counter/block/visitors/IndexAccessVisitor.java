@@ -70,16 +70,4 @@ public class IndexAccessVisitor {
         return max;
       }
 
-//      public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
-//
-//        this.identifyIndexAccessFromBlock(identifiedBlock);
-//        int numIndexAccessExpressions = this.totalIndexAccessExpressions();
-//        double avgIndexAccessExpressions = this.avgIndexAccessExpressions();
-//        int maxIndexAccessExpressions = this.maxIndexAccessExpressions();
-//        metrics.put("numIndexAccess", numIndexAccessExpressions);
-//        metrics.put("avgIndexAccess", avgIndexAccessExpressions);
-//        metrics.put("maxIndexAccess", maxIndexAccessExpressions);
-//        return metrics;
-//
-//      }
 }

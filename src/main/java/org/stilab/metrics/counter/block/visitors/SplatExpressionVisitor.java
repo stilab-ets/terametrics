@@ -81,17 +81,4 @@ public class SplatExpressionVisitor {
       return max;
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//
-//      this.filtersSplatsFromBlock(identifiedBlock);
-//      int numSplatExpressions = this.totalSplatExpressions();
-//      double avgSplatExpressions = this.avgSplatExpressions();
-//      int maxSplatExpressions = this.maxSplatExpressions();
-//
-//      metrics.put("numSplatExpressions", numSplatExpressions);
-//      metrics.put("avgSplatExpressions", avgSplatExpressions);
-//      metrics.put("maxSplatExpressions", maxSplatExpressions);
-//
-//      return metrics;
-//    }
 }

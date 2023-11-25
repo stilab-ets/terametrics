@@ -70,17 +70,4 @@ public class ReferenceVisitor {
       return max;
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//
-//      this.filterAttributeAccessFromBlock(identifiedBlock);
-//      int numReferences = this.totalAttributeAccess();
-//      double avgReferences = this.avgAttributeAccess();
-//      int maxReferences = this.maxAttributeAccess();
-//
-//      metrics.put("numReferences", numReferences);
-//      metrics.put("avgReferences", avgReferences);
-//      metrics.put("maxReferences", maxReferences);
-//
-//      return metrics;
-//    }
 }

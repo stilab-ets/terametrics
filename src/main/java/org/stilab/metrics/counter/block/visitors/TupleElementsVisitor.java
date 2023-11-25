@@ -95,16 +95,4 @@ public class TupleElementsVisitor {
       return max;
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//
-//      int numElemTuples = this.getTotalNumberOfElementsOfDifferentTuples();
-//      double avgElemTuples = this.avgNumberOfElementsPerDifferentTuples();
-//      int maxElemTuples = this.maxNumberOfElementsPerDifferentTuples();
-//
-//      metrics.put("numElemTuples", numElemTuples);
-//      metrics.put("avgElemTuples", avgElemTuples);
-//      metrics.put("maxElemTuples", maxElemTuples);
-//
-//      return metrics;
-//    }
 }

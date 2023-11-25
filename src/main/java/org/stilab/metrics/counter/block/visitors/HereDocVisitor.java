@@ -63,25 +63,4 @@ public class HereDocVisitor {
         .maxNumberLinesPerHereDoc(this.hereDocs);
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//
-//      // Relative to Attributes
-//      this.filterHereDocsFromBlock(identifiedBlock);
-//      int numHereDocs = this.totalNumberOfHereDoc();
-//      double avgHereDocs = this.avgNumberOfHereDoc();
-//      metrics.put("numHereDocs", numHereDocs);
-//      metrics.put("avgHereDocs", avgHereDocs);
-//
-//      // Relative to the size of here Doc
-//      double avgLinesHereDocs = this.avgNumberLinesPerHereDoc();
-//      int maxLinesHereDocs = this.maxNumberLinesPerHereDoc();
-//      int numLinesHereDocs = this.totalLinesOfHereDoc();
-//
-//      metrics.put("avgLinesHereDocs", avgLinesHereDocs);
-//      metrics.put("maxLinesHereDocs", maxLinesHereDocs);
-//      metrics.put("numLinesHereDocs", numLinesHereDocs);
-//      return metrics;
-//
-//    }
-
 }

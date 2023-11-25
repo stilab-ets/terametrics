@@ -40,12 +40,4 @@ public class DebuggingFunctionVisitor{
   }
 
 
-//  @Override
-//  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
-//    this.identifyDebuggingFunction(identifiedBlock);
-//    int numDebuggingFunctions = this.debuggingFunctions.size();
-//    metrics.put("numDebuggingFunctions", numDebuggingFunctions);
-//    return metrics;
-//  }
-
 }

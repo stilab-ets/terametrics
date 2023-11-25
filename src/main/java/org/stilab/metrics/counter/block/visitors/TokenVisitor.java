@@ -205,37 +205,5 @@ public class TokenVisitor {
     return this.tokenizer(identifiedBlock).size();
   }
 
-//  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//
-//    List<Double> textEntropyPerAttrs = textEntropyPerAttrs(identifiedBlock);
-//    List<Character> characters = this.textualize(identifiedBlock);
-//
-//    double minAttrsTextEntropy = minAttrsTextEntropy(textEntropyPerAttrs);
-//    double maxAttrsTextEntropy = maxAttrsTextEntropy(textEntropyPerAttrs);
-//    double avgAttrsTextEntropy = avgAttrsTextEntropy(textEntropyPerAttrs);
-//
-//    List<Integer> tokensPerAttrs = tokensPerAttrs(identifiedBlock);
-//    int numTokens = numberTokens(identifiedBlock);
-//    int minTokensPerAttr = minAttrsTokens(tokensPerAttrs);
-//    int maxTokensPerAttr = maxAttrsTokens(tokensPerAttrs);
-//    double avgTokensPerAttr = avgAttrsTokens(tokensPerAttrs);
-//
-//    // For each attribute, measure its entropy
-//    // Take the max_, min_, avg_
-//    Map<Character, Integer> characterFrequency = textEntropy.countCharacterFrequency(characters);
-//    double textEntropyMeasure = textEntropy.textEntropy(characterFrequency);
-//
-//    metrics.put("textEntropyMeasure",  textEntropyMeasure);
-//    metrics.put("minAttrsTextEntropy", minAttrsTextEntropy);
-//    metrics.put("maxAttrsTextEntropy", maxAttrsTextEntropy);
-//    metrics.put("avgAttrsTextEntropy", avgAttrsTextEntropy);
-////    ----------
-//    metrics.put("numTokens", numTokens);
-//    metrics.put("minTokensPerAttr", minTokensPerAttr);
-//    metrics.put("maxTokensPerAttr", maxTokensPerAttr);
-//    metrics.put("avgTokensPerAttr", avgTokensPerAttr);
-//    return metrics;
-//  }
-
 
 }

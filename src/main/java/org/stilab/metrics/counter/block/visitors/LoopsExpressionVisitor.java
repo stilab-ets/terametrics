@@ -91,18 +91,5 @@ public class LoopsExpressionVisitor {
       return max;
     }
 
-//    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
-//
-//      this.filterLoopsFromBlock(identifiedBlock);
-//      int numLoops = this.totalNumberOfLoops();
-//      double avgLoops = this.avgNumberOfLoops();
-//      int maxLoops = this.maxNumberOfLoops();
-//
-//      metrics.put("numLoops", numLoops);
-//      metrics.put("avgLoops", avgLoops);
-//      metrics.put("maxLoops", maxLoops);
-//
-//      return metrics;
-//    }
 
 }

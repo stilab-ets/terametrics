@@ -90,19 +90,4 @@ public class MathOperationsVisitor {
     return max;
   }
 
-//  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
-//
-//    this.filterMathOperationsFromBlock(identifiedBlock);
-//    int numMathOperations = this.totalNumberOfMathOperation();
-//    double avgMathOperations = this.avgNumberOfMathOperation();
-//    int maxMathOperations = this.maxNumberOfMathOperation();
-//
-//    metrics.put("numMathOperations", numMathOperations);
-//    metrics.put("avgMathOperations", avgMathOperations);
-//    metrics.put("maxMathOperations", maxMathOperations);
-//
-//    return metrics;
-//
-//  }
-
 }
