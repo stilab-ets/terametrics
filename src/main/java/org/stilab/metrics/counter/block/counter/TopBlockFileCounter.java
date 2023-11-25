@@ -1,6 +1,6 @@
 package org.stilab.metrics.counter.block.counter;
 
-import org.stilab.interfaces.BlockTypeCounter;
+import org.stilab.metrics.counter.interfaces.BlockTypeCounter;
 import org.sonar.iac.common.api.tree.Tree;
 
 public class TopBlockFileCounter implements BlockTypeCounter {

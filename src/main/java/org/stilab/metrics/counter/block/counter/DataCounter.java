@@ -1,8 +1,7 @@
 package org.stilab.metrics.counter.block.counter;
 
-import org.stilab.metrics.checker.BlockCheckerTypeImpl;
-import org.stilab.interfaces.BlockCheckerType;
-import org.stilab.interfaces.BlockTypeCounter;
+import org.stilab.metrics.counter.interfaces.BlockCheckerType;
+import org.stilab.metrics.counter.interfaces.BlockTypeCounter;
 import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.api.tree.BlockTree;
 

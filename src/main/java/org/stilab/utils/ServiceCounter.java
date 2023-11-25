@@ -12,7 +12,7 @@ public class ServiceCounter {
 
   private static ServiceCounter instance;
 
-  private static final String splitter = "\\r?\\n";
+  private static final String SPLITTER = "\\r?\\n";
 
   private ServiceCounter() {
     // Initialization code here
@@ -29,7 +29,7 @@ public class ServiceCounter {
   public String extractDesiredContent(String fileContent, int startLine, int endLine) {
 
     StringBuilder content = new StringBuilder();
-    String[] lines = fileContent.split(splitter);
+    String[] lines = fileContent.split(SPLITTER);
     int lineNumber = 0;
     for (String line : lines) {
       lineNumber++;
@@ -86,7 +86,7 @@ public class ServiceCounter {
     parsedContent = matchSingleLineCommentHash(parsedContent).replaceAll("");
     parsedContent = matchSingleLineCommentDoubleSlash(parsedContent).replaceAll("");
     int lineOfCode = 0;
-    String[] lines = parsedContent.split(splitter);
+    String[] lines = parsedContent.split(SPLITTER);
     for (String line : lines) {
       String trimmedLine = line.trim();
       if ( !trimmedLine.isEmpty() ) {
@@ -101,7 +101,7 @@ public class ServiceCounter {
   }
 
   public int countBlankLinesInsideBlock(String parsedContent) {
-    String[] lines = parsedContent.split(splitter);
+    String[] lines = parsedContent.split(SPLITTER);
     int blankLinesCount = 0;
     for (String line : lines) {
       String trimmedLine = line.trim();

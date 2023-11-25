@@ -5,11 +5,11 @@ import org.json.simple.JSONObject;
 import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.metrics.counter.block.finder.TopBlockFinder;
-import org.stilab.metrics.counter.block.metrics.BlockComplexity;
-import org.stilab.metrics.counter.block.metrics.deprecation.cloud.DeprecatedDataSource;
-import org.stilab.metrics.counter.block.metrics.deprecation.cloud.DeprecatedResource;
-import org.stilab.metrics.counter.block.metrics.deprecation.cloud.DeprecatoryServiceLocator;
+import org.stilab.metrics.counter.block.iterators.TopBlockFinder;
+import org.stilab.metrics.counter.block.visitors.BlockComplexity;
+import org.stilab.metrics.counter.block.visitors.deprecation.cloud.DeprecatedDataSource;
+import org.stilab.metrics.counter.block.visitors.deprecation.cloud.DeprecatedResource;
+import org.stilab.metrics.counter.block.visitors.deprecation.cloud.DeprecatoryServiceLocator;
 
 import java.io.File;
 import java.util.List;
