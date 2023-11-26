@@ -3,9 +3,9 @@ package org.stilab.utils.spliters;
 import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.metrics.counter.block.BlockLabelIdentifier;
-import org.stilab.metrics.counter.block.iterators.TopBlockFinder;
-import org.stilab.utils.ServiceCounter;
+import org.stilab.metrics.visitors.BlockLabelVisitor;
+import org.stilab.metrics.iterators.TopBlockFinder;
+import org.stilab.utils.counter.ServiceCounter;
 import org.stilab.utils.mapper.BlockPosition;
 
 import java.io.IOException;
@@ -46,8 +46,8 @@ public class BlockDivider {
             int endIndex   = blockTree.value().textRange().end().line();
             String blockContent = ServiceCounter.getInstance().extractDesiredContent(fileContent, startIndex, endIndex);
             // Construct the block identifier
-            BlockLabelIdentifier blockLabelIdentifier = new BlockLabelIdentifier();
-            List<String> labels = blockLabelIdentifier.identifyLabelsOfBlock(blockTree);
+            BlockLabelVisitor blockLabelVisitor = new BlockLabelVisitor();
+            List<String> labels = blockLabelVisitor.identifyLabelsOfBlock(blockTree);
             labels.add(0, blockTree.key().value());
             String blockIdentifiers = this.concatElementsOfList(labels);
             // compute the size of the block
