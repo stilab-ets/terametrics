@@ -44,7 +44,6 @@ public class BlockLevelMetricsCalculator {
         new TokenRepository(),
         new TupleRepository(),
         new TupleElementsRepository(),
-        new TupleRepository(),
         new VariablesRepository(),
         new BlockCheckTypeRepository(),
         new AttributesRepository()
