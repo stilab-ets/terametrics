@@ -1,6 +1,5 @@
 package org.stilab.metrics.visitors;
 
-import org.stilab.metrics.iterators.AttrFinderImpl;
 import org.sonar.iac.common.api.tree.Tree;
 import org.stilab.utils.spliters.ExpressionAnalyzer;
 import org.sonar.iac.terraform.api.tree.ExpressionTree;

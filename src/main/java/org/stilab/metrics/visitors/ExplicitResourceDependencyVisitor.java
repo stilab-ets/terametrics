@@ -4,7 +4,6 @@ import org.sonar.iac.terraform.api.tree.SyntaxToken;
 import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;
-import org.stilab.metrics.iterators.AttrFinderImpl;
 
 import java.util.List;
 

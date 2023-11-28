@@ -4,7 +4,7 @@ import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.metrics.visitors.BlockLabelVisitor;
-import org.stilab.metrics.iterators.TopBlockFinder;
+import org.stilab.metrics.visitors.TopBlockFinder;
 import org.stilab.utils.counter.ServiceCounter;
 import org.stilab.utils.mapper.BlockPosition;
 

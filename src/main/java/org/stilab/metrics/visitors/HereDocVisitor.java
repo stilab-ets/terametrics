@@ -3,7 +3,6 @@ package org.stilab.metrics.visitors;
 import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.LiteralExprTreeImpl;
-import org.stilab.metrics.iterators.AttrFinderImpl;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

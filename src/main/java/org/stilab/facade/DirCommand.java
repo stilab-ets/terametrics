@@ -1,7 +1,7 @@
 package org.stilab.facade;
 
-import org.stilab.metrics.granularity.dir.LocalAnalyzer;
-import org.stilab.metrics.granularity.dir.RepoAnalyzer;
+import org.stilab.granularity.dir.LocalAnalyzer;
+import org.stilab.granularity.dir.RepoAnalyzer;
 
 public class DirCommand implements Command{
 

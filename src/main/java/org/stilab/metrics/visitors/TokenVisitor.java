@@ -5,7 +5,6 @@ import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.SyntaxTokenImpl;
-import org.stilab.metrics.iterators.AttrFinderImpl;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

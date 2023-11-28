@@ -2,7 +2,7 @@ package org.stilab.facade;
 
 import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.metrics.granularity.file.FileLevelMetricsCalculator;
+import org.stilab.granularity.file.FileLevelMetricsCalculator;
 import org.stilab.utils.mapper.BlockPosition;
 import org.stilab.utils.spliters.BlockDivider;
 

@@ -1,6 +1,5 @@
 package org.stilab.metrics.visitors;
 
-import org.stilab.metrics.iterators.AttrFinderImpl;
 import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.TerraformTreeImpl;

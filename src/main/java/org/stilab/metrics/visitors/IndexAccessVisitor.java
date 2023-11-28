@@ -5,7 +5,6 @@ import org.sonar.iac.terraform.api.tree.ExpressionTree;
 import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.IndexAccessExprTreeImpl;
-import org.stilab.metrics.iterators.AttrFinderImpl;
 import org.stilab.utils.spliters.ExpressionAnalyzer;
 
 import java.math.BigDecimal;

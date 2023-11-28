@@ -4,9 +4,9 @@ import junit.framework.TestCase;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.json.simple.JSONObject;
 import org.junit.Test;
-import org.stilab.metrics.granularity.dir.DistantAnalyzer;
-import org.stilab.metrics.granularity.dir.LocalAnalyzer;
-import org.stilab.metrics.granularity.dir.RepoAnalyzer;
+import org.stilab.granularity.dir.DistantAnalyzer;
+import org.stilab.granularity.dir.LocalAnalyzer;
+import org.stilab.granularity.dir.RepoAnalyzer;
 
 
 public class DirAnalysisTest extends TestCase {
