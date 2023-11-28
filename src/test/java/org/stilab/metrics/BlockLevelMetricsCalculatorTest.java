@@ -51,16 +51,16 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
   }
 
   public void testComparisonOperatorsIdentification(){
-    ComparisonOperatorsRepository comparisonOperatorsRepository = new ComparisonOperatorsRepository();
-    metrics = comparisonOperatorsRepository.updateMetric(metrics, identifiedBlock);
+    ComparisonOperatorsCollector comparisonOperatorsCollector = new ComparisonOperatorsCollector();
+    metrics = comparisonOperatorsCollector.updateMetric(metrics, identifiedBlock);
     assertEquals(metrics.get("numComparisonOperators"), 1);
     assertEquals(metrics.get("avgComparisonOperators"), 0.04);
     assertEquals(metrics.get("maxComparisonOperators"), 1);
   }
 
   public void testConditionalExpressionIdentification(){
-    ConditionalExpressionRepository conditionalExpressionRepository = new ConditionalExpressionRepository();
-    metrics = conditionalExpressionRepository.updateMetric(metrics, identifiedBlock);
+    ConditionalExpressionCollector conditionalExpressionCollector = new ConditionalExpressionCollector();
+    metrics = conditionalExpressionCollector.updateMetric(metrics, identifiedBlock);
 
     assertEquals(metrics.get("numConditions"), 2);
     assertEquals(metrics.get("avgConditions"), 0.09);
@@ -68,8 +68,8 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
   }
 
     public void testLogicalOperatorsIdentification(){
-      LogicalOperationsRepository logicalOperationsRepository = new LogicalOperationsRepository();
-      metrics = logicalOperationsRepository.updateMetric(metrics, identifiedBlock);
+      LogicalOperationsCollector logicalOperationsCollector = new LogicalOperationsCollector();
+      metrics = logicalOperationsCollector.updateMetric(metrics, identifiedBlock);
 
       assertEquals(metrics.get("numLogiOpers"), 5);
       assertEquals(metrics.get("avgLogiOpers"), 0.22);
@@ -77,32 +77,32 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     }
 
     public void testDynamicBlocksIdentification(){
-      DynamicBlocksRepository dynamicBlocksRepository = new DynamicBlocksRepository();
-      metrics = dynamicBlocksRepository.updateMetric(metrics, identifiedBlock);
+      DynamicBlocksCollector dynamicBlocksCollector = new DynamicBlocksCollector();
+      metrics = dynamicBlocksCollector.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numDynamicBlocks"), 1);
     }
 
     public void testLookUpFunctionCallIdentification() {
-      LookUpFunctionRepository lookUpFunctionRepository = new LookUpFunctionRepository();
-      metrics = lookUpFunctionRepository.updateMetric(metrics, identifiedBlock);
+      LookUpFunctionCollector lookUpFunctionCollector = new LookUpFunctionCollector();
+      metrics = lookUpFunctionCollector.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numLookUpFunctionCall"), 0);
     }
 
     public void testDeprecatedFunctionsIdentification() {
-      DeprecatedFunctionsRepository deprecatedFunctionsRepository = new DeprecatedFunctionsRepository();
-      metrics = deprecatedFunctionsRepository.updateMetric(metrics, identifiedBlock);
+      DeprecatedFunctionsCollector deprecatedFunctionsCollector = new DeprecatedFunctionsCollector();
+      metrics = deprecatedFunctionsCollector.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numDeprecatedFunctions"), 0);
     }
 
     public void testDebuggingFunctionsIdentification() {
-      DebuggingFunctionRepository debuggingFunctionRepository = new DebuggingFunctionRepository();
-      metrics = debuggingFunctionRepository.updateMetric(metrics, identifiedBlock);
+      DebuggingFunctionCollector debuggingFunctionCollector = new DebuggingFunctionCollector();
+      metrics = debuggingFunctionCollector.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numDebuggingFunctions"), 2);
     }
 
     public void testNestedBlocksIdentification(){
-      NestedBlockRepository nestedBlockRepository = new NestedBlockRepository();
-      metrics = nestedBlockRepository.updateMetric(metrics, identifiedBlock);
+      NestedBlockCollector nestedBlockCollector = new NestedBlockCollector();
+      metrics = nestedBlockCollector.updateMetric(metrics, identifiedBlock);
 
       assertEquals(metrics.get("numNestedBlocks"), 3);
       assertEquals(metrics.get("avgDepthNestedBlocks"), 16.33);
@@ -112,8 +112,8 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testFuncCallIdentification(){
 
-      FunctionCallExpressionRepository functionCallExpressionRepository = new FunctionCallExpressionRepository();
-      metrics = functionCallExpressionRepository.updateMetric(metrics, identifiedBlock);
+      FunctionCallExpressionCollector functionCallExpressionCollector = new FunctionCallExpressionCollector();
+      metrics = functionCallExpressionCollector.updateMetric(metrics, identifiedBlock);
 
       assertEquals(metrics.get("numFunctionCall"), 9);
       assertEquals(metrics.get("avgFunctionCall"), 0.39);
@@ -122,8 +122,8 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testParametersIdentification(){
 
-      FunctionParametersRepository functionParametersRepository = new FunctionParametersRepository();
-      metrics = functionParametersRepository.updateMetric(metrics, identifiedBlock);
+      FunctionParametersCollector functionParametersCollector = new FunctionParametersCollector();
+      metrics = functionParametersCollector.updateMetric(metrics, identifiedBlock);
 
       assertEquals(metrics.get("numParams"), 17);
       assertEquals(metrics.get("avgParams"), 1.89);
@@ -132,8 +132,8 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     }
 
     public void testHereDocIdentification(){
-      HereDocRepository hereDocRepository = new HereDocRepository();
-      metrics = hereDocRepository.updateMetric(metrics, identifiedBlock);
+      HereDocCollector hereDocCollector = new HereDocCollector();
+      metrics = hereDocCollector.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numHereDocs"), 4);
       assertEquals(metrics.get("avgHereDocs"), 0.17);
 //      assertEquals(metrics.get("maxHereDocs"), 1);
@@ -149,8 +149,8 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     }
 
     public void testIndexAccessIdentification(){
-        IndexAccessRepository indexAccessRepository = new IndexAccessRepository();
-        metrics = indexAccessRepository.updateMetric(metrics, identifiedBlock);
+        IndexAccessCollector indexAccessCollector = new IndexAccessCollector();
+        metrics = indexAccessCollector.updateMetric(metrics, identifiedBlock);
         assertEquals(metrics.get("numIndexAccess"), 2);
         assertEquals(metrics.get("avgIndexAccess"), 0.09);
         assertEquals(metrics.get("maxIndexAccess"), 1);
@@ -158,8 +158,8 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testLiteralExpressionIdentification(){
 
-      LiteralExpressionRepository literalExpressionRepository = new LiteralExpressionRepository();
-      metrics = literalExpressionRepository.updateMetric(metrics, identifiedBlock);
+      LiteralExpressionCollector literalExpressionCollector = new LiteralExpressionCollector();
+      metrics = literalExpressionCollector.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numLiteralExpression"), 29);
       //  Number of String values means number of hard coded things
       assertEquals(metrics.get("numStringValues"), 16);
@@ -174,16 +174,16 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testLoopsExpressionIdentification() {
 
-        LoopsExpressionRepository loopsExpressionRepository = new LoopsExpressionRepository();
-        metrics = loopsExpressionRepository.updateMetric(metrics, identifiedBlock);
+        LoopsExpressionCollector loopsExpressionCollector = new LoopsExpressionCollector();
+        metrics = loopsExpressionCollector.updateMetric(metrics, identifiedBlock);
         assertEquals(metrics.get("numLoops"), 3);
         assertEquals(metrics.get("avgLoops"), 0.13);
         assertEquals(metrics.get("maxLoops"), 2);
     }
 
     public void testMathOperatorsIdentification(){
-      MathOperationsRepository mathOperationsRepository = new MathOperationsRepository();
-      metrics = mathOperationsRepository.updateMetric(metrics, identifiedBlock);
+      MathOperationsCollector mathOperationsCollector = new MathOperationsCollector();
+      metrics = mathOperationsCollector.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numMathOperations"), 2);
       assertEquals(metrics.get("avgMathOperations"), 0.09);
       assertEquals(metrics.get("maxMathOperations"), 2);
@@ -191,23 +191,23 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     }
 
     public void testMCCabCCIdentification() {
-        MccabeCCRepository mccabeCCRepository = new MccabeCCRepository();
-        metrics = mccabeCCRepository.updateMetric(metrics, identifiedBlock);
+        MccabeCCCollector mccabeCCCollector = new MccabeCCCollector();
+        metrics = mccabeCCCollector.updateMetric(metrics, identifiedBlock);
         assertEquals(metrics.get("avgMccabeCC"), 1.22);
         assertEquals(metrics.get("sumMccabeCC"), 28);
         assertEquals(metrics.get("maxMccabeCC"), 3);
     }
 
     public void testMetaArgumentsIdentification() {
-        MetaArgumentRepository metaArgumentRepository = new MetaArgumentRepository();
-        metrics = metaArgumentRepository.updateMetric(metrics, identifiedBlock);
+        MetaArgumentCollector metaArgumentCollector = new MetaArgumentCollector();
+        metrics = metaArgumentCollector.updateMetric(metrics, identifiedBlock);
         assertEquals(metrics.get("numMetaArg"), 2);
     }
 
     public void testObjectWrapperIdentification() {
 
-      ObjectWrapperRepository objectWrapperRepository = new ObjectWrapperRepository();
-      metrics = objectWrapperRepository.updateMetric(metrics, identifiedBlock);
+      ObjectWrapperCollector objectWrapperCollector = new ObjectWrapperCollector();
+      metrics = objectWrapperCollector.updateMetric(metrics, identifiedBlock);
        assertEquals(metrics.get("numObjects"), 5);
        assertEquals(metrics.get("avgObjects"), 0.22);
        assertEquals(metrics.get("maxObjects"), 2);
@@ -215,8 +215,8 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testObjectWrapperElementsIdentification(){
 
-      ObjectWrapperElementRepository objectWrapperElementRepository = new ObjectWrapperElementRepository();
-      metrics = objectWrapperElementRepository.updateMetric(metrics, identifiedBlock);
+      ObjectWrapperElementCollector objectWrapperElementCollector = new ObjectWrapperElementCollector();
+      metrics = objectWrapperElementCollector.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numElemObjects"), 7);
       assertEquals(metrics.get("avgElemObjects"), 1.4);
       assertEquals(metrics.get("maxElemObjects"), 2);
@@ -224,8 +224,8 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     }
 
     public void testReferenceIdentificationIdentification(){
-        ReferenceRepository referenceRepository = new ReferenceRepository();
-        metrics = referenceRepository.updateMetric(metrics, identifiedBlock);
+        ReferenceCollector referenceCollector = new ReferenceCollector();
+        metrics = referenceCollector.updateMetric(metrics, identifiedBlock);
 
         assertEquals(metrics.get("numReferences"), 34);
         assertEquals(metrics.get("avgReferences"), 1.48);
@@ -233,8 +233,8 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
   }
 
     public void testVariableIdentificationIdentification(){
-       VariablesRepository variablesRepository = new VariablesRepository();
-       metrics = variablesRepository.updateMetric(metrics, identifiedBlock);
+       VariablesCollector variablesCollector = new VariablesCollector();
+       metrics = variablesCollector.updateMetric(metrics, identifiedBlock);
 
        assertEquals(metrics.get("numVars"), 35);
        assertEquals(metrics.get("avgNumVars"), 1.52);
@@ -243,9 +243,9 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testSplatExpressionIdentification(){
 
-      SplatExpressionRepository splatExpressionRepository = new SplatExpressionRepository();
+      SplatExpressionCollector splatExpressionCollector = new SplatExpressionCollector();
 
-      metrics = splatExpressionRepository.updateMetric(metrics, identifiedBlock);
+      metrics = splatExpressionCollector.updateMetric(metrics, identifiedBlock);
 
       assertEquals(metrics.get("numSplatExpressions"), 2);
       assertEquals(metrics.get("avgSplatExpressions"), 0.09);
@@ -253,18 +253,18 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     }
 
     public void testTemplateExpressionIdentification(){
-        TemplateExpressionRepository templateExpressionRepository = new TemplateExpressionRepository();
+        TemplateExpressionCollector templateExpressionCollector = new TemplateExpressionCollector();
 
-        metrics = templateExpressionRepository.updateMetric(metrics, identifiedBlock);
+        metrics = templateExpressionCollector.updateMetric(metrics, identifiedBlock);
         assertEquals(metrics.get("numTemplateExpression"), 3);
         assertEquals(metrics.get("avgTemplateExpression"), 0.13);
 
     }
 
     public void testTextEntropyMeasure(){
-      TokenRepository tokenRepository = new TokenRepository();
+      TokenCollector tokenCollector = new TokenCollector();
 
-      metrics = tokenRepository.updateMetric(metrics, identifiedBlock);
+      metrics = tokenCollector.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("textEntropyMeasure"),  5.41);
       assertEquals(metrics.get("minAttrsTextEntropy"), 2.85);
       assertEquals(metrics.get("maxAttrsTextEntropy"), 5.48);
@@ -278,8 +278,8 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testTuplesIdentification() {
 
-        TupleRepository tupleRepository = new TupleRepository();
-        metrics = tupleRepository.updateMetric(metrics, identifiedBlock);
+        TupleCollector tupleCollector = new TupleCollector();
+        metrics = tupleCollector.updateMetric(metrics, identifiedBlock);
 
         assertEquals(metrics.get("numTuples"), 7);
         assertEquals(metrics.get("avgTuples"), 0.3);
@@ -289,8 +289,8 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testTupleElementsIdentification() {
 
-      TupleElementsRepository tupleElementsRepository = new TupleElementsRepository();
-      metrics = tupleElementsRepository.updateMetric(metrics, identifiedBlock);
+      TupleElementsCollector tupleElementsCollector = new TupleElementsCollector();
+      metrics = tupleElementsCollector.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numElemTuples"), 12);
       assertEquals(metrics.get("avgElemTuples"), 1.71);
       assertEquals(metrics.get("maxElemTuples"), 5);
@@ -298,9 +298,9 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testComplexityBlock() {
 
-      BlockComplexityRepository blockComplexityRepository = new BlockComplexityRepository(blockComplexity.getBlockContent());
+      BlockComplexityCollector blockComplexityCollector = new BlockComplexityCollector(blockComplexity.getBlockContent());
 
-      metrics = blockComplexityRepository.updateMetric(metrics, identifiedBlock);
+      metrics = blockComplexityCollector.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("depthOfBlock"), 157);
       assertEquals(metrics.get("loc"), 133);
       assertEquals(metrics.get("nloc"), 24);
@@ -308,8 +308,8 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testBlockCheckerType() {
 
-      BlockCheckTypeRepository blockCheckTypeRepository = new BlockCheckTypeRepository();
-      metrics = blockCheckTypeRepository.updateMetric(metrics, identifiedBlock);
+      BlockCheckTypeCollector blockCheckTypeCollector = new BlockCheckTypeCollector();
+      metrics = blockCheckTypeCollector.updateMetric(metrics, identifiedBlock);
 
       assertEquals(metrics.get("isResource"), 1);
       assertEquals(metrics.get("isModule"), 0);
@@ -323,22 +323,22 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     }
 
     public void testNumberOfAttributes(){
-      AttributesRepository attrFinder = new AttributesRepository();
+      AttributesCollector attrFinder = new AttributesCollector();
       metrics = attrFinder.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numAttrs"), 23);
     }
 
     public void testExplicitResourceDependency(){
-      ExplicitResourceDependencyRepository explicitResourceDependencyRepository = new ExplicitResourceDependencyRepository();
-      metrics = explicitResourceDependencyRepository.updateMetric(metrics, identifiedBlock);
+      ExplicitResourceDependencyCollector explicitResourceDependencyCollector = new ExplicitResourceDependencyCollector();
+      metrics = explicitResourceDependencyCollector.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numExplicitResourceDependency"), 0);
     }
 
     public void testImplicitResourceDependency(){
 
-      ImplicitResourceRepository implicitResourceRepository = new ImplicitResourceRepository();
+      ImplicitResourceCollector implicitResourceCollector = new ImplicitResourceCollector();
 
-      metrics = implicitResourceRepository.updateMetric(metrics, identifiedBlock);
+      metrics = implicitResourceCollector.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numImplicitDependentResources"), 3);
       assertEquals(metrics.get("numImplicitDependentData"), 1);
       assertEquals(metrics.get("numImplicitDependentModules"), 0);
@@ -350,8 +350,8 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testEmptyStringIdentification() {
 
-      SpecialStringRepository specialStringRepository = new SpecialStringRepository();
-      metrics = specialStringRepository.updateMetric(metrics, identifiedBlock);
+      SpecialStringCollector specialStringCollector = new SpecialStringCollector();
+      metrics = specialStringCollector.updateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numEmptyString"), 1);
       assertEquals(metrics.get("numWildCardSuffixString"), 1);
       assertEquals(metrics.get("numStarString"), 1);
