@@ -15,7 +15,15 @@ public class ReferenceVisitor {
     private List<TerraformTreeImpl> pointers = new ArrayList<>();
     private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
-    public List<TerraformTreeImpl> visit(AttributeTreeImpl attributeTree) {
+    public List<AttributeTreeImpl> getAttributes() {
+      return attributes;
+    }
+
+    public List<TerraformTreeImpl> getPointers() {
+      return pointers;
+    }
+
+  public List<TerraformTreeImpl> visit(AttributeTreeImpl attributeTree) {
       ExpressionTree expressionTree = attributeTree.value();
       List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
       List<TerraformTreeImpl> terraformTrees = new ArrayList<>();

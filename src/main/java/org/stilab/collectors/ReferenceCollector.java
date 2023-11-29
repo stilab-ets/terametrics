@@ -2,6 +2,7 @@ package org.stilab.collectors;
 
 import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.*;
+import org.stilab.calculators.ReferenceCalculator;
 import org.stilab.visitors.ReferenceVisitor;
 
 public class ReferenceCollector implements Decorator {
@@ -10,12 +11,15 @@ public class ReferenceCollector implements Decorator {
     @Override
     public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-      ReferenceVisitor referenceVisitor = new ReferenceVisitor();
+//      ReferenceVisitor referenceVisitor = new ReferenceVisitor();
+//
+//      referenceVisitor.filterAttributeAccessFromBlock(identifiedBlock);
 
-      referenceVisitor.filterAttributeAccessFromBlock(identifiedBlock);
-      int numReferences = referenceVisitor.totalAttributeAccess();
-      double avgReferences = referenceVisitor.avgAttributeAccess();
-      int maxReferences = referenceVisitor.maxAttributeAccess();
+      ReferenceCalculator referenceCalculator = new ReferenceCalculator(identifiedBlock);
+
+      int numReferences = referenceCalculator.totalAttributeAccess();
+      double avgReferences = referenceCalculator.avgAttributeAccess();
+      int maxReferences = referenceCalculator.maxAttributeAccess();
 
       metrics.put("numReferences", numReferences);
       metrics.put("avgReferences", avgReferences);
