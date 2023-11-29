@@ -1,18 +1,18 @@
 package org.stilab;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
-import org.stilab.facade.Command;
-import org.stilab.facade.DirCommand;
-import org.stilab.facade.FileCommand;
-import org.stilab.facade.UriCommand;
+import org.stilab.parser.facade.Command;
+import org.stilab.parser.facade.DirCommand;
+import org.stilab.parser.facade.FileCommand;
+import org.stilab.parser.facade.UriCommand;
 
 public class Bootstrap {
 
 
     @Parameter(names = {"-f", "--file"}, description = "Absolute Path and name of file to use")
     private String file;
-//    @Parameter(names = {"-t", "--target"}, description = "Absolute Path Target to save the generated measures", required = true)
-//    private String target;
+    @Parameter(names = {"-t", "--target"}, description = "Absolute Path Target to save the generated measures", required = true)
+    private String target;
     @Parameter(names = {"-h", "--help"}, description = "Help/Usage", help = true)
     private boolean help;
     @Parameter(names = {"-b", "--bloc"}, description = "Measure Quality Metrics for a given '.tf' file")
@@ -31,7 +31,7 @@ public class Bootstrap {
 
         final JCommander commander = JCommander.newBuilder().programName("Terraform Metrics Based-AST").addObject(this).build();
         commander.parse(arguments);
-      System.out.println("Fake");
+
         Command command = null;
 
         if (help) { commander.usage();}

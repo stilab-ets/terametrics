@@ -5,10 +5,11 @@ import org.json.simple.JSONObject;
 import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.metrics.collector.*;
-import org.stilab.metrics.visitors.BlockComplexity;
-import org.stilab.metrics.visitors.BlockMetaInfo;
-import org.stilab.metrics.visitors.TopBlockFinder;
+import org.stilab.collectors.*;
+import org.stilab.metrics.collectors.*;
+import org.stilab.visitors.BlockComplexity;
+import org.stilab.visitors.BlockMetaInfo;
+import org.stilab.visitors.TopBlockFinder;
 
 import java.io.File;
 import java.util.List;

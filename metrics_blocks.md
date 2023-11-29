@@ -17,7 +17,7 @@
 | Code        | "maxLogiOpers"                  | max number of logical operators per attribute in the block   |               |
 | Code        | "numDynamicBlocks"              | total number of dynamic blocks in the block                  |               |
 | Code        | "numNestedBlocks"               | total number of nested blocks in the block                   |               |
-| Code        | numFunctionCall"                | total number of function invocations in the block            |               |
+| Code        | "numFunctionCall"                | total number of function invocations in the block            |               |
 | Code        | "avgFunctionCall"               | average number of function invocations in the block per attribute |               |
 | Code        | "maxFunctionCall"               | max number of function invocations in the block per attribute |               |
 | Code        | "numParams"                     | total number of parameters in the block contained in the function invocation |               |

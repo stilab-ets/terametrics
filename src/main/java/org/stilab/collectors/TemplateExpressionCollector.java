@@ -1,0 +1,24 @@
+package org.stilab.collectors;
+
+import org.json.simple.JSONObject;
+import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
+import org.stilab.visitors.TemplateExpressionVisitor;
+
+public class TemplateExpressionCollector implements Repository {
+
+  @Override
+  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+
+      TemplateExpressionVisitor templateExpressionVisitor = new TemplateExpressionVisitor();
+
+      templateExpressionVisitor.filterTemplateExpressionsFromBlock(identifiedBlock);
+      int numTemplateExpression = templateExpressionVisitor.totalNumberOfTemplateExpressionsPerBlock();
+      double avgNumTemplateExpression = templateExpressionVisitor.avgNumOfTemplateExpressionPerBlock();
+
+      metrics.put("numTemplateExpression", numTemplateExpression);
+      metrics.put("avgTemplateExpression", avgNumTemplateExpression);
+
+      return metrics;
+    }
+
+}

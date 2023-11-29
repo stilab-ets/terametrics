@@ -6,9 +6,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.granularity.file.FileLevelMetricsCalculator;
-import org.stilab.utils.spliters.BlockDivider;
-import org.stilab.utils.mapper.BlockPosition;
+import org.stilab.parser.granularity.file.FileLevelMetricsCalculator;
+import org.stilab.parser.spliters.BlockDivider;
+import org.stilab.parser.mapper.BlockPosition;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
