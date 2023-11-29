@@ -12,7 +12,11 @@ import java.util.stream.Collectors;
 
 public class ObjectWrapperElementVisitor {
 
-  List<TerraformTreeImpl> objects = new ArrayList<>();
+  List<TerraformTreeImpl> objects;
+
+  public List<TerraformTreeImpl> getObjects() {
+    return objects;
+  }
 
   public ObjectWrapperElementVisitor(List<TerraformTreeImpl> objects) {
         this.objects = objects;
