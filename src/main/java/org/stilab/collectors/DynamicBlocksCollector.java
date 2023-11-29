@@ -4,11 +4,11 @@ import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.visitors.DynamicBlocksVisitor;
 
-public class DynamicBlocksCollector implements Repository {
+public class DynamicBlocksCollector implements Decorator {
 
 
     @Override
-    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+    public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
       DynamicBlocksVisitor dynamicBlocksVisitor = new DynamicBlocksVisitor();
       dynamicBlocksVisitor.filterDynamicBlock(identifiedBlock);

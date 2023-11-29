@@ -3,7 +3,6 @@ package org.stilab.parser.granularity.block;
 import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.collectors.*;
-import org.stilab.metrics.collectors.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +13,7 @@ public class BlockLevelMetricsCalculator {
 
       JSONObject metrics = new JSONObject();
 
-      List<Repository> repositories = Arrays.asList(
+      List<Decorator> repositories = Arrays.asList(
         new BlockComplexityCollector(blockAsString),
         new BlockMetaInfoCollector(),
         new ComparisonOperatorsCollector(),
@@ -50,8 +49,8 @@ public class BlockLevelMetricsCalculator {
         new AttributesCollector()
       );
 
-      for (Repository repository: repositories) {
-         repository.updateMetric(metrics, identifiedBlock);
+      for (Decorator decorator : repositories) {
+         decorator.decorateMetric(metrics, identifiedBlock);
       }
 
 

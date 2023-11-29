@@ -7,10 +7,10 @@ import org.stilab.visitors.MccabeCC;
 
 import java.util.List;
 
-public class MccabeCCCollector implements Repository {
+public class MccabeCCCollector implements Decorator {
 
     @Override
-    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+    public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
 
       MccabeCC mccabeCC = new MccabeCC();

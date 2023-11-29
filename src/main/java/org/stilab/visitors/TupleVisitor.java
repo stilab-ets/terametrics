@@ -19,7 +19,15 @@ public class TupleVisitor {
 
     private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
-    public List<TerraformTreeImpl> visit(AttributeTreeImpl attributeTree) {
+    public List<AttributeTreeImpl> getAttributes() {
+      return attributes;
+    }
+
+    public List<TerraformTreeImpl> getTuples() {
+      return tuples;
+    }
+
+  public List<TerraformTreeImpl> visit(AttributeTreeImpl attributeTree) {
       ExpressionTree expressionTree = attributeTree.value();
       List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
       Stream<TerraformTreeImpl> localTuples = trees.stream().filter(TupleTreeImpl.class::isInstance)
@@ -44,29 +52,29 @@ public class TupleVisitor {
       return tuples;
     }
 
-    public int totalNumberOfTuples() {
-      return this.tuples.size();
-    }
-
-    public double avgNumberOfTuples() {
-      if (!attributes.isEmpty()) {
-        double avgNumberOfTuples = (double) totalNumberOfTuples() / attributes.size();
-        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfTuples).setScale(2, RoundingMode.HALF_UP);
-        return roundedAverage.doubleValue();
-      }
-      return 0.0;
-    }
-
-    public int maxNumberOfTuples() {
-      if (attributes.isEmpty()){ return 0; }
-      int max = visit(attributes.get(0)).size();
-      for (AttributeTreeImpl attribute: attributes) {
-        int value = visit(attribute).size();
-        if (value > max) {
-          max = value;
-        }
-      }
-      return max;
-    }
+//    public int totalNumberOfTuples() {
+//      return this.tuples.size();
+//    }
+//
+//    public double avgNumberOfTuples() {
+//      if (!attributes.isEmpty()) {
+//        double avgNumberOfTuples = (double) totalNumberOfTuples() / attributes.size();
+//        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfTuples).setScale(2, RoundingMode.HALF_UP);
+//        return roundedAverage.doubleValue();
+//      }
+//      return 0.0;
+//    }
+//
+//    public int maxNumberOfTuples() {
+//      if (attributes.isEmpty()){ return 0; }
+//      int max = visit(attributes.get(0)).size();
+//      for (AttributeTreeImpl attribute: attributes) {
+//        int value = visit(attribute).size();
+//        if (value > max) {
+//          max = value;
+//        }
+//      }
+//      return max;
+//    }
 
 }

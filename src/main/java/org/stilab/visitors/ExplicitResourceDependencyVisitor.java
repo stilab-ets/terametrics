@@ -11,15 +11,15 @@ public class ExplicitResourceDependencyVisitor {
 
     public int numberOfDependentResources(List<AttributeTreeImpl> attributes) {
 
-      for (AttributeTreeImpl attribute: attributes) {
-        SyntaxToken token = attribute.key();
-        if (token.value().equals("depends_on")) {
-          TupleVisitor tupleVisitor = new TupleVisitor();
-          List<TerraformTreeImpl> tuples = tupleVisitor.visit(attribute);
-          TupleElementsVisitor tupleIdentifiers = new TupleElementsVisitor(tuples);
-          return tupleIdentifiers.getTotalNumberOfElementsOfDifferentTuples();
-        }
-      }
+//      for (AttributeTreeImpl attribute: attributes) {
+//        SyntaxToken token = attribute.key();
+//        if (token.value().equals("depends_on")) {
+//          TupleVisitor tupleVisitor = new TupleVisitor();
+//          List<TerraformTreeImpl> tuples = tupleVisitor.visit(attribute);
+//          TupleElementsVisitor tupleIdentifiers = new TupleElementsVisitor(tuples);
+//          return tupleIdentifiers.getTotalNumberOfElementsOfDifferentTuples();
+//        }
+//      }
       return 0;
     }
 

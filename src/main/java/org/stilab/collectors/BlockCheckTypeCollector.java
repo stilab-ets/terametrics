@@ -8,10 +8,10 @@ import org.stilab.visitors.BlockCheckerTypeVisitor;
 
 import java.util.List;
 
-public class BlockCheckTypeCollector implements Repository{
+public class BlockCheckTypeCollector implements Decorator {
 
   @Override
-  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
+  public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
 
     AttrFinderImpl attrFinder = new AttrFinderImpl();
 

@@ -4,13 +4,13 @@ import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.visitors.BlockComplexity;
 
-public class BlockComplexityCollector implements Repository {
+public class BlockComplexityCollector implements Decorator {
       private String blockAsString;
       public BlockComplexityCollector(String blockAsString) {
         this.blockAsString = blockAsString;
       }
       @Override
-      public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+      public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
         BlockComplexity blockComplexity = new BlockComplexity(identifiedBlock, blockAsString);
         int depthOfBlock = blockComplexity.depthOfBlock();
         metrics.put("depthOfBlock", depthOfBlock);

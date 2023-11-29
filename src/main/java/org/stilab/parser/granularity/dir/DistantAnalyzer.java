@@ -20,7 +20,7 @@ public class DistantAnalyzer extends RepoAnalyzer{
     }
 
     private Git downloadRepo() throws GitAPIException {
-      // Clone Repository
+      // Clone Decorator
       return Git.cloneRepository()
         .setURI(this.REPO_URL)
         .setDirectory(new File(this.LOCAL_PATH)).call();

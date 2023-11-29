@@ -8,10 +8,10 @@ import org.stilab.visitors.ObjectWrapperVisitor;
 
 import java.util.List;
 
-public class ObjectWrapperElementCollector implements Repository {
+public class ObjectWrapperElementCollector implements Decorator {
 
     @Override
-    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+    public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
 
       ObjectWrapperVisitor objectWrapperVisitor = new ObjectWrapperVisitor();

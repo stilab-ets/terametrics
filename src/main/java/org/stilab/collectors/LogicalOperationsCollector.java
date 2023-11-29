@@ -4,10 +4,10 @@ import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.*;
 import org.stilab.visitors.LogicalOperationsVisitor;
 
-public class LogicalOperationsCollector implements Repository {
+public class LogicalOperationsCollector implements Decorator {
 
   @Override
-  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
+  public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
 
     LogicalOperationsVisitor logicalOperationsVisitor = new LogicalOperationsVisitor();
 

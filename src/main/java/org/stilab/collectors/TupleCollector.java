@@ -2,19 +2,24 @@ package org.stilab.collectors;
 
 import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.*;
+import org.stilab.calculators.TupleCalculator;
 import org.stilab.visitors.TupleVisitor;
 
-public class TupleCollector implements Repository {
+public class TupleCollector implements Decorator {
 
   @Override
-  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+  public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-      TupleVisitor tupleVisitor = new TupleVisitor();
+//      TupleVisitor tupleVisitor = new TupleVisitor();
+//
+//      tupleVisitor.filterTuplesFromBlock(identifiedBlock);
 
-      tupleVisitor.filterTuplesFromBlock(identifiedBlock);
-      int numTuples = tupleVisitor.totalNumberOfTuples();
-      double avgTuples = tupleVisitor.avgNumberOfTuples();
-      int maxTuples = tupleVisitor.maxNumberOfTuples();
+
+      TupleCalculator tupleCalculator = new TupleCalculator(identifiedBlock);
+      int numTuples = tupleCalculator.totalNumberOfTuples();
+      double avgTuples = tupleCalculator.avgNumberOfTuples();
+      int maxTuples = tupleCalculator.maxNumberOfTuples();
+
 
       metrics.put("numTuples", numTuples);
       metrics.put("avgTuples", avgTuples);

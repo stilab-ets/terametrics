@@ -4,10 +4,10 @@ import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.visitors.FunctionParametersVisitor;
 
-public class FunctionParametersCollector implements Repository {
+public class FunctionParametersCollector implements Decorator {
 
     @Override
-    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+    public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
       FunctionParametersVisitor functionParametersVisitor = new FunctionParametersVisitor();
 

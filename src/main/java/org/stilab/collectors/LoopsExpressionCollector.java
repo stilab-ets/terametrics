@@ -4,10 +4,10 @@ import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.*;
 import org.stilab.visitors.LoopsExpressionVisitor;
 
-public class LoopsExpressionCollector implements Repository {
+public class LoopsExpressionCollector implements Decorator {
 
     @Override
-    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+    public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
       LoopsExpressionVisitor loopsExpressionVisitor = new LoopsExpressionVisitor();
 

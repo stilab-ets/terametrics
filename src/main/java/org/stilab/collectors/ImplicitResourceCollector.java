@@ -5,11 +5,11 @@ import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.visitors.ImplicitResourceDependencyVisitor;
 import org.stilab.visitors.VariablesVisitor;
 
-public class ImplicitResourceCollector implements Repository {
+public class ImplicitResourceCollector implements Decorator {
 
 
     @Override
-    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
+    public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
       ImplicitResourceDependencyVisitor implicitResourceRepository = new ImplicitResourceDependencyVisitor();
 
       VariablesVisitor variablesVisitor = new VariablesVisitor();

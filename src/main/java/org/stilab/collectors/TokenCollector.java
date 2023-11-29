@@ -2,35 +2,35 @@ package org.stilab.collectors;
 
 import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
+import org.stilab.calculators.TokenCalculator;
 import org.stilab.visitors.TokenVisitor;
 
 import java.util.List;
 import java.util.Map;
 
-public class TokenCollector implements Repository {
+public class TokenCollector implements Decorator {
 
   @Override
-  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+  public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-    TokenVisitor tokenVisitor= new TokenVisitor();
+    TokenCalculator tokenCalculator = new TokenCalculator();
 
-    List<Double> textEntropyPerAttrs = tokenVisitor.textEntropyPerAttrs(identifiedBlock);
-    List<Character> characters = tokenVisitor.textualize(identifiedBlock);
+    List<Double> textEntropyPerAttrs = tokenCalculator.textEntropyPerAttrs(identifiedBlock);
+    double minAttrsTextEntropy = tokenCalculator.minAttrsTextEntropy(textEntropyPerAttrs);
+    double maxAttrsTextEntropy = tokenCalculator.maxAttrsTextEntropy(textEntropyPerAttrs);
+    double avgAttrsTextEntropy = tokenCalculator.avgAttrsTextEntropy(textEntropyPerAttrs);
 
-    double minAttrsTextEntropy = tokenVisitor.minAttrsTextEntropy(textEntropyPerAttrs);
-    double maxAttrsTextEntropy = tokenVisitor.maxAttrsTextEntropy(textEntropyPerAttrs);
-    double avgAttrsTextEntropy = tokenVisitor.avgAttrsTextEntropy(textEntropyPerAttrs);
+    List<Integer> tokensPerAttrs = tokenCalculator.tokensPerAttrs(identifiedBlock);
+    int numTokens = tokenCalculator.numberTokens(identifiedBlock);
+    int minTokensPerAttr = tokenCalculator.minAttrsTokens(tokensPerAttrs);
+    int maxTokensPerAttr = tokenCalculator.maxAttrsTokens(tokensPerAttrs);
+    double avgTokensPerAttr = tokenCalculator.avgAttrsTokens(tokensPerAttrs);
 
-    List<Integer> tokensPerAttrs = tokenVisitor.tokensPerAttrs(identifiedBlock);
-    int numTokens = tokenVisitor.numberTokens(identifiedBlock);
-    int minTokensPerAttr = tokenVisitor.minAttrsTokens(tokensPerAttrs);
-    int maxTokensPerAttr = tokenVisitor.maxAttrsTokens(tokensPerAttrs);
-    double avgTokensPerAttr = tokenVisitor.avgAttrsTokens(tokensPerAttrs);
-
+    List<Character> characters = tokenCalculator.getTokenVisitor().textualize(identifiedBlock);
     // For each attribute, measure its entropy
     // Take the max_, min_, avg_
-    Map<Character, Integer> characterFrequency = tokenVisitor.getTextEntropy().countCharacterFrequency(characters);
-    double textEntropyMeasure = tokenVisitor.getTextEntropy().textEntropy(characterFrequency);
+    Map<Character, Integer> characterFrequency = tokenCalculator.getTokenVisitor().getTextEntropy().countCharacterFrequency(characters);
+    double textEntropyMeasure = tokenCalculator.getTokenVisitor().getTextEntropy().textEntropy(characterFrequency);
 
     metrics.put("textEntropyMeasure",  textEntropyMeasure);
     metrics.put("minAttrsTextEntropy", minAttrsTextEntropy);

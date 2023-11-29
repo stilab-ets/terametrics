@@ -18,7 +18,15 @@ public class TemplateExpressionVisitor {
     private List<TemplateExpressionTreeImpl> templateExpressionPerBlock = new ArrayList<>();
     private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
-    public List<TemplateExpressionTreeImpl> visit(AttributeTreeImpl attributeTree) {
+  public List<AttributeTreeImpl> getAttributes() {
+    return attributes;
+  }
+
+  public List<TemplateExpressionTreeImpl> getTemplateExpressionPerBlock() {
+    return templateExpressionPerBlock;
+  }
+
+  public List<TemplateExpressionTreeImpl> visit(AttributeTreeImpl attributeTree) {
       ExpressionTree expressionTree = attributeTree.value();
       List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
       return trees.stream()

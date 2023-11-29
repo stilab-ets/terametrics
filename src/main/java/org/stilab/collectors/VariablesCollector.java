@@ -4,10 +4,10 @@ import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.calculators.VariablesCalculator;
 
-public class VariablesCollector implements Repository {
+public class VariablesCollector implements Decorator {
 
   @Override
-  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+  public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
       VariablesCalculator variablesCalculator = new VariablesCalculator(identifiedBlock);
 

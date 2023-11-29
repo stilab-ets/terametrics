@@ -6,7 +6,7 @@ import org.stilab.visitors.BlockLabelVisitor;
 
 import java.util.List;
 
-public class BlockMetaInfoCollector implements Repository {
+public class BlockMetaInfoCollector implements Decorator {
     private static final String IMPACTED_BLOCK_TYPE = "impacted_block_type";
     private static final String BLOCK_TYPE = "block";
     private static final String START_BLOCK = "start_block";
@@ -20,7 +20,7 @@ public class BlockMetaInfoCollector implements Repository {
     }
 
   @Override
-  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+  public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
       BlockLabelVisitor blockLabelVisitor = new BlockLabelVisitor();
       List<String> labels = blockLabelVisitor.identifyLabelsOfBlock(identifiedBlock);

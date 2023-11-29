@@ -6,9 +6,9 @@ import org.stilab.visitors.NestedBlockVisitor;
 
 import java.util.List;
 
-public class NestedBlockCollector implements Repository{
+public class NestedBlockCollector implements Decorator {
   @Override
-  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
+  public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
 
     NestedBlockVisitor nestedBlockVisitor = new NestedBlockVisitor();
 

@@ -5,10 +5,10 @@ import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.visitors.FunctionCallExpressionVisitor;
 import org.stilab.visitors.LookUpFunctionVisitor;
 
-public class LookUpFunctionCollector implements Repository {
+public class LookUpFunctionCollector implements Decorator {
 
     @Override
-    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
+    public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
 
       FunctionCallExpressionVisitor functionCallExpressionVisitor = new FunctionCallExpressionVisitor();
 

@@ -6,7 +6,6 @@ import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.parser.HclParser;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.collectors.*;
-import org.stilab.metrics.collectors.*;
 import org.stilab.visitors.BlockComplexity;
 import org.stilab.visitors.BlockMetaInfo;
 import org.stilab.visitors.TopBlockFinder;
@@ -53,7 +52,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
   public void testComparisonOperatorsIdentification(){
     ComparisonOperatorsCollector comparisonOperatorsCollector = new ComparisonOperatorsCollector();
-    metrics = comparisonOperatorsCollector.updateMetric(metrics, identifiedBlock);
+    metrics = comparisonOperatorsCollector.decorateMetric(metrics, identifiedBlock);
     assertEquals(metrics.get("numComparisonOperators"), 1);
     assertEquals(metrics.get("avgComparisonOperators"), 0.04);
     assertEquals(metrics.get("maxComparisonOperators"), 1);
@@ -61,7 +60,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
   public void testConditionalExpressionIdentification(){
     ConditionalExpressionCollector conditionalExpressionCollector = new ConditionalExpressionCollector();
-    metrics = conditionalExpressionCollector.updateMetric(metrics, identifiedBlock);
+    metrics = conditionalExpressionCollector.decorateMetric(metrics, identifiedBlock);
 
     assertEquals(metrics.get("numConditions"), 2);
     assertEquals(metrics.get("avgConditions"), 0.09);
@@ -70,7 +69,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testLogicalOperatorsIdentification(){
       LogicalOperationsCollector logicalOperationsCollector = new LogicalOperationsCollector();
-      metrics = logicalOperationsCollector.updateMetric(metrics, identifiedBlock);
+      metrics = logicalOperationsCollector.decorateMetric(metrics, identifiedBlock);
 
       assertEquals(metrics.get("numLogiOpers"), 5);
       assertEquals(metrics.get("avgLogiOpers"), 0.22);
@@ -79,31 +78,31 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testDynamicBlocksIdentification(){
       DynamicBlocksCollector dynamicBlocksCollector = new DynamicBlocksCollector();
-      metrics = dynamicBlocksCollector.updateMetric(metrics, identifiedBlock);
+      metrics = dynamicBlocksCollector.decorateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numDynamicBlocks"), 1);
     }
 
     public void testLookUpFunctionCallIdentification() {
       LookUpFunctionCollector lookUpFunctionCollector = new LookUpFunctionCollector();
-      metrics = lookUpFunctionCollector.updateMetric(metrics, identifiedBlock);
+      metrics = lookUpFunctionCollector.decorateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numLookUpFunctionCall"), 0);
     }
 
     public void testDeprecatedFunctionsIdentification() {
       DeprecatedFunctionsCollector deprecatedFunctionsCollector = new DeprecatedFunctionsCollector();
-      metrics = deprecatedFunctionsCollector.updateMetric(metrics, identifiedBlock);
+      metrics = deprecatedFunctionsCollector.decorateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numDeprecatedFunctions"), 0);
     }
 
     public void testDebuggingFunctionsIdentification() {
       DebuggingFunctionCollector debuggingFunctionCollector = new DebuggingFunctionCollector();
-      metrics = debuggingFunctionCollector.updateMetric(metrics, identifiedBlock);
+      metrics = debuggingFunctionCollector.decorateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numDebuggingFunctions"), 2);
     }
 
     public void testNestedBlocksIdentification(){
       NestedBlockCollector nestedBlockCollector = new NestedBlockCollector();
-      metrics = nestedBlockCollector.updateMetric(metrics, identifiedBlock);
+      metrics = nestedBlockCollector.decorateMetric(metrics, identifiedBlock);
 
       assertEquals(metrics.get("numNestedBlocks"), 3);
       assertEquals(metrics.get("avgDepthNestedBlocks"), 16.33);
@@ -114,7 +113,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     public void testFuncCallIdentification(){
 
       FunctionCallExpressionCollector functionCallExpressionCollector = new FunctionCallExpressionCollector();
-      metrics = functionCallExpressionCollector.updateMetric(metrics, identifiedBlock);
+      metrics = functionCallExpressionCollector.decorateMetric(metrics, identifiedBlock);
 
       assertEquals(metrics.get("numFunctionCall"), 9);
       assertEquals(metrics.get("avgFunctionCall"), 0.39);
@@ -124,7 +123,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     public void testParametersIdentification(){
 
       FunctionParametersCollector functionParametersCollector = new FunctionParametersCollector();
-      metrics = functionParametersCollector.updateMetric(metrics, identifiedBlock);
+      metrics = functionParametersCollector.decorateMetric(metrics, identifiedBlock);
 
       assertEquals(metrics.get("numParams"), 17);
       assertEquals(metrics.get("avgParams"), 1.89);
@@ -134,7 +133,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testHereDocIdentification(){
       HereDocCollector hereDocCollector = new HereDocCollector();
-      metrics = hereDocCollector.updateMetric(metrics, identifiedBlock);
+      metrics = hereDocCollector.decorateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numHereDocs"), 4);
       assertEquals(metrics.get("avgHereDocs"), 0.17);
 //      assertEquals(metrics.get("maxHereDocs"), 1);
@@ -151,7 +150,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testIndexAccessIdentification(){
         IndexAccessCollector indexAccessCollector = new IndexAccessCollector();
-        metrics = indexAccessCollector.updateMetric(metrics, identifiedBlock);
+        metrics = indexAccessCollector.decorateMetric(metrics, identifiedBlock);
         assertEquals(metrics.get("numIndexAccess"), 2);
         assertEquals(metrics.get("avgIndexAccess"), 0.09);
         assertEquals(metrics.get("maxIndexAccess"), 1);
@@ -160,7 +159,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     public void testLiteralExpressionIdentification(){
 
       LiteralExpressionCollector literalExpressionCollector = new LiteralExpressionCollector();
-      metrics = literalExpressionCollector.updateMetric(metrics, identifiedBlock);
+      metrics = literalExpressionCollector.decorateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numLiteralExpression"), 29);
       //  Number of String values means number of hard coded things
       assertEquals(metrics.get("numStringValues"), 16);
@@ -176,7 +175,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     public void testLoopsExpressionIdentification() {
 
         LoopsExpressionCollector loopsExpressionCollector = new LoopsExpressionCollector();
-        metrics = loopsExpressionCollector.updateMetric(metrics, identifiedBlock);
+        metrics = loopsExpressionCollector.decorateMetric(metrics, identifiedBlock);
         assertEquals(metrics.get("numLoops"), 3);
         assertEquals(metrics.get("avgLoops"), 0.13);
         assertEquals(metrics.get("maxLoops"), 2);
@@ -184,7 +183,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testMathOperatorsIdentification(){
       MathOperationsCollector mathOperationsCollector = new MathOperationsCollector();
-      metrics = mathOperationsCollector.updateMetric(metrics, identifiedBlock);
+      metrics = mathOperationsCollector.decorateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numMathOperations"), 2);
       assertEquals(metrics.get("avgMathOperations"), 0.09);
       assertEquals(metrics.get("maxMathOperations"), 2);
@@ -193,7 +192,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testMCCabCCIdentification() {
         MccabeCCCollector mccabeCCCollector = new MccabeCCCollector();
-        metrics = mccabeCCCollector.updateMetric(metrics, identifiedBlock);
+        metrics = mccabeCCCollector.decorateMetric(metrics, identifiedBlock);
         assertEquals(metrics.get("avgMccabeCC"), 1.22);
         assertEquals(metrics.get("sumMccabeCC"), 28);
         assertEquals(metrics.get("maxMccabeCC"), 3);
@@ -201,14 +200,14 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testMetaArgumentsIdentification() {
         MetaArgumentCollector metaArgumentCollector = new MetaArgumentCollector();
-        metrics = metaArgumentCollector.updateMetric(metrics, identifiedBlock);
+        metrics = metaArgumentCollector.decorateMetric(metrics, identifiedBlock);
         assertEquals(metrics.get("numMetaArg"), 2);
     }
 
     public void testObjectWrapperIdentification() {
 
       ObjectWrapperCollector objectWrapperCollector = new ObjectWrapperCollector();
-      metrics = objectWrapperCollector.updateMetric(metrics, identifiedBlock);
+      metrics = objectWrapperCollector.decorateMetric(metrics, identifiedBlock);
        assertEquals(metrics.get("numObjects"), 5);
        assertEquals(metrics.get("avgObjects"), 0.22);
        assertEquals(metrics.get("maxObjects"), 2);
@@ -217,7 +216,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     public void testObjectWrapperElementsIdentification(){
 
       ObjectWrapperElementCollector objectWrapperElementCollector = new ObjectWrapperElementCollector();
-      metrics = objectWrapperElementCollector.updateMetric(metrics, identifiedBlock);
+      metrics = objectWrapperElementCollector.decorateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numElemObjects"), 7);
       assertEquals(metrics.get("avgElemObjects"), 1.4);
       assertEquals(metrics.get("maxElemObjects"), 2);
@@ -226,7 +225,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testReferenceIdentificationIdentification(){
         ReferenceCollector referenceCollector = new ReferenceCollector();
-        metrics = referenceCollector.updateMetric(metrics, identifiedBlock);
+        metrics = referenceCollector.decorateMetric(metrics, identifiedBlock);
 
         assertEquals(metrics.get("numReferences"), 34);
         assertEquals(metrics.get("avgReferences"), 1.48);
@@ -235,7 +234,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testVariableIdentificationIdentification(){
        VariablesCollector variablesCollector = new VariablesCollector();
-       metrics = variablesCollector.updateMetric(metrics, identifiedBlock);
+       metrics = variablesCollector.decorateMetric(metrics, identifiedBlock);
 
        assertEquals(metrics.get("numVars"), 35);
        assertEquals(metrics.get("avgNumVars"), 1.52);
@@ -246,7 +245,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
       SplatExpressionCollector splatExpressionCollector = new SplatExpressionCollector();
 
-      metrics = splatExpressionCollector.updateMetric(metrics, identifiedBlock);
+      metrics = splatExpressionCollector.decorateMetric(metrics, identifiedBlock);
 
       assertEquals(metrics.get("numSplatExpressions"), 2);
       assertEquals(metrics.get("avgSplatExpressions"), 0.09);
@@ -256,7 +255,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     public void testTemplateExpressionIdentification(){
         TemplateExpressionCollector templateExpressionCollector = new TemplateExpressionCollector();
 
-        metrics = templateExpressionCollector.updateMetric(metrics, identifiedBlock);
+        metrics = templateExpressionCollector.decorateMetric(metrics, identifiedBlock);
         assertEquals(metrics.get("numTemplateExpression"), 3);
         assertEquals(metrics.get("avgTemplateExpression"), 0.13);
 
@@ -265,7 +264,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     public void testTextEntropyMeasure(){
       TokenCollector tokenCollector = new TokenCollector();
 
-      metrics = tokenCollector.updateMetric(metrics, identifiedBlock);
+      metrics = tokenCollector.decorateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("textEntropyMeasure"),  5.41);
       assertEquals(metrics.get("minAttrsTextEntropy"), 2.85);
       assertEquals(metrics.get("maxAttrsTextEntropy"), 5.48);
@@ -280,7 +279,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     public void testTuplesIdentification() {
 
         TupleCollector tupleCollector = new TupleCollector();
-        metrics = tupleCollector.updateMetric(metrics, identifiedBlock);
+        metrics = tupleCollector.decorateMetric(metrics, identifiedBlock);
 
         assertEquals(metrics.get("numTuples"), 7);
         assertEquals(metrics.get("avgTuples"), 0.3);
@@ -291,7 +290,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     public void testTupleElementsIdentification() {
 
       TupleElementsCollector tupleElementsCollector = new TupleElementsCollector();
-      metrics = tupleElementsCollector.updateMetric(metrics, identifiedBlock);
+      metrics = tupleElementsCollector.decorateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numElemTuples"), 12);
       assertEquals(metrics.get("avgElemTuples"), 1.71);
       assertEquals(metrics.get("maxElemTuples"), 5);
@@ -301,7 +300,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
       BlockComplexityCollector blockComplexityCollector = new BlockComplexityCollector(blockComplexity.getBlockContent());
 
-      metrics = blockComplexityCollector.updateMetric(metrics, identifiedBlock);
+      metrics = blockComplexityCollector.decorateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("depthOfBlock"), 157);
       assertEquals(metrics.get("loc"), 133);
       assertEquals(metrics.get("nloc"), 24);
@@ -310,7 +309,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     public void testBlockCheckerType() {
 
       BlockCheckTypeCollector blockCheckTypeCollector = new BlockCheckTypeCollector();
-      metrics = blockCheckTypeCollector.updateMetric(metrics, identifiedBlock);
+      metrics = blockCheckTypeCollector.decorateMetric(metrics, identifiedBlock);
 
       assertEquals(metrics.get("isResource"), 1);
       assertEquals(metrics.get("isModule"), 0);
@@ -325,13 +324,13 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
     public void testNumberOfAttributes(){
       AttributesCollector attrFinder = new AttributesCollector();
-      metrics = attrFinder.updateMetric(metrics, identifiedBlock);
+      metrics = attrFinder.decorateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numAttrs"), 23);
     }
 
     public void testExplicitResourceDependency(){
       ExplicitResourceDependencyCollector explicitResourceDependencyCollector = new ExplicitResourceDependencyCollector();
-      metrics = explicitResourceDependencyCollector.updateMetric(metrics, identifiedBlock);
+      metrics = explicitResourceDependencyCollector.decorateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numExplicitResourceDependency"), 0);
     }
 
@@ -339,7 +338,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
 
       ImplicitResourceCollector implicitResourceCollector = new ImplicitResourceCollector();
 
-      metrics = implicitResourceCollector.updateMetric(metrics, identifiedBlock);
+      metrics = implicitResourceCollector.decorateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numImplicitDependentResources"), 3);
       assertEquals(metrics.get("numImplicitDependentData"), 1);
       assertEquals(metrics.get("numImplicitDependentModules"), 0);
@@ -352,7 +351,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
     public void testEmptyStringIdentification() {
 
       SpecialStringCollector specialStringCollector = new SpecialStringCollector();
-      metrics = specialStringCollector.updateMetric(metrics, identifiedBlock);
+      metrics = specialStringCollector.decorateMetric(metrics, identifiedBlock);
       assertEquals(metrics.get("numEmptyString"), 1);
       assertEquals(metrics.get("numWildCardSuffixString"), 1);
       assertEquals(metrics.get("numStarString"), 1);

@@ -4,11 +4,11 @@ import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.visitors.HereDocVisitor;
 
-public class HereDocCollector implements Repository {
+public class HereDocCollector implements Decorator {
 
 
     @Override
-    public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
+    public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
       HereDocVisitor hereDocVisitor = new HereDocVisitor();
 

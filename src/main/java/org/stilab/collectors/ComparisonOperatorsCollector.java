@@ -4,10 +4,10 @@ import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.stilab.visitors.ComparisonOperatorsVisitor;
 
-public class ComparisonOperatorsCollector implements Repository {
+public class ComparisonOperatorsCollector implements Decorator {
 
   @Override
-  public JSONObject updateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
+  public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
 
       ComparisonOperatorsVisitor comparisonOperatorsVisitor = new ComparisonOperatorsVisitor();
 
