@@ -22,11 +22,11 @@ public class ObjectWrapperElementCollector implements Decorator {
 
       ObjectWrapperElementCalculator objectWrapperElementCalculator = new ObjectWrapperElementCalculator(identifiedBlock);
 
-      int numElementObjects = objectWrapperElementCalculator.getTotalNumberOfElementsOfDifferentObjects();
+//      int numElementObjects = objectWrapperElementCalculator.getTotalNumberOfElementsOfDifferentObjects();
       double avgElementObjects = objectWrapperElementCalculator.avgNumberOfElementsPerDifferentObjects();
       int maxElementObjects = objectWrapperElementCalculator.maxNumberOfElementsPerDifferentObjects();
 
-      metrics.put("numElemObjects", numElementObjects);
+//      metrics.put("numElemObjects", numElementObjects);
       metrics.put("avgElemObjects", avgElementObjects);
       metrics.put("maxElemObjects", maxElementObjects);
 
