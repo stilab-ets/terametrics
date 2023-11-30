@@ -2,6 +2,7 @@ package org.stilab.collectors;
 
 import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.*;
+import org.stilab.calculators.LoopsExpressionCalculator;
 import org.stilab.visitors.LoopsExpressionVisitor;
 
 public class LoopsExpressionCollector implements Decorator {
@@ -9,13 +10,14 @@ public class LoopsExpressionCollector implements Decorator {
     @Override
     public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-      LoopsExpressionVisitor loopsExpressionVisitor = new LoopsExpressionVisitor();
+//      LoopsExpressionVisitor loopsExpressionVisitor = new LoopsExpressionVisitor();
+//      loopsExpressionVisitor.filterLoopsFromBlock(identifiedBlock);
 
+      LoopsExpressionCalculator loopsExpressionCalculator = new LoopsExpressionCalculator(identifiedBlock);
 
-      loopsExpressionVisitor.filterLoopsFromBlock(identifiedBlock);
-      int numLoops = loopsExpressionVisitor.totalNumberOfLoops();
-      double avgLoops = loopsExpressionVisitor.avgNumberOfLoops();
-      int maxLoops = loopsExpressionVisitor.maxNumberOfLoops();
+      int numLoops = loopsExpressionCalculator.totalNumberOfLoops();
+      double avgLoops = loopsExpressionCalculator.avgNumberOfLoops();
+      int maxLoops = loopsExpressionCalculator.maxNumberOfLoops();
 
       metrics.put("numLoops", numLoops);
       metrics.put("avgLoops", avgLoops);

@@ -21,7 +21,15 @@ public class LoopsExpressionVisitor {
     private List<TerraformTreeImpl> loops = new ArrayList<>();
     private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
-    public List<TerraformTreeImpl> visit(AttributeTreeImpl attributeTree) {
+    public List<AttributeTreeImpl> getAttributes() {
+      return attributes;
+    }
+
+    public List<TerraformTreeImpl> getLoops() {
+      return loops;
+    }
+
+  public List<TerraformTreeImpl> visit(AttributeTreeImpl attributeTree) {
 
       ExpressionTree expressionTree = attributeTree.value();
 
@@ -62,31 +70,7 @@ public class LoopsExpressionVisitor {
       return loops;
     }
 
-    public int totalNumberOfLoops() {
-      return this.loops.size();
-    }
 
-    public double avgNumberOfLoops(){
-      if (!attributes.isEmpty()) {
-        double avgNumberOfLoops = (double) totalNumberOfLoops() / attributes.size();
-        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfLoops).setScale(2, RoundingMode.HALF_UP);
-        return roundedAverage.doubleValue();
-      }
-      return 0.0;
-    }
-
-    public int maxNumberOfLoops(){
-      if (attributes.isEmpty()){ return 0; }
-
-      int max = visit(attributes.get(0)).size();
-      for(AttributeTreeImpl attribute: attributes) {
-        int tmpValue = visit(attribute).size();
-        if (tmpValue > max) {
-          max = tmpValue;
-        }
-      }
-      return max;
-    }
 
 
 }
