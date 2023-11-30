@@ -18,12 +18,18 @@ public class IndexAccessVisitor {
       private List<IndexAccessExprTreeImpl> indexAccess = new ArrayList<>();
       private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
+      public List<AttributeTreeImpl> getAttributes() {
+        return attributes;
+      }
+
+      public List<IndexAccessExprTreeImpl> getIndexAccess() { return indexAccess; }
+
       public List<IndexAccessExprTreeImpl> visit(AttributeTreeImpl attributeTree) {
-        ExpressionTree expressionTree = attributeTree.value();
-        List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
-        return trees.stream().filter(IndexAccessExprTreeImpl.class::isInstance)
-                .map(IndexAccessExprTreeImpl.class::cast)
-                .collect(Collectors.toList());
+            ExpressionTree expressionTree = attributeTree.value();
+            List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
+            return trees.stream().filter(IndexAccessExprTreeImpl.class::isInstance)
+                    .map(IndexAccessExprTreeImpl.class::cast)
+                    .collect(Collectors.toList());
       }
 
       public List<IndexAccessExprTreeImpl> identifyIndexAccessFromAttributesList(List<AttributeTreeImpl> attributeTrees) {
@@ -39,32 +45,4 @@ public class IndexAccessVisitor {
         indexAccess = this.identifyIndexAccessFromAttributesList(attributes);
         return indexAccess;
       }
-
-      public int totalIndexAccessExpressions() {
-        return indexAccess.size();
-      }
-
-      public double avgIndexAccessExpressions() {
-        if (!attributes.isEmpty()){
-          double avgIndexAccessExpressions = (double) totalIndexAccessExpressions() / attributes.size();
-          BigDecimal roundedAverage = BigDecimal.valueOf(avgIndexAccessExpressions).setScale(2, RoundingMode.HALF_UP);
-          return roundedAverage.doubleValue();
-        }
-        return 0.0;
-      }
-
-      public int maxIndexAccessExpressions() {
-        if (attributes.isEmpty()){ return 0; }
-
-        int max = visit(attributes.get(0)).size();
-        for (AttributeTreeImpl attribute: attributes) {
-          int value = visit(attribute).size();
-          if (value > max) {
-            max = value;
-          }
-        }
-
-        return max;
-      }
-
 }
