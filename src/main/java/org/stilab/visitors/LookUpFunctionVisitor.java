@@ -12,9 +12,7 @@ public class LookUpFunctionVisitor {
 
     private List<FunctionCallTreeImpl> lookups = new ArrayList<>();
 
-    public LookUpFunctionVisitor(FunctionCallExpressionVisitor
-                                   functionCallExpressionVisitor
-                                   ){
+    public LookUpFunctionVisitor(FunctionCallExpressionVisitor functionCallExpressionVisitor){
            this.functionCallExpressionVisitor = functionCallExpressionVisitor;
     }
 
