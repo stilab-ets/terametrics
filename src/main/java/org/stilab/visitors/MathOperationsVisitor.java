@@ -23,6 +23,19 @@ public class MathOperationsVisitor {
   private List<TerraformTreeImpl> mathOperators = new ArrayList<>();
   private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
+
+  public List<AttributeTreeImpl> getAttributes() {
+    return attributes;
+  }
+
+  public List<String> getOperators() {
+    return operators;
+  }
+
+  public List<TerraformTreeImpl> getMathOperators() {
+    return mathOperators;
+  }
+
   public List<TerraformTreeImpl> visit(AttributeTreeImpl attribute) {
     ExpressionTree expressionTree = attribute.value();
 
@@ -62,30 +75,6 @@ public class MathOperationsVisitor {
     return mathOperators;
   }
 
-  public int totalNumberOfMathOperation(){
-    return this.mathOperators.size();
-  }
 
-  public double avgNumberOfMathOperation() {
-    if (!attributes.isEmpty()) {
-      double avgNumberOfMathOperation = (double) totalNumberOfMathOperation() / attributes.size();
-      BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfMathOperation).setScale(2, RoundingMode.HALF_UP);
-      return roundedAverage.doubleValue();
-    }
-    return 0.0;
-  }
-
-  public int maxNumberOfMathOperation(){
-    if (attributes.isEmpty()){ return 0;}
-
-    int max = visit(attributes.get(0)).size();
-    for (AttributeTreeImpl attribute: attributes){
-      int value = visit(attribute).size();
-      if (value > max) {
-        max = value;
-      }
-    }
-    return max;
-  }
 
 }
