@@ -2,6 +2,7 @@ package org.stilab.collectors;
 
 import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
+import org.stilab.calculators.HereDocCalculator;
 import org.stilab.visitors.HereDocVisitor;
 
 public class HereDocCollector implements Decorator {
@@ -10,19 +11,21 @@ public class HereDocCollector implements Decorator {
     @Override
     public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-      HereDocVisitor hereDocVisitor = new HereDocVisitor();
-
+//      HereDocVisitor hereDocVisitor = new HereDocVisitor();
       // Relative to Attributes
-      hereDocVisitor.filterHereDocsFromBlock(identifiedBlock);
-      int numHereDocs = hereDocVisitor.totalNumberOfHereDoc();
-      double avgHereDocs = hereDocVisitor.avgNumberOfHereDoc();
+//      hereDocVisitor.filterHereDocsFromBlock(identifiedBlock);
+
+      HereDocCalculator hereDocCalculator = new HereDocCalculator(identifiedBlock);
+
+      int numHereDocs = hereDocCalculator.totalNumberOfHereDoc();
+      double avgHereDocs = hereDocCalculator.avgNumberOfHereDoc();
       metrics.put("numHereDocs", numHereDocs);
       metrics.put("avgHereDocs", avgHereDocs);
 
       // Relative to the size of here Doc
-      double avgLinesHereDocs = hereDocVisitor.avgNumberLinesPerHereDoc();
-      int maxLinesHereDocs = hereDocVisitor.maxNumberLinesPerHereDoc();
-      int numLinesHereDocs = hereDocVisitor.totalLinesOfHereDoc();
+      double avgLinesHereDocs = hereDocCalculator.avgNumberLinesPerHereDoc();
+      int maxLinesHereDocs = hereDocCalculator.maxNumberLinesPerHereDoc();
+      int numLinesHereDocs = hereDocCalculator.totalLinesOfHereDoc();
 
       metrics.put("avgLinesHereDocs", avgLinesHereDocs);
       metrics.put("maxLinesHereDocs", maxLinesHereDocs);

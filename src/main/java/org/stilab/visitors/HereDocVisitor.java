@@ -15,7 +15,24 @@ public class HereDocVisitor {
   private List<AttributeTreeImpl> attributes = new ArrayList<>();
     LiteralExpressionVisitor literalExpressionVisitor = new LiteralExpressionVisitor();
     LiteralExpressionHereDocVisitor literalExpressionHereDocVisitor = new LiteralExpressionHereDocVisitor();
-    public List<LiteralExprTreeImpl> visit(AttributeTreeImpl attributeTree){
+
+    public List<AttributeTreeImpl> getAttributes() {
+      return attributes;
+    }
+
+    public List<LiteralExprTreeImpl> getHereDocs() {
+      return hereDocs;
+    }
+
+    public LiteralExpressionHereDocVisitor getLiteralExpressionHereDocVisitor() {
+      return literalExpressionHereDocVisitor;
+    }
+
+    public LiteralExpressionVisitor getLiteralExpressionVisitor() {
+      return literalExpressionVisitor;
+    }
+
+  public List<LiteralExprTreeImpl> visit(AttributeTreeImpl attributeTree){
       List<LiteralExprTreeImpl> exprs = literalExpressionVisitor.visit(attributeTree);
       return literalExpressionHereDocVisitor.filterHereDocFromLiteralExpressions(exprs);
     }
@@ -33,31 +50,6 @@ public class HereDocVisitor {
       return hereDocs;
     }
 
-    public int totalNumberOfHereDoc(){
-      return this.hereDocs.size();
-    }
 
-    public double avgNumberOfHereDoc() {
-      if (!attributes.isEmpty()) {
-        double avgNumberOfHereDoc = (double) totalNumberOfHereDoc() / attributes.size();
-        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfHereDoc).setScale(2, RoundingMode.HALF_UP);
-        return roundedAverage.doubleValue();
-      }
-      return 0.0;
-    }
-
-    public int totalLinesOfHereDoc(){
-      return this.literalExpressionHereDocVisitor.totalLinesOfHereDoc(this.hereDocs);
-    }
-
-    public double avgNumberLinesPerHereDoc(){
-      return this.literalExpressionHereDocVisitor
-        .avgNumberLinesPerHereDoc(this.hereDocs);
-    }
-
-    public int maxNumberLinesPerHereDoc() {
-      return this.literalExpressionHereDocVisitor
-        .maxNumberLinesPerHereDoc(this.hereDocs);
-    }
 
 }
