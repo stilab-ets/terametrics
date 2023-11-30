@@ -7,11 +7,11 @@ import org.stilab.parser.mapper.Block;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 
 public class Deprecation {
-  private static final Logger logger = Logger.getLogger(Deprecation.class.getName());
+//  private static final Logger logger = Logger.getLogger(Deprecation.class.getName());
   protected ObjectMapper deprecatedDataSourcesMapper = new ObjectMapper();
   protected List<Block> deprecatedBlocks = new ArrayList<>();
   protected String blockAsString;
@@ -27,7 +27,7 @@ public class Deprecation {
       if (inputStream != null) {
         readDataFromInputStream(inputStream);
       } else {
-        logger.log(Level.SEVERE, "Error while reading objects to file {0} ", filePath);
+//        logger.log(Level.SEVERE, "Error while reading objects to file {0} ", filePath);
       }
     } catch (IOException e) {
       e.printStackTrace();

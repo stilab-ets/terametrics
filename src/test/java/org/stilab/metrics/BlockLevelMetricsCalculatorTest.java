@@ -25,7 +25,7 @@ public class BlockLevelMetricsCalculatorTest extends TestCase {
   protected void setUp() throws Exception {
 
     super.setUp();
-    String tfFilePath = "src/test/java/org/stilab/block/data/base.tf";
+    String tfFilePath = "src/test/java/org/stilab/metrics/data/base.tf";
 
     File base = new File(tfFilePath);
     HclParser hclParser = new HclParser();

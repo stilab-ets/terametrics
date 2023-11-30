@@ -10,12 +10,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 
 public class FileLevelMetricsCalculator {
 
-      private static final Logger logger = Logger.getLogger(FileLevelMetricsCalculator.class.getName());
+//      private static final Logger logger = Logger.getLogger(FileLevelMetricsCalculator.class.getName());
 
       private List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions;
 
@@ -93,9 +93,9 @@ public class FileLevelMetricsCalculator {
         result.put("data", jsonArray);
         try (FileWriter fileWriter = new FileWriter(filePath)) {
           fileWriter.write(result.toString());
-          logger.log(Level.INFO, "JSON objects saved to file {0}", filePath);
+//          logger.log(Level.INFO, "JSON objects saved to file {0}", filePath);
         } catch (IOException e) {
-          logger.severe(String.format("Error while saving JSON objects to file: %s", e.getMessage()));
+//          logger.severe(String.format("Error while saving JSON objects to file: %s", e.getMessage()));
         }
       }
 }

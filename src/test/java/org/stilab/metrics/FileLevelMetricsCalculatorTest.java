@@ -26,8 +26,8 @@ public class FileLevelMetricsCalculatorTest extends TestCase {
 
       super.setUp();
 
-      hclFilePath = "src/test/java/org/stilab/block/data/base.tf";
-      targetPathToSaveMetrics = "src/test/java/org/stilab/block/data/base_metrics.json";
+      hclFilePath = "src/test/java/org/stilab/metrics/data/base.tf";
+      targetPathToSaveMetrics = "src/test/java/org/stilab/metrics/data/base_metrics.json";
 
       BlockDivider blockDivider = new BlockDivider(hclFilePath);
       List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions = blockDivider.divideFilePerBlock();

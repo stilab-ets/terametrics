@@ -40,7 +40,6 @@ public class Bootstrap {
         if (help) { commander.usage();}
 
         else {
-
           try {
 
             // Measure the metrics for the given script per block
