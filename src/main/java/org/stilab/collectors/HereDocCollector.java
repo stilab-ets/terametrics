@@ -11,10 +11,6 @@ public class HereDocCollector implements Decorator {
     @Override
     public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-//      HereDocVisitor hereDocVisitor = new HereDocVisitor();
-      // Relative to Attributes
-//      hereDocVisitor.filterHereDocsFromBlock(identifiedBlock);
-
       HereDocCalculator hereDocCalculator = new HereDocCalculator(identifiedBlock);
 
       int numHereDocs = hereDocCalculator.totalNumberOfHereDoc();

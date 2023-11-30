@@ -11,10 +11,6 @@ public class ReferenceCollector implements Decorator {
     @Override
     public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-//      ReferenceVisitor referenceVisitor = new ReferenceVisitor();
-//
-//      referenceVisitor.filterAttributeAccessFromBlock(identifiedBlock);
-
       ReferenceCalculator referenceCalculator = new ReferenceCalculator(identifiedBlock);
 
       int numReferences = referenceCalculator.totalAttributeAccess();

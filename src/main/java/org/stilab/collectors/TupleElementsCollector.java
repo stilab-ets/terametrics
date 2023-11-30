@@ -14,16 +14,7 @@ public class TupleElementsCollector implements Decorator {
   @Override
   public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-//      TupleVisitor tupleVisitor = new TupleVisitor();
-//      List<TerraformTreeImpl> tuples = tupleVisitor.filterTuplesFromBlock(identifiedBlock);
-//
-//      TupleElementsVisitor tupleElementsVisitor = new TupleElementsVisitor(tuples);
-//
-//      int numElemTuples = tupleElementsVisitor.getTotalNumberOfElementsOfDifferentTuples();
-//      double avgElemTuples = tupleElementsVisitor.avgNumberOfElementsPerDifferentTuples();
-//      int maxElemTuples = tupleElementsVisitor.maxNumberOfElementsPerDifferentTuples();
-
-    TupleElementsCalculator tupleElementsCalculator = new TupleElementsCalculator(identifiedBlock);
+      TupleElementsCalculator tupleElementsCalculator = new TupleElementsCalculator(identifiedBlock);
 
       metrics.put("numElemTuples", tupleElementsCalculator.getTotalNumberOfElementsOfDifferentTuples());
       metrics.put("avgElemTuples", tupleElementsCalculator.avgNumberOfElementsPerDifferentTuples());

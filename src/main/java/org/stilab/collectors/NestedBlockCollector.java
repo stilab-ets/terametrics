@@ -11,12 +11,6 @@ public class NestedBlockCollector implements Decorator {
   @Override
   public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
 
-//    NestedBlockVisitor nestedBlockVisitor = new NestedBlockVisitor();
-//
-//    List<BlockTreeImpl> nstdBlocks = nestedBlockVisitor.identifyNestedBlock(identifiedBlock);
-//    int numNestedBlocks = nestedBlockVisitor.countNestedBlock();
-
-
     NestedBlockCalculator nestedBlockCalculator = new NestedBlockCalculator(identifiedBlock);
 
     metrics.put("numNestedBlocks", nestedBlockCalculator.countNestedBlock());

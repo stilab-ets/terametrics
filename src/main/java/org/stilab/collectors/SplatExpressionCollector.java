@@ -11,10 +11,6 @@ public class SplatExpressionCollector implements Decorator {
     @Override
     public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-//      SplatExpressionVisitor splatExpressionVisitor = new SplatExpressionVisitor();
-//
-//      splatExpressionVisitor.filtersSplatsFromBlock(identifiedBlock);
-
       SplatExpressionCalculator splatExpressionCalculator = new SplatExpressionCalculator(identifiedBlock);
 
       int numSplatExpressions = splatExpressionCalculator.totalSplatExpressions();

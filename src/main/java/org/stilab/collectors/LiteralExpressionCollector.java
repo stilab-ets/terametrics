@@ -10,10 +10,6 @@ public class LiteralExpressionCollector implements Decorator {
     @Override
     public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
 
-//      LiteralExpressionVisitor literalExpressionVisitor = new LiteralExpressionVisitor();
-//
-//      literalExpressionVisitor.filterLiteralExprFromBlock(identifiedBlock);
-
       LiteralExpressionCalculator literalExpressionCalculator = new LiteralExpressionCalculator(identifiedBlock);
 
       int numLiteralExpressions = literalExpressionCalculator.totalNumberOfLiteralExpressions();

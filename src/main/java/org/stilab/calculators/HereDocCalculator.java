@@ -8,7 +8,6 @@ import java.math.RoundingMode;
 
 public class HereDocCalculator {
 
-
      private HereDocVisitor hereDocVisitor;
 
      public HereDocCalculator(BlockTreeImpl identifiedBlock){

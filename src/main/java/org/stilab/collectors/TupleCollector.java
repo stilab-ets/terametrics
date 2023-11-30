@@ -10,11 +10,6 @@ public class TupleCollector implements Decorator {
   @Override
   public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-//      TupleVisitor tupleVisitor = new TupleVisitor();
-//
-//      tupleVisitor.filterTuplesFromBlock(identifiedBlock);
-
-
       TupleCalculator tupleCalculator = new TupleCalculator(identifiedBlock);
       int numTuples = tupleCalculator.totalNumberOfTuples();
       double avgTuples = tupleCalculator.avgNumberOfTuples();

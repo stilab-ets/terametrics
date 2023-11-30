@@ -10,9 +10,6 @@ public class TemplateExpressionCollector implements Decorator {
   @Override
   public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-//      TemplateExpressionVisitor templateExpressionVisitor = new TemplateExpressionVisitor();
-//      templateExpressionVisitor.filterTemplateExpressionsFromBlock(identifiedBlock);
-
       TemplateExpressionCalculator templateExpressionCalculator = new TemplateExpressionCalculator(identifiedBlock);
       int numTemplateExpression = templateExpressionCalculator.totalNumberOfTemplateExpressionsPerBlock();
       double avgNumTemplateExpression = templateExpressionCalculator.avgNumOfTemplateExpressionPerBlock();

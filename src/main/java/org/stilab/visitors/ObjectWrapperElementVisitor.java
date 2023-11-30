@@ -61,38 +61,38 @@ public class ObjectWrapperElementVisitor {
     return count;
   }
 
-  public double avgNumberOfElementsPerDifferentObjects() {
-    if (!objects.isEmpty()) {
-      double avgNumberOfElementsPerDifferentObjects = (double) this.getTotalNumberOfElementsOfDifferentObjects() / objects.size();
-      BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfElementsPerDifferentObjects).setScale(2, RoundingMode.HALF_UP);
-      return roundedAverage.doubleValue();
-    }
-    return 0.0;
-  }
-
-  public int maxNumberOfElementsPerDifferentObjects() {
-
-    List<ObjectTreeImpl> localObjects = filterOnlyObjectTreeImpl();
-    int max = 0;
-
-    if (!localObjects.isEmpty()) {
-      max = getNumberElementsContainedInAnObject(localObjects.get(0));
-      for (ObjectTreeImpl objectTree: localObjects) {
-        int tmpValue = getNumberElementsContainedInAnObject(objectTree);
-        if (max < tmpValue) {
-          max = tmpValue;
-        }
-      }
-    }
-
-    if (max == 0) {
-      List<ForObjectTreeImpl> forTuples = filterOnlyForObjectTreeImpl();
-      if (!forTuples.isEmpty()) {
-        max = 1;
-      }
-    }
-    return max;
-
-  }
+//  public double avgNumberOfElementsPerDifferentObjects() {
+//    if (!objects.isEmpty()) {
+//      double avgNumberOfElementsPerDifferentObjects = (double) this.getTotalNumberOfElementsOfDifferentObjects() / objects.size();
+//      BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfElementsPerDifferentObjects).setScale(2, RoundingMode.HALF_UP);
+//      return roundedAverage.doubleValue();
+//    }
+//    return 0.0;
+//  }
+//
+//  public int maxNumberOfElementsPerDifferentObjects() {
+//
+//    List<ObjectTreeImpl> localObjects = filterOnlyObjectTreeImpl();
+//    int max = 0;
+//
+//    if (!localObjects.isEmpty()) {
+//      max = getNumberElementsContainedInAnObject(localObjects.get(0));
+//      for (ObjectTreeImpl objectTree: localObjects) {
+//        int tmpValue = getNumberElementsContainedInAnObject(objectTree);
+//        if (max < tmpValue) {
+//          max = tmpValue;
+//        }
+//      }
+//    }
+//
+//    if (max == 0) {
+//      List<ForObjectTreeImpl> forTuples = filterOnlyForObjectTreeImpl();
+//      if (!forTuples.isEmpty()) {
+//        max = 1;
+//      }
+//    }
+//    return max;
+//
+//  }
 
 }

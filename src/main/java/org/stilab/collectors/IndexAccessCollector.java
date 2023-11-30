@@ -10,9 +10,6 @@ public class IndexAccessCollector implements Decorator {
       @Override
       public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
 
-//        IndexAccessVisitor indexAccessVisitor = new IndexAccessVisitor();
-//        indexAccessVisitor.identifyIndexAccessFromBlock(identifiedBlock);
-
         IndexAccessCalculator indexAccessCalculator = new IndexAccessCalculator(identifiedBlock);
         int numIndexAccessExpressions = indexAccessCalculator.totalIndexAccessExpressions();
         double avgIndexAccessExpressions = indexAccessCalculator.avgIndexAccessExpressions();

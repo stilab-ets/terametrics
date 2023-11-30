@@ -13,11 +13,6 @@ public class MccabeCCCollector implements Decorator {
     @Override
     public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-
-//      MccabeCC mccabeCC = new MccabeCC();
-
-//      List<AttributeTreeImpl> attributes = mccabeCC.getAllAttributes(identifiedBlock);
-
       MccabeCCCalculator mccabeCCCalculator = new MccabeCCCalculator(identifiedBlock);
 
       double avgMccabeCC = mccabeCCCalculator.avgMccabeCC();

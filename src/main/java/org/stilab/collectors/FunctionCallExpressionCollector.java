@@ -11,9 +11,6 @@ public class FunctionCallExpressionCollector implements Decorator {
     @Override
     public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-//      FunctionCallExpressionVisitor functionCallExpressionVisitor = new FunctionCallExpressionVisitor();
-//      functionCallExpressionVisitor.filterFCfromBlock(identifiedBlock);
-
       FunctionCallExpressionCalculator functionCallExpressionCalculator = new FunctionCallExpressionCalculator(identifiedBlock);
 
       int numFunctionCall = functionCallExpressionCalculator.totalNumberOfFunctionCall();

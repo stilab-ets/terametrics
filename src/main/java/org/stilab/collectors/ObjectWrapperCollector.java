@@ -10,10 +10,6 @@ public class ObjectWrapperCollector implements Decorator {
   @Override
   public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-//      ObjectWrapperVisitor objectWrapperVisitor = new ObjectWrapperVisitor();
-//
-//      objectWrapperVisitor.filterObjectsFromBlock(identifiedBlock);
-
       ObjectWrapperCalculator objectWrapperCalculator = new ObjectWrapperCalculator(identifiedBlock);
 
       int numObjects = objectWrapperCalculator.totalNumberOfObjects();

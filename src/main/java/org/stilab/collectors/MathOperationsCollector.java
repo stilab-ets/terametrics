@@ -10,10 +10,6 @@ public class MathOperationsCollector implements Decorator {
   @Override
   public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
 
-//    MathOperationsVisitor mathOperationsVisitor = new MathOperationsVisitor();
-//
-//    mathOperationsVisitor.filterMathOperationsFromBlock(identifiedBlock);
-
     MathOperationsCalculator mathOperationsCalculator = new MathOperationsCalculator(identifiedBlock);
 
     int numMathOperations = mathOperationsCalculator.totalNumberOfMathOperation();

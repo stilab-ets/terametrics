@@ -12,9 +12,6 @@ public class SpecialStringCollector implements Decorator {
   @Override
   public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-//      LiteralExpressionVisitor literalExpressionVisitor = new LiteralExpressionVisitor();
-//      SpecialStringVisitor specialStringVisitor = new SpecialStringVisitor(literalExpressionVisitor);
-
       SpecialStringCalculator specialStringCalculator = new SpecialStringCalculator(identifiedBlock);
 
       metrics.put("numEmptyString", specialStringCalculator.numberOfEmptyString());

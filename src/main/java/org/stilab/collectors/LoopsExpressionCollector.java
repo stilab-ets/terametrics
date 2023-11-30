@@ -10,9 +10,6 @@ public class LoopsExpressionCollector implements Decorator {
     @Override
     public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
-//      LoopsExpressionVisitor loopsExpressionVisitor = new LoopsExpressionVisitor();
-//      loopsExpressionVisitor.filterLoopsFromBlock(identifiedBlock);
-
       LoopsExpressionCalculator loopsExpressionCalculator = new LoopsExpressionCalculator(identifiedBlock);
 
       int numLoops = loopsExpressionCalculator.totalNumberOfLoops();

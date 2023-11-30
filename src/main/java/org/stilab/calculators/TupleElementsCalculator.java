@@ -19,9 +19,7 @@ public class TupleElementsCalculator {
     public TupleElementsCalculator(BlockTreeImpl identifiedBlock) {
       TupleVisitor tupleVisitor = new TupleVisitor();
       List<TerraformTreeImpl> tuples = tupleVisitor.filterTuplesFromBlock(identifiedBlock);
-
       tupleElementsVisitor = new TupleElementsVisitor(tuples);
-
     }
 
 

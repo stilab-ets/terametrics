@@ -20,13 +20,16 @@ public class ObjectWrapperElementCalculator {
 
   }
 
+  public int getTotalNumberOfElementsOfDifferentObjects() {
+    return objectWrapperElementVisitor.getTotalNumberOfElementsOfDifferentObjects();
+  }
 
   public double avgNumberOfElementsPerDifferentObjects() {
-//    if (!objectWrapperElementVisitor.getObjects().isEmpty()) {
-//      double avgNumberOfElementsPerDifferentObjects = (double) this.getTotalNumberOfElementsOfDifferentObjects() / objectWrapperElementVisitor.getObjects().size();
-//      BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfElementsPerDifferentObjects).setScale(2, RoundingMode.HALF_UP);
-//      return roundedAverage.doubleValue();
-//    }
+    if (!objectWrapperElementVisitor.getObjects().isEmpty()) {
+      double avgNumberOfElementsPerDifferentObjects = (double) objectWrapperElementVisitor.getTotalNumberOfElementsOfDifferentObjects() / objectWrapperElementVisitor.getObjects().size();
+      BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfElementsPerDifferentObjects).setScale(2, RoundingMode.HALF_UP);
+      return roundedAverage.doubleValue();
+    }
     return 0.0;
   }
 
@@ -36,13 +39,13 @@ public class ObjectWrapperElementCalculator {
     int max = 0;
 
     if (!localObjects.isEmpty()) {
-//      max = getNumberElementsContainedInAnObject(localObjects.get(0));
-//      for (ObjectTreeImpl objectTree: localObjects) {
-//        int tmpValue = getNumberElementsContainedInAnObject(objectTree);
-//        if (max < tmpValue) {
-//          max = tmpValue;
-//        }
-//      }
+      max = objectWrapperElementVisitor.getNumberElementsContainedInAnObject(localObjects.get(0));
+      for (ObjectTreeImpl objectTree: localObjects) {
+        int tmpValue = objectWrapperElementVisitor.getNumberElementsContainedInAnObject(objectTree);
+        if (max < tmpValue) {
+          max = tmpValue;
+        }
+      }
     }
 
     if (max == 0) {
