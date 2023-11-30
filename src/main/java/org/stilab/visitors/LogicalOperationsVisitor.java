@@ -19,6 +19,20 @@ public class LogicalOperationsVisitor {
   private List<String> operators = new ArrayList<>(Arrays.asList("!", "&&", "||"));
   private List<TerraformTreeImpl> decisions = new ArrayList<>();
   private List<AttributeTreeImpl> attributes = new ArrayList<>();
+
+
+  public List<AttributeTreeImpl> getAttributes() {
+    return attributes;
+  }
+
+  public List<String> getOperators() {
+    return operators;
+  }
+
+  public List<TerraformTreeImpl> getDecisions() {
+    return decisions;
+  }
+
   public List<TerraformTreeImpl> visit(AttributeTreeImpl attribute){
     ExpressionTree expressionTree = attribute.value();
     List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
@@ -56,32 +70,6 @@ public class LogicalOperationsVisitor {
     return decisions;
   }
 
-  public int totalNumberOfLogicalOperations(){
-    return this.decisions.size();
-  }
 
-  public double avgNumberOfLogicalOperations(){
-    if(!attributes.isEmpty()){
-      double avgNumberOfLogicalOperations = (double) totalNumberOfLogicalOperations() / attributes.size();
-      BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfLogicalOperations).setScale(2, RoundingMode.HALF_UP);
-      return roundedAverage.doubleValue();
-    }
-    return 0.0;
-  }
-
-  public int maxNumberOfLogicalOperations(){
-
-    if (attributes.isEmpty()){ return 0; }
-    int max = visit(attributes.get(0)).size();
-
-    for (AttributeTreeImpl attribute: attributes) {
-      int value = visit(attribute).size();
-      if (value > max) {
-        max = value;
-      }
-    }
-    return max;
-
-  }
 
 }

@@ -10,9 +10,7 @@ public class LookUpFunctionCollector implements Decorator {
 
     @Override
     public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock) {
-
       LookUpFunctionCalculator lookUpFunctionCalculator = new LookUpFunctionCalculator(identifiedBlock);
-
       int numLookUpFunctionCall = lookUpFunctionCalculator.countNumberOfLookUpFunction();
       metrics.put("numLookUpFunctionCall", numLookUpFunctionCall);
       return metrics;

@@ -18,6 +18,4 @@ public class LookUpFunctionCalculator {
     return lookUpFunctionVisitor.getLookups().size();
   }
 
-
-
 }
