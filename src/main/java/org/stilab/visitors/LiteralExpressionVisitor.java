@@ -18,6 +18,7 @@ public class LiteralExpressionVisitor {
       return literalExprTrees;
     }
 
+
     public List<LiteralExprTreeImpl> visit(AttributeTreeImpl attributeTree) {
         ExpressionTree expressionTree = attributeTree.value();
         List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
@@ -41,9 +42,7 @@ public class LiteralExpressionVisitor {
         return literalExprTrees;
     }
 
-    public int totalNumberOfLiteralExpressions(){
-          return literalExprTrees.size();
-      }
+
 
     private boolean isNumeric(String str) {
         try {
@@ -68,47 +67,39 @@ public class LiteralExpressionVisitor {
         return 0;
     }
 
-    public int numStringValues(){
-        int sum = 0;
-        for (LiteralExprTreeImpl literalExprTree: literalExprTrees) {
-          if (isLiteralExprValueString(literalExprTree)) {
-            sum += 1;
-          }
-        }
-        return sum;
-    }
 
-    public int sumLengthOfStringLiteralExpr() {
-        int sum = 0;
-        for (LiteralExprTreeImpl literalExprTree: literalExprTrees) {
-          sum += measureLengthOfStringLiteralExpr(literalExprTree);
-        }
-        return sum;
-    }
 
-    public int maxLengthOfStringLiteralExpr() {
+//    public int sumLengthOfStringLiteralExpr() {
+//        int sum = 0;
+//        for (LiteralExprTreeImpl literalExprTree: literalExprTrees) {
+//          sum += measureLengthOfStringLiteralExpr(literalExprTree);
+//        }
+//        return sum;
+//    }
 
-        if (literalExprTrees.isEmpty()){ return 0; }
+//    public int maxLengthOfStringLiteralExpr() {
+//
+//        if (literalExprTrees.isEmpty()){ return 0; }
+//
+//        int max = measureLengthOfStringLiteralExpr(literalExprTrees.get(0));
+//
+//        for (LiteralExprTreeImpl literalExprTree: literalExprTrees) {
+//          int value = measureLengthOfStringLiteralExpr(literalExprTree);
+//          if (value > max) {
+//            max = value;
+//          }
+//        }
+//
+//        return max;
+//    }
 
-        int max = measureLengthOfStringLiteralExpr(literalExprTrees.get(0));
-
-        for (LiteralExprTreeImpl literalExprTree: literalExprTrees) {
-          int value = measureLengthOfStringLiteralExpr(literalExprTree);
-          if (value > max) {
-            max = value;
-          }
-        }
-
-        return max;
-    }
-
-    public double avgLengthOfStringLiteralExpr() {
-        int domino = numStringValues();
-        if (domino!=0) {
-          double avgLengthOfStringLiteralExpr = (double) sumLengthOfStringLiteralExpr() / domino;
-          BigDecimal roundedAverage = BigDecimal.valueOf(avgLengthOfStringLiteralExpr).setScale(2, RoundingMode.HALF_UP);
-          return roundedAverage.doubleValue();
-        }
-        return 0.0;
-    }
+//    public double avgLengthOfStringLiteralExpr() {
+//        int domino = numStringValues();
+//        if (domino!=0) {
+//          double avgLengthOfStringLiteralExpr = (double) sumLengthOfStringLiteralExpr() / domino;
+//          BigDecimal roundedAverage = BigDecimal.valueOf(avgLengthOfStringLiteralExpr).setScale(2, RoundingMode.HALF_UP);
+//          return roundedAverage.doubleValue();
+//        }
+//        return 0.0;
+//    }
 }
