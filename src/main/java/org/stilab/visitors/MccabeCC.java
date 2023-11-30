@@ -13,6 +13,8 @@ public class MccabeCC {
 
     AttrFinderImpl attributeFinder = new AttrFinderImpl();
 
+    List<AttributeTreeImpl> attributes;
+
     public int measureMccabeCCForAnAttributes(AttributeTreeImpl attributeTree) {
 
       List<TerraformTreeImpl> complexity = new ArrayList<>();
@@ -30,42 +32,16 @@ public class MccabeCC {
       return complexity.size() + 1;
     }
 
-    public List<AttributeTreeImpl> getAllAttributes(BlockTreeImpl blockTree) {
-      return this.attributeFinder.getAllAttributes(blockTree);
+    public List<AttributeTreeImpl> setAttributes(BlockTreeImpl blockTree) {
+      attributes = this.attributeFinder.getAllAttributes(blockTree);
+      return attributes;
     }
 
-    public int sumMccabeCC(List<AttributeTreeImpl> attributes) {
-      int sum = 0;
-      for (AttributeTreeImpl attribute: attributes) {
-        sum += measureMccabeCCForAnAttributes(attribute);
-      }
-      return sum;
+    public List<AttributeTreeImpl> getAttributes() {
+      return attributes;
     }
 
-    public double avgMccabeCC(List<AttributeTreeImpl> attributes) {
-      if (!attributes.isEmpty()) {
-        double avgMccabeCC = (double) sumMccabeCC(attributes) / attributes.size();
-        BigDecimal roundedAverage = BigDecimal.valueOf(avgMccabeCC).setScale(2, RoundingMode.HALF_UP);
-        return roundedAverage.doubleValue();
-      }
-      return 0.0;
-    }
 
-    public int maxMccabeCC(List<AttributeTreeImpl> attributes){
-
-      if (attributes.isEmpty()){ return 0;}
-
-      int max = measureMccabeCCForAnAttributes(attributes.get(0));
-
-      for (AttributeTreeImpl attribute: attributes) {
-        int value = measureMccabeCCForAnAttributes(attribute);
-        if (max < value) {
-          max = value;
-        }
-      }
-
-      return max;
-    }
 
 
 }

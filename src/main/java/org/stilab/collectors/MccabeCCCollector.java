@@ -3,6 +3,7 @@ package org.stilab.collectors;
 import org.json.simple.JSONObject;
 import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
+import org.stilab.calculators.MccabeCCCalculator;
 import org.stilab.visitors.MccabeCC;
 
 import java.util.List;
@@ -13,12 +14,15 @@ public class MccabeCCCollector implements Decorator {
     public JSONObject decorateMetric(JSONObject metrics, BlockTreeImpl identifiedBlock){
 
 
-      MccabeCC mccabeCC = new MccabeCC();
+//      MccabeCC mccabeCC = new MccabeCC();
 
-      List<AttributeTreeImpl> attributes = mccabeCC.getAllAttributes(identifiedBlock);
-      double avgMccabeCC = mccabeCC.avgMccabeCC(attributes);
-      int sumMccabeCC = mccabeCC.sumMccabeCC(attributes);
-      int maxMccabeCC = mccabeCC.maxMccabeCC(attributes);
+//      List<AttributeTreeImpl> attributes = mccabeCC.getAllAttributes(identifiedBlock);
+
+      MccabeCCCalculator mccabeCCCalculator = new MccabeCCCalculator(identifiedBlock);
+
+      double avgMccabeCC = mccabeCCCalculator.avgMccabeCC();
+      int sumMccabeCC = mccabeCCCalculator.sumMccabeCC();
+      int maxMccabeCC = mccabeCCCalculator.maxMccabeCC();
 
       metrics.put("avgMccabeCC", avgMccabeCC);
       metrics.put("sumMccabeCC", sumMccabeCC);
