@@ -12,9 +12,7 @@ public class DebuggingFunctionVisitor{
 
   private List<FunctionCallTreeImpl> debuggingFunctions = new ArrayList<>();
 
-  public DebuggingFunctionVisitor(FunctionCallExpressionVisitor
-                                             functionCallExpressionVisitor
-    ) {
+  public DebuggingFunctionVisitor(FunctionCallExpressionVisitor functionCallExpressionVisitor) {
       this.functionCallExpressionVisitor = functionCallExpressionVisitor;
   }
 
@@ -23,11 +21,7 @@ public class DebuggingFunctionVisitor{
       this.functionCallExpressionVisitor.filterFCfromBlock(block);
 
     for (FunctionCallTreeImpl funCall: functionsCalls) {
-      if (
-           funCall.name().value().equals("try") ||
-           funCall.name().value().equals("can") ||
-           funCall.name().value().equals("type")
-      ) {
+      if ( funCall.name().value().equals("try") || funCall.name().value().equals("can") || funCall.name().value().equals("type")) {
         debuggingFunctions.add(funCall);
       }
     }
