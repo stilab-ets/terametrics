@@ -19,24 +19,36 @@ public class ComparisonOperatorsVisitor{
     private List<BinaryExpressionTreeImpl> comparisonOperations = new ArrayList<>();
     private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
-    public List<BinaryExpressionTreeImpl> visit(AttributeTreeImpl attribute) {
-
-      ExpressionTree expressionTree = attribute.value();
-
-      List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
-
-      Stream<BinaryExpressionTreeImpl> binaryOperations = trees
-        .stream()
-        .filter(BinaryExpressionTreeImpl.class::isInstance)
-        .filter(child -> operators.contains(
-          ((BinaryExpressionTreeImpl) child).operator().value()
-        )).map(BinaryExpressionTreeImpl.class::cast);
-
-      return binaryOperations.collect(Collectors.toList());
+    public List<AttributeTreeImpl> getAttributes() {
+      return attributes;
     }
 
-    public List<BinaryExpressionTreeImpl> filterComparisonOperatorsFromAttributesList(List<AttributeTreeImpl>
-                                                                                 attributes) {
+    public List<String> getOperators() {
+      return operators;
+    }
+
+    public List<BinaryExpressionTreeImpl> getComparisonOperations() {
+      return comparisonOperations;
+    }
+
+    public List<BinaryExpressionTreeImpl> visit(AttributeTreeImpl attribute) {
+
+        ExpressionTree expressionTree = attribute.value();
+
+        List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
+
+        Stream<BinaryExpressionTreeImpl> binaryOperations = trees
+          .stream()
+          .filter(BinaryExpressionTreeImpl.class::isInstance)
+          .filter(child -> operators.contains(
+            ((BinaryExpressionTreeImpl) child).operator().value()
+          )).map(BinaryExpressionTreeImpl.class::cast);
+
+        return binaryOperations.collect(Collectors.toList());
+    }
+
+    public List<BinaryExpressionTreeImpl> filterComparisonOperatorsFromAttributesList(
+      List<AttributeTreeImpl>  attributes) {
       List<BinaryExpressionTreeImpl> operations = new ArrayList<>();
       for (AttributeTreeImpl attributeTree: attributes) {
         operations.addAll(this.visit(attributeTree));
@@ -50,29 +62,6 @@ public class ComparisonOperatorsVisitor{
       return comparisonOperations;
     }
 
-    public int totalNumberOfComparisonOperation(){
-      return this.comparisonOperations.size();
-    }
 
-    public double avgNumberOfComparisonOperation(){
-      if (!attributes.isEmpty()){
-        double avgNumberOfComparisonOperation = (double) totalNumberOfComparisonOperation() / attributes.size();
-        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfComparisonOperation).setScale(2, RoundingMode.HALF_UP);
-        return roundedAverage.doubleValue();
-      }
-      return 0.0;
-    }
-
-    public int maxNumberOfComparisonOperation(){
-      if (attributes.isEmpty()){ return 0; }
-      int max = visit(attributes.get(0)).size();
-      for(AttributeTreeImpl attribute: attributes) {
-        int value = visit(attribute).size();
-        if (value > max) {
-          max = value;
-        }
-      }
-      return max;
-    }
 
 }
