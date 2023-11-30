@@ -15,6 +15,7 @@ public class DistantAnalyzer extends RepoAnalyzer{
       super(full_name_repo, absoluteLocalPath, targetFile);
 
       this.REPO_URL = "https://github.com/" + full_name_repo + ".git";
+      dirAnalyzerService.deleteDirectory(new File(this.LOCAL_PATH));
       this.git = downloadRepo();
 
     }

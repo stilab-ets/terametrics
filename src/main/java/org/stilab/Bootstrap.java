@@ -26,6 +26,9 @@ public class Bootstrap {
     @Parameter(names = {"-r", "--repo"}, description = "Repo full Name of the git repository (GitHub/GitLab) that contains '.tf' files")
     private String repo;
 
+    @Parameter(names = {"-p", "--project"}, description = "Project Name in the case you have local folder/repo")
+    private String project;
+
 
     private void processCommandLineArguments(final String[] arguments) {
 
@@ -46,14 +49,14 @@ public class Bootstrap {
               }
 
               if (l) {
-                command = new DirCommand(repo);
+                command = new DirCommand(project);
               }
 
               if (git) {
                 command = new UriCommand(repo);
               }
             assert command != null;
-//            command.execute(file, target);
+            command.execute(file, target);
           } catch (Exception e) {
 //            logger.error("Error while identifying the right block: {}", e.getMessage(), e);
           }

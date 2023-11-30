@@ -25,12 +25,12 @@ public class DirAnalysisTest extends TestCase {
     @Test
     public void testDirLocalAnalysis(){
 
-      String local_path = "C:\\Users\\Admin\\dev\\sonar-iac\\iac-extensions\\terraform_miner\\src\\test\\java\\org\\stilab\\block\\data\\terraform-aws-modules\\terraform-aws-eks";
+      String local_path = "src/test/java/org/stilab/block/data/terraform-aws-modules";
       String target = "src/test/java/org/stilab/block/data/local_metrics.json";
 
-      LocalAnalyzer repoAnalyzer = new LocalAnalyzer(REPO_FULL_NAME, local_path, target);
+      LocalAnalyzer repoAnalyzer = new LocalAnalyzer("project_p", local_path, target);
       JSONObject jsonObject = repoAnalyzer.analyzeTfFiles();
-      assertEquals("terraform-aws-modules/terraform-aws-eks", (String) jsonObject.get("project"));
+      assertEquals("project_p", (String) jsonObject.get("project"));
     }
 
 
