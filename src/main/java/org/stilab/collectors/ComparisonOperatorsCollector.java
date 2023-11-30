@@ -12,7 +12,6 @@ public class ComparisonOperatorsCollector implements Decorator {
 
       ComparisonOperatorsCalculator comparisonOperatorsCalculator = new ComparisonOperatorsCalculator(identifiedBlock);
 
-
       int numComparisonOperators = comparisonOperatorsCalculator.totalNumberOfComparisonOperation();
       double avgComparisonOperators = comparisonOperatorsCalculator.avgNumberOfComparisonOperation();
       int maxComparisonOperators = comparisonOperatorsCalculator.maxNumberOfComparisonOperation();

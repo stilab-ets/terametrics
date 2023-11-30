@@ -2,7 +2,6 @@ package org.stilab.calculators;
 
 import org.sonar.iac.terraform.tree.impl.AttributeTreeImpl;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
-import org.stilab.collectors.ComparisonOperatorsCollector;
 import org.stilab.visitors.ComparisonOperatorsVisitor;
 
 import java.math.BigDecimal;
