@@ -17,20 +17,28 @@ public class ConditionalExpressionVisitor{
     private List<TerraformTreeImpl> conditions = new ArrayList<>();
     private List<AttributeTreeImpl> attributes = new ArrayList<>();
 
-    public List<TerraformTreeImpl> visit(AttributeTreeImpl attributeTree) {
-      ExpressionTree expressionTree = attributeTree.value();
-      List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
-      Stream<TerraformTreeImpl> conditionFilter = trees.stream()
-                                                    .filter(ConditionTreeImpl.class::isInstance)
-                                                    .map(TerraformTreeImpl.class::cast);
-      Stream<TerraformTreeImpl> ifDirectiveFilter = trees.stream()
-                                                    .filter(TemplateIfDirectiveTreeImpl.class::isInstance)
-                                                    .map(TerraformTreeImpl.class::cast);
-      List<TerraformTreeImpl> combinedFilters = Stream.concat(conditionFilter, ifDirectiveFilter).collect(Collectors.toList());
-      List<SyntaxTokenImpl> tokens = identifyTokens(attributeTree);
-      combinedFilters.addAll(tokens);
-      return combinedFilters;
+    public List<TerraformTreeImpl> getConditions() {
+      return conditions;
     }
+
+    public List<AttributeTreeImpl> getAttributes() {
+      return attributes;
+    }
+
+    public List<TerraformTreeImpl> visit(AttributeTreeImpl attributeTree) {
+        ExpressionTree expressionTree = attributeTree.value();
+        List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(expressionTree);
+        Stream<TerraformTreeImpl> conditionFilter = trees.stream()
+                                                      .filter(ConditionTreeImpl.class::isInstance)
+                                                      .map(TerraformTreeImpl.class::cast);
+        Stream<TerraformTreeImpl> ifDirectiveFilter = trees.stream()
+                                                      .filter(TemplateIfDirectiveTreeImpl.class::isInstance)
+                                                      .map(TerraformTreeImpl.class::cast);
+        List<TerraformTreeImpl> combinedFilters = Stream.concat(conditionFilter, ifDirectiveFilter).collect(Collectors.toList());
+        List<SyntaxTokenImpl> tokens = identifyTokens(attributeTree);
+        combinedFilters.addAll(tokens);
+        return combinedFilters;
+      }
 
     public List<SyntaxTokenImpl> identifyTokens(AttributeTreeImpl attributeTree) {
       List<Tree> trees = ExpressionAnalyzer.getInstance().getAllNestedExpressions(attributeTree.value());
@@ -55,31 +63,6 @@ public class ConditionalExpressionVisitor{
       return conditions;
     }
 
-    public int totalNumberOfConditions(){
-      return this.conditions.size();
-    }
 
-    public double avgNumberOfConditionsPerAttribute(){
-      if (!attributes.isEmpty()){
-        double avgNumberOfConditionsPerAttribute = (double) conditions.size()  / attributes.size();
-        BigDecimal roundedAverage = BigDecimal.valueOf(avgNumberOfConditionsPerAttribute).setScale(2, RoundingMode.HALF_UP);
-        return roundedAverage.doubleValue();
-      }
-      return 0.0;
-    }
-
-    public int maxNumberOfConditionsPerAttribute(){
-
-      if (attributes.isEmpty()){ return 0; }
-
-      int max = visit(attributes.get(0)).size();
-      for (AttributeTreeImpl attributeTree: attributes){
-         int tmpValue = visit(attributeTree).size();
-         if (max < tmpValue ){
-           max = tmpValue;
-         }
-      }
-      return max;
-    }
 
 }
