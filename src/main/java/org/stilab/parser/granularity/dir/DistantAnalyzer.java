@@ -9,12 +9,15 @@ import java.util.List;
 public class DistantAnalyzer extends RepoAnalyzer{
 
     private String REPO_URL;
+
+    private String LOCAL_PATH;
     private Git git;
 
-    public DistantAnalyzer(String full_name_repo, String absoluteLocalPath, String targetFile) throws GitAPIException {
+    public DistantAnalyzer(String full_name_repo, String absoluteLocalPath,String targetFile) throws GitAPIException {
       super(full_name_repo, absoluteLocalPath, targetFile);
 
       this.REPO_URL = "https://github.com/" + full_name_repo + ".git";
+      this.LOCAL_PATH = absoluteLocalPath;
       dirAnalyzerService.deleteDirectory(new File(this.LOCAL_PATH));
       this.git = downloadRepo();
 

@@ -1,5 +1,6 @@
 package org.stilab.visitors;
 
+import org.sonar.iac.common.api.tree.Tree;
 import org.sonar.iac.terraform.tree.impl.BlockTreeImpl;
 import org.sonar.iac.terraform.tree.impl.FunctionCallTreeImpl;
 

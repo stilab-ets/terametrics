@@ -17,7 +17,7 @@ public class DirAnalysisTest extends TestCase {
 
     @Test
     public void testDirDistantAnalysis() throws GitAPIException {
-      RepoAnalyzer repoAnalyzer = new DistantAnalyzer(REPO_FULL_NAME, LOCAL_PATH, TARGET_FILE);
+      RepoAnalyzer repoAnalyzer = new DistantAnalyzer(REPO_FULL_NAME, LOCAL_PATH,TARGET_FILE);
       JSONObject jsonObject = repoAnalyzer.analyzeTfFiles();
       assertEquals("terraform-aws-modules/terraform-aws-eks", (String) jsonObject.get("project"));
     }
@@ -25,7 +25,7 @@ public class DirAnalysisTest extends TestCase {
     @Test
     public void testDirLocalAnalysis(){
 
-      String local_path = "src/test/java/org/stilab/block/data/terraform-aws-modules";
+      String local_path = "src/test/java/org/stilab/block/data/modules";
       String target = "src/test/java/org/stilab/block/data/local_metrics.json";
 
       LocalAnalyzer repoAnalyzer = new LocalAnalyzer("project_p", local_path, target);

@@ -5,15 +5,20 @@ import org.stilab.parser.granularity.dir.RepoAnalyzer;
 
 public class DirCommand implements Command{
 
+    private String projectDirectory;
     private String projectName;
 
-    public DirCommand(String projectName){
+    private String target;
+
+    public DirCommand(String projectName, String projectDirectory, String target){
+      this.projectDirectory = projectDirectory;
       this.projectName = projectName;
+      this.target = target;
     }
 
     @Override
-    public void execute(String filePath, String target) {
-      RepoAnalyzer distantAnalyzer = new LocalAnalyzer(this.projectName, filePath, target);
+    public void execute() {
+      RepoAnalyzer distantAnalyzer = new LocalAnalyzer(this.projectName, this.projectDirectory, target);
       distantAnalyzer.analyzeTfFiles();
     }
 }

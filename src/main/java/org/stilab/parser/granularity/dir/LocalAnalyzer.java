@@ -7,6 +7,7 @@ public class LocalAnalyzer extends RepoAnalyzer{
 
   public LocalAnalyzer(String full_name_repo, String absoluteLocalPath, String targetFile){
     super(full_name_repo, absoluteLocalPath, targetFile);
+    System.out.println(this.LOCAL_PATH);
   }
 
   protected List<String> getTfFilesList() {

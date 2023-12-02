@@ -10,19 +10,25 @@ import java.util.List;
 
 public class FileCommand implements Command{
 
+      private String filePath;
+      private String target;
 
-  @Override
-  public void execute(String filePath, String target) {
+      public FileCommand(String filePath, String target){
+        this.filePath = filePath;
+        this.target = target;
+      }
 
-    BlockDivider blockDivider = new BlockDivider(filePath);
-    List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions = blockDivider.divideFilePerBlock();
+      @Override
+      public void execute() {
 
-    FileLevelMetricsCalculator fileLevelMetricsCalculator = new FileLevelMetricsCalculator(blockPositions);
-    List<JSONObject> objects = fileLevelMetricsCalculator.measureMetricsPerBlocks();
+        BlockDivider blockDivider = new BlockDivider(filePath);
+        List<BlockPosition<Integer, Integer, String, BlockTreeImpl, Object, String, Integer>> blockPositions = blockDivider.divideFilePerBlock();
 
-    //  Measure the metrics and generate A Json File for each one
-    fileLevelMetricsCalculator.saveJsonToFile(objects, target);
-  }
+        FileLevelMetricsCalculator fileLevelMetricsCalculator = new FileLevelMetricsCalculator(blockPositions);
+        List<JSONObject> objects = fileLevelMetricsCalculator.measureMetricsPerBlocks();
 
+        //  Measure the metrics and generate A Json File for each one
+        fileLevelMetricsCalculator.saveJsonToFile(objects, target);
+      }
 
 }

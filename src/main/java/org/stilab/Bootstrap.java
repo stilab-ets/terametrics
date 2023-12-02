@@ -27,7 +27,7 @@ public class Bootstrap {
     private String repo;
 
     @Parameter(names = {"-p", "--project"}, description = "Project Name in the case you have local folder/repo")
-    private String project;
+    private String projectName;
 
 
     private void processCommandLineArguments(final String[] arguments) {
@@ -44,18 +44,19 @@ public class Bootstrap {
 
             // Measure the metrics for the given script per block
               if (bloc) {
-                command = new FileCommand();
+                command = new FileCommand(file, target);
               }
 
               if (l) {
-                command = new DirCommand(project);
+                command = new DirCommand(projectName, repo, target);
               }
 
               if (git) {
-                command = new UriCommand(repo);
+                command = new UriCommand(projectName, repo, target);
+
               }
             assert command != null;
-            command.execute(file, target);
+            command.execute();
           } catch (Exception e) {
 //            logger.error("Error while identifying the right block: {}", e.getMessage(), e);
           }

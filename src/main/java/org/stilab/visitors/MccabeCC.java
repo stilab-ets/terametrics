@@ -29,6 +29,9 @@ public class MccabeCC {
       List<TerraformTreeImpl> loops = loopsExpressionVisitor.visit(attributeTree);
       complexity.addAll(loops);
 
+      // check if the attribute is 'foreach', 'count'
+
+
       return complexity.size() + 1;
     }
 

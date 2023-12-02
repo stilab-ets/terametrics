@@ -22,7 +22,7 @@ public class RepoAnalyzer {
 
       public RepoAnalyzer(String full_name_repo, String absoluteLocalPath, String targetFile) {
               this.TARGET_FILE = targetFile;
-              this.LOCAL_PATH = absoluteLocalPath + full_name_repo;
+              this.LOCAL_PATH = absoluteLocalPath;
               this.full_name_repo = full_name_repo;
               dirAnalyzerService = new DirAnalyzerService();
       }
