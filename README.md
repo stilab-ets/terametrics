@@ -108,7 +108,7 @@ Before you begin, make sure you have the following installed:
 
 You can find the JAR file named as [terraform_metrics-1.0.jar](src/main/resources/terraform_metrics-1.0.jar) in standalone folder 
  
-Please refer to the [Video](https://example.com) that presents a demonstration how to use this package.
+Please refer to the [Video](https://youtu.be/386prRYfLIk) that presents a demonstration how to use this package.
 
 ## Evaluation
 
