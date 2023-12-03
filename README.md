@@ -104,10 +104,48 @@ Before you begin, make sure you have the following installed:
 
 ## Usage 
 
-**TerraMetrics** is available as JAR file that could be standalone executable file. 
+**TerraMetrics** is available as JAR file that could be standalone executable file. The use can find the JAR file named as [terraform_metrics-1.0.jar](src/main/resources/terraform_metrics-1.0.jar).
 
-You can find the JAR file named as [terraform_metrics-1.0.jar](src/main/resources/terraform_metrics-1.0.jar) in standalone folder 
- 
+To run the tool you need execute [terraform_metrics-1.0.jar](src/main/resources/terraform_metrics-1.0.jar) with the right parameters. In the following we detail the possible parameters:
+
+1. To view the documentation:
+
+    - ```-h```: boolean parameter to print the user guide.
+   
+    ```bash
+    java -jar /path/to/terraform_metrics-1.0.jar -h
+    ```
+
+2. To measure the HCL metrics for a given Terraform file, 3 parameters are required:
+  
+   -  ```--file```: path to the Terraform file.
+   -  ```-b```: boolean parameter to indicate the file-level execution.
+   -  ```--target```: path to the result file.
+   
+   ```bash
+        java -jar </path/to/terraform_metrics-1.0.jar> --file </path/to/file.tf> -b --target </path/to/target.json>
+   ```
+
+3. To measure the HCL metrics for a given *Local Folder* or *GitHub Repository* that contain Terraform file, 4 parameters are required:
+
+   -  ```-l```: boolean parameter to indicate the local-level execution.
+   -  ```--repo```: to indicate the path to the local folder.
+   - ```--target```: to indicate the path to the output file.
+   - ```--project```: to indicate the project name.
+   - ```-g```: boolean parameter to indicate to get the repository from GitHub.
+
+   For *Local Folder*: 
+
+   ```bash
+      java -jar /path/to/terraform_metrics-1.0.jar -l --repo </path/to/localrepo> --target </path/to/target.json> --project <projectName>
+   ```
+
+   For *GitHub Repository*:
+
+   ```bash
+      java -jar /path/to/terraform_metrics-1.0.jar -g --repo </path/to/localrepo> --target </path/to/target.json> --project <GitHubRepositoryFullName>
+   ```
+
 Please refer to the [Video](https://youtu.be/386prRYfLIk) that presents a demonstration how to use this package.
 
 ## Evaluation
