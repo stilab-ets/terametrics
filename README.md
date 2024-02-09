@@ -401,3 +401,17 @@ Mahi BEGOUG - mahi.begoug.rch[at]gmail.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## How to cite?
+
+Please, use the following bibtex entry:
+
+```tex
+@inproceedings{begoug2024terrametrics,
+author = {Begoug, Mahi and Chouchen, Moataz and Ouni, Ali},
+title = {TerraMetrics: An Open Source Tool for Infrastructure-as-Code (IaC) Quality Metrics in Terraform},
+year = {2024},
+booktitle={IEEE/ACM 32nd International Conference on Program Comprehension (ICPC)},
+numpages = {5}
+}
+```
+
